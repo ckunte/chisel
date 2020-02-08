@@ -1,25 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Chisel by D Zhou, github.com/dz
-# Fork and mod by C Kunte, github.com/ckunte
-import re
-import time
-import os
-import jinja2
-import markdown
+# Fork + mod by C Kunte, github.com/ckunte
+
+import sys, re, time, os
+import jinja2, markdown
 from functools import cmp_to_key
-# SETTINGS: Begin user inputs --
+from config import *
+
 LOC = [
-    os.environ["HOME"] + "/Sites/posts/",         # post files in markdown (.md)
-    os.environ["HOME"] + "/Sites/ln.lo/",         # local www folder
-    os.environ["HOME"] + "/Sites/chisel/vanilla/" # jinja2 templates
+    os.environ["HOME"] + "/" + POSTS, 
+    os.environ["HOME"] + "/" + WWW,
+    os.environ["HOME"] + "/" + TMPL
 ]
-RSS_SHOW = 9 # change the number of entries in RSS feed to suit
-# -- End of user inputs --
-TFMT = ["%B %-d, %Y", "%a, %d %b %Y %H:%M:%S %z", "%Y-%m-%d", "%b %d"] # Date: [As shown, In RSS, in .md posts] respectively
-FORMAT = lambda text: markdown.markdown(text,extensions=['markdown.extensions.smarty','markdown.extensions.tables','markdown.extensions.footnotes'])
-EXT = ["", ".html"] # URLEXT, PATHEXT
+
+FORMAT = lambda text: markdown.markdown(text,\
+	extensions=[
+	'markdown.extensions.smarty',
+    'markdown.extensions.tables',
+    'markdown.extensions.footnotes'
+    ])
+
 STEPS = []
+
 def step(func):
     def wrapper(*args, **kwargs):
         print("\t\tGenerating %s..." %func.__name__, end="");
@@ -42,15 +45,12 @@ def get_tree(source):
             files.append({
                 'title': title,
                 'epoch': time.mktime(date),
+                'desc': f.readline().strip('\n\t'),
                 'content': FORMAT(''.join(f.readlines()[1:])),
                 'url': '/'.join([str(year), os.path.splitext(name)[0]]),
                 'pretty_date': time.strftime(TFMT[0], date),
                 'rssdate': time.strftime(TFMT[1], date),
-                'sdate': time.strftime(TFMT[3], date),
-                'date': date,
-                'year': year,
-                'month': month,
-                'day': day,
+                'date': date, 'year': year, 'month': month, 'day': day,
                 'filename': name})
             f.close()
     return files
@@ -70,11 +70,19 @@ def write_file(url, data):
     file.write(data)
     file.close()
 
-# def write_feed(url, data):
-#     path = LOC[1] + url
-#     file = open(path, "w")
-#     file.write(data)
-#     file.close()
+def write_feed(url, data):
+    path = LOC[1] + url
+    file = open(path, "w")
+    file.write(data)
+    file.close()
+
+# @step
+# def feed(f, e):
+#     write_feed('rss.xml', e.get_template('feed.xml').render(entries=f[:RSS_SHOW]))
+
+@step
+def homepage(f, e):
+    write_file('index%s' %EXT[0], e.get_template('home.html').render(entries=f))
 
 @step
 def posts(f, e):
@@ -82,16 +90,8 @@ def posts(f, e):
         write_file(file['url'], e.get_template('detail.html').render(entry=file, entries=f))
 
 @step
-def homepage(f, e):
-    write_file('index%s' %EXT[0], e.get_template('home.html').render(entries=f[:RSS_SHOW]))
-
-@step
 def archive(f, e):
     write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
-
-# @step
-# def feed(f, e):
-#     write_feed('rss.xml', e.get_template('feed.html').render(entries=f[:RSS_SHOW]))
 
 # @step
 # def aboutpage(f, e):
@@ -101,7 +101,7 @@ def main():
     print("Chiseling...");
     print("\tReading files...", end="");
     files = sorted(get_tree(LOC[0]), key=cmp_to_key(compare_entries))
-    env = jinja2.Environment(loader=jinja2.FileSystemLoader(LOC[2]))
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader(LOC[2]),extensions=['jinja2_markdown.MarkdownExtension'])
     print("done.")
     print("\tRunning steps...");
     for step in STEPS:
@@ -110,4 +110,4 @@ def main():
     print("done.")
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
