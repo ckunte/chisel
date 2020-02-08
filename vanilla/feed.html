@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   <title>ckunte.net</title>
+   <description>A personal weblog by ckunte</description>
+   <atom:link href="http://ckunte.net/rss.xml" rel="self" type="application/rss+xml"/>
+   <link>http://ckunte.net/</link>
+   <language>en-us</language>
+    {% for entry in entries %}
+    <item>
+      <title>{{ entry.title | escape }}</title>
+      <link>http://ckunte.net/{{ entry.url }}</link>
+      <guid>http://ckunte.net/{{ entry.url }}</guid>
+      <pubDate>{{ entry.rssdate }}GMT</pubDate>
+      <description>
+        {{ entry.content | escape }}
+        &lt;hr&gt;
+        &lt;p&gt;
+          &lt;i&gt;Terms of use: &lt;a href="http://ckunte.net/about"&gt;ckunte.net/about&lt;/a&gt;&lt;/i&gt;
+        &lt;/p&gt;
+      </description>
+    </item>
+    {% endfor %}
+</channel>
+</rss>

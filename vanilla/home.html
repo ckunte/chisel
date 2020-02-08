@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block hlhead %}
+  <script defer src="/css/hl.js" onload="hljs.initHighlightingOnLoad();"></script>
+{% include 'math.html' %}
+{%- endblock %}
+
+{% block header %}
+{% include 'header.html' %}
+{%- endblock %}
+
+{%- block post %}
+  {%- for entry in entries -%}
+  <article>
+    <time>{{ entry.pretty_date }}</time>
+    <h1><a href="/{{ entry.url }}">{{ entry.title }}</a></h1>
+    {{ entry.content }}
+  </article>  
+  {%- endfor %}
+{%- endblock %}
+
+{% block footer %}
+{% include 'footer.html' %}
+{%- endblock %}

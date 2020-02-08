@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{%- block hlhead -%}<script defer src="/css/hl.js" onload="hljs.initHighlightingOnLoad()"></script>{%- endblock %}
+{%- block mjax -%}
+<script defer type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  };
+</script>
+<script defer type="text/javascript" src="/MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+{%- endblock %}
+{%- block post %}
+  {%- for entry in entries -%}
+	<div class="post">
+    <p class="date">{{ entry.pretty_date }}</p>
+    <h2><a href="/{{ entry.url }}">{{ entry.title }}</a></h2>
+	   {{ entry.content }}
+  </div>
+  {%- endfor %}
+{%- endblock %}
+{% block footer %}
+<div class="navleft"><a href="/archive">Archive</a></div>
+{%- endblock %}

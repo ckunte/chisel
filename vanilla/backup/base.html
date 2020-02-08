@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>pi.local{%block title %}{% endblock %}</title>
+<meta name="author" content="Chetan Kunte">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="/{%block canonicalurl %}{% endblock %}">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="ckunte.net" href="/rss.xml">
+<link rel="stylesheet" href="/css/vanilla.css" type="text/css">
+{%- block hlhead -%}{%- endblock %}{%- block imagerotationscript -%}{%- endblock %}{#{%- block ga -%}{%- endblock %}#}
+{%- block mjax -%}{%- endblock %}
+</head>
+<body>
+<div id="container">
+ <div id="header"><h1><a accesskey="/" title="Home" href="/">pi</a><span>.local</span></h1></div>
+    {%- block post -%}{%- endblock %}
+    {%- block footer -%}{%- endblock %}
+ </div>
+</body>
+ <script>
+  var cb = function() {
+    var l = document.createElement('link'); l.rel = 'stylesheet';
+    l.href = '/css/xcode.css';
+    var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+  };
+  var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+      webkitRequestAnimationFrame || msRequestAnimationFrame;
+  if (raf) raf(cb);
+  else window.addEventListener('load', cb);
+ </script>
+</html>

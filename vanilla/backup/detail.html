@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{%- block title -%}: {{entry.title}} {%- endblock %}
+{%- block canonicalurl -%}{{entry.url}}{%- endblock %}
+{%- block hlhead -%}<script defer src="/css/hl.js" onload="hljs.initHighlightingOnLoad()"></script>{%- endblock %}
+{%- block mjax -%}
+<script defer type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  };
+</script>
+<script defer type="text/javascript" src="/MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+{%- endblock %}
+{%- block post %}
+  {% set curr = entry.url %}
+  {% set total = entries | count %}
+  <div class="post">
+   <p class="date">{{ entry.pretty_date }}</p>
+   <h2><a href="/{{ entry.url }}">{{ entry.title }}</a></h2>
+   {{ entry.content }}
+  </div>
+  {# Footer navigation begins here #}
+    {%- for entry in entries %}
+      {%- if entry.url == curr %}
+        {%- if loop.index0 > 0 %}
+          {%- set next = entries[loop.index0-1].url %}
+          {%- set nexttitle = entries[loop.index0-1].title %}
+        {%- else %}
+          {%- set next = None %}
+          {%- set nexttitle = None %}
+        {%- endif %}
+        {%- if loop.index0+1 < total %}
+          {%- set prev = entries[loop.index0+1].url %}
+          {%- set prevtitle = entries[loop.index0+1].title %}
+        {%- else %}
+          {%- set prev = None %}
+          {%- set prevtitle = None %}
+        {%- endif %}
+        <div class="nav">
+          <table>
+          {%- if prev and next %}
+            <tr>
+              <td class="lt"><a accesskey="j" title="{{prevtitle}}" href="/{{ prev }}">&larr; Prev</a></td>
+              <td><a accesskey="a" class="navleft" href="/archive">Archive</a></td>
+              <td class="rt"><a accesskey="k" title="{{nexttitle}}" href="/{{ next }}">Next &rarr;</a></td>
+            </tr>
+          {%- elif not next %}
+          <tr>
+            <td class="lt"><a accesskey="j" title="{{prevtitle}}" href="/{{ prev }}">&larr; Prev</a></td>
+            <td><a accesskey="a" class="navleft" href="/archive">Archive</a></td>
+            <td class="rt">&nbsp;</td>
+          </tr>
+          {%- elif not prev %}
+            <tr>
+              <td class="lt">&nbsp;</td>
+              <td><a accesskey="a" class="navleft" href="/archive">Archive</a></td>
+              <td class="rt"><a accesskey="k" title="{{nexttitle}}" href="/{{ next }}">Next &rarr;</a></td>
+            </tr>
+          {%- endif %}
+          </table>
+        </div>
+      {%- endif %}
+    {%- endfor %}
+  {# Footer navigation ends here #}    
+  {%- endblock %} {# end post #}
+
+{%- block footer %}
+  <div class="navleftf">&nbsp;</div>
+{%- endblock %}

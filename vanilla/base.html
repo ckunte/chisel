@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>zero.local{% block title %}{% endblock %}</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="canonical" href="/{%block canonicalurl %}{% endblock %}">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="alternate" type="application/rss+xml" title="ckunte.net" href="/rss.xml">
+  <link rel="stylesheet" media="screen" href="/css/vanilla.css" type="text/css">
+  <link rel="stylesheet" media="print" href="/css/print.css" type="text/css">
+  {%- block hlhead -%}{%- endblock %}{%- block imagerotationscript -%}{%- endblock %}{%- block math -%}{%- endblock %}
+</head>
+<body>
+  <main>
+    {%- block header -%}{%- endblock %}
+    {%- block post -%}{%- endblock %}
+    {%- block footer -%}{%- endblock %}
+  </main>
+  {% include 'footerscript.html' %}
+</body>
+</html>

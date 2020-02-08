@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{%- block title -%}: Archive{%- endblock %}
+{% block hlhead %}
+  <script defer src="/css/hl.js" onload="hljs.initHighlightingOnLoad();"></script>
+{% block imagerotationscript %}<!--[if !IE]><!--><script type="text/javascript" src="/css/rotimg1.js"></script><!--<![endif]-->{% endblock %}
+{%- endblock %}
+
+{% block header %}
+{% include 'header.html' %}
+{%- endblock %}
+
+{%- block post %}
+<article>
+<time>{{ entries | length }} entries to date</time>
+<h1><a href="/archive">Archive</a></h1>
+ <!--[if !IE]><!--><p><script type="text/javascript">getRandomImage(images,desc);</script></p><noscript><p><img alt="" src="/images/much-snow.jpg"></p><p><a href="/2010/snow">Snow</a>.</p></noscript><!--<![endif]--><!--[if IE]><p><img alt="" src="/images/img.jpg"></p><p>In Murren.</p><![endif]-->
+ {%- for year, year_list in entries|groupby('year')|reverse %}
+ <h2 class="year">{{ year }}</h2>
+ <ul class="archive">
+   {%- for month, month_list in year_list | groupby('month') | reverse %}
+     {%- for day, day_list in month_list | groupby('day') | reverse %}
+       {%- for entry in day_list %}
+         <li class="list"><small>{{ entry.sdate }}</small>&nbsp;&nbsp;<a href="/{{ entry.url }}">{{ entry.title }}</a><small>&nbsp;&sdot;&nbsp;{{ entry.content | wordcount // 300 + 1 }} min</small></li>
+       {%- endfor %}
+     {%- endfor %}
+   {%- endfor %}
+ </ul>
+ {%- endfor %}
+</article>
+{%- endblock %}
+{% block footer %}
+{% include 'footer-arch.html' %}
+{%- endblock %}

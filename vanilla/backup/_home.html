@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{%- block hlhead -%}<script defer src="/css/hl.js" onload="hljs.initHighlightingOnLoad()"></script>{%- endblock %}
+{%- block post %}
+<div class="post bio"> {# add append css class bio to get author image on the right #}
+<h3>Chetan Kunte</h3>
+  <p><span style="background:#fff">Offshore engineer at <b>RDS</b>. <a href="/about">&rarr;</a></span></p>
+</div>
+{#
+<div class="post">
+  {% markdown %}
+  ### Papers <span style="color:#999">(Coming soon)</span>
+  {% endmarkdown %}
+  <ul class="archive">
+    <li class=list><small>2017</small> &sdot; Effect of cargo position on sea-transport forces</li>
+    <li class=list><small>2016</small> &sdot; Cell fender feasibility for breasting dolphins</li>
+    <li class=list><small>2016</small> &sdot; Reliability of flare derrick to increased cyclonic wind</li>
+    <li class=list><small>2016</small> &sdot; <b>EPU</b> module subject to blast overpressure</li>
+    <li class=list><small>2015</small> &sdot; <a href="https://www.researchgate.net/publication/275656639_Barge_motion_responses_in_South_China_Sea">Barge motion responses in South China Sea</a></li>
+    <li class=list><small>2014</small> &sdot; Lean and lightweight platform concept in 60m water depth</li>
+    <li class=list><small>2013</small> &sdot; Design corrosion allowances in fixed offshore structures</li>
+    <li class=list><small>2012</small> &sdot; Best practice guide for tender-assist drilling operations</li>
+    <li class=list><small>2010</small> &sdot; Polyester mooring rope qualification for 2,500t rope tension</li>
+    <li class=list><small>2008</small> &sdot; Response based approach to global ice loads assessment</li>
+    <li class=list>More &rarr;</li>
+  </ul>
+</div>
+<div class="post">
+  <h3>Scripts (<a title="Projects on GitHub" href="https://github.com/ckunte">Projects</a>, <a href="https://gist.github.com/ckunte">Gists</a>)</h3>
+  <ul class="archive">
+    <li class=list><b><a href="https://github.com/ckunte/hcalc">hcalc</a></b>: A collection of scripts in <a href="https://www.python.org/">python</a> and <a href="http://calca.io">Calca</a></li>
+    <li class=list><b><a href="https://github.com/ckunte/pyplots">pyplots</a></b>: Plots using python + <a href="http://matplotlib.org">matplotlib</a></li>
+    <li class=list><b><a href="https://github.com/ckunte/usfos">usfos</a></b>: Text editor plugins for <a href="http://www.usfos.com">USFOS</a></li>
+    <li class=list><b><a href="https://github.com/ckunte/chisel">chisel</a></b>: A lightweight static site generator</li>
+  </ul>
+</div>
+#}
+<div class="post">
+  <h3>Recent posts (<a href="/archive">Archive</a>, <a href="/rss.xml">RSS</a>)</h3>
+    <ul class="archive">
+    {%- for entry in entries -%}
+    <li class="list"><small>{{ entry.sdate }}</small> &sdot; <a href="/{{ entry.url }}">{{ entry.title }}</a> &sdot; <small>{{ entry.content | wordcount // 300 + 1 }} min</small></li>
+    {%- endfor %}
+    {#<li class=list><a href="/archive">Archive &rarr;</a></li>#}
+    </ul>
+</div>
+{%- endblock %}
+
+{% block footer %}
+
+<div class="nav">
+  &nbsp;
+</div>
+{%- endblock %}
