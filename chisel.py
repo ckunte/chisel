@@ -82,7 +82,7 @@ def write_feed(url, data):
 
 @step
 def homepage(f, e):
-    write_file('index%s' %EXT[0], e.get_template('home.html').render(entries=f))
+    write_file('index%s' %EXT[0], e.get_template('home.html').render(entries=f[:RSS_SHOW]))
 
 @step
 def posts(f, e):
