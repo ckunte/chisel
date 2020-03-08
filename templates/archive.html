@@ -1,27 +1,15 @@
 {% extends "base.html" %}
+{%- block title -%}: Archive{%- endblock %}
+{%- block hlhead -%}{%- endblock %}
 
 {% block header %}
-  <header>
-    <span><a accesskey="/" href="/">{{ site_title }}</a>: <a accesskey="r" href="/archives.html">Archive</a> <i>by {{ site_author }}</i></span>
-    {%- if entries | length  > 1 -%}
-        <span><i>{{ entries | length }} entries</i></span>
-    {%- else -%}
-        <span><i>{{ entries | length }} entry</i></span>
-    {%- endif -%}
-  </header>
-{% endblock %}
+{% include 'header.html' %}
+{%- endblock %}
 
-{% block main %}
-<article>
-{# {% include 'archive_by_year_month.html' %} #}
-<ol reversed="reversed">
-{%- for entry in entries %}    
-    <li><a id="{{ loop.length - loop.index0 }}" href="/{{ entry.url }}">{{ entry.title | e }}</a> <small>({{ entry.content | wordcount // 300 + 1 }} min read) &ndash; {{ entry.pretty_date }}</small></li>
-{%- endfor %}
-</ol>
-</article>
-{% endblock %}
+{%- block post %}
+{% include 'allposts.html' %}
+{%- endblock %}
 
 {% block footer %}
 {% include 'footer.html' %}
-{% endblock %}
+{%- endblock %}

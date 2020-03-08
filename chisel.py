@@ -1,32 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Chisel
-# David Zhou
-# 
-# Requires:
-# jinja2
+# Chisel by D Zhou, github.com/dz
+# Fork + mod by C Kunte, github.com/ckunte
 
 import sys, re, time, os
 import jinja2, markdown
 from functools import cmp_to_key
+from config import *
 
-#Settings
-SOURCE = "./blog/" #end with slash
-DESTINATION = "./export/" #end with slash
-HOME_SHOW = 15 #numer of entries to show on homepage
-TEMPLATE_PATH = "./templates/"
-TEMPLATE_OPTIONS = {}
-TEMPLATES = {
-    'home': "home.html",
-    'detail': "detail.html",
-    'archive': "archive.html",
-}
-TIME_FORMAT = "%B %d, %Y"
-ENTRY_TIME_FORMAT = "%m/%d/%Y"
-#FORMAT should be a callable that takes in text
-#and returns formatted text
-FORMAT = lambda text: markdown.markdown(text, extensions=['markdown.extensions.footnotes'])
-#########
+LOC = [
+    os.environ["HOME"] + "/" + POSTS, 
+    os.environ["HOME"] + "/" + WWW,
+    os.environ["HOME"] + "/" + TMPL
+]
+
+FORMAT = lambda text: markdown.markdown(text,\
+    extensions=['smarty','tables','fenced_code','footnotes'])
 
 STEPS = []
 
@@ -43,23 +32,27 @@ def get_tree(source):
     for root, ds, fs in os.walk(source):
         for name in fs:
             if name[0] == ".": continue
+            if not re.match(r'^.+\.(md|mdown)$', name): continue
             path = os.path.join(root, name)
             f = open(path, "r")
             title = f.readline().strip('\n\t')
-            date = time.strptime(f.readline().strip(), ENTRY_TIME_FORMAT)
-            year, month, day = date[:3]
+            date = time.strptime(f.readline().strip(), TFMT[2])
+            year, month, day, hour, minute = date[:5]
             files.append({
                 'title': title,
                 'epoch': time.mktime(date),
+                'desc': f.readline().strip('\n\t'),
                 'content': FORMAT(''.join(f.readlines()[1:])),
-                'url': '/'.join([str(year), "%.2d" % month, "%.2d" % day, os.path.splitext(name)[0] + ".html"]),
-                'pretty_date': time.strftime(TIME_FORMAT, date),
-                'date': date,
-                'year': year,
-                'month': month,
-                'day': day,
-                'filename': name,
-            })
+                'url': '/'.join([str(year), os.path.splitext(name)[0]]),
+                'pretty_date': time.strftime(TFMT[0], date),
+                #'rssdate': time.strftime(TFMT[1], date),
+                'date': date, 
+                'year': year, 
+                'month': '{:02d}'.format(month), 
+                'day': '{:02d}'.format(day), 
+                'hour': '{:02d}'.format(hour), 
+                'minute': '{:02d}'.format(minute),
+                'filename': name})
             f.close()
     return files
 
@@ -70,7 +63,7 @@ def compare_entries(x, y):
     return result
 
 def write_file(url, data):
-    path = DESTINATION + url
+    path = LOC[1] + url + EXT[1]
     dirs = os.path.dirname(path)
     if not os.path.isdir(dirs):
         os.makedirs(dirs)
@@ -78,30 +71,46 @@ def write_file(url, data):
     file.write(data)
     file.close()
 
-@step
-def generate_homepage(f, e):
-    """Generate homepage"""
-    template = e.get_template(TEMPLATES['home'])
-    write_file("index.html", template.render(entries=f[:HOME_SHOW]))
+def write_feed(url, data):
+    path = LOC[1] + url
+    file = open(path, "w")
+    file.write(data)
+    file.close()
 
 @step
-def master_archive(f, e):
-    """Generate master archive list of all entries"""
-    template = e.get_template(TEMPLATES['archive'])
-    write_file("archives.html", template.render(entries=f))
+def jsonfeed(f, e):
+    write_feed('feed.json', e.get_template('feed.json').render(entries=f[:RSS_SHOW]))
 
 @step
-def detail_pages(f, e):
-    """Generate detail pages of individual posts"""
-    template = e.get_template(TEMPLATES['detail'])
+def atomfeed(f, e):
+    write_feed('rss.xml', e.get_template('atom.xml').render(entries=f[:RSS_SHOW]))
+
+# @step
+# def rssfeed(f, e):
+#     write_feed('rss.xml', e.get_template('feed.xml').render(entries=f[:RSS_SHOW]))
+
+@step
+def homepage(f, e):
+    write_file('index%s' %EXT[0], e.get_template('home.html').render(entries=f))
+
+@step
+def posts(f, e):
     for file in f:
-        write_file(file['url'], template.render(entry=file, entries=f))
+        write_file(file['url'], e.get_template('detail.html').render(entry=file, entries=f))
+
+@step
+def archive(f, e):
+    write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
+
+@step
+def aboutpage(f, e):
+    write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
 
 def main():
     print("Chiseling...");
     print("\tReading files...", end="");
-    files = sorted(get_tree(SOURCE), key=cmp_to_key(compare_entries))
-    env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_PATH), **TEMPLATE_OPTIONS)
+    files = sorted(get_tree(LOC[0]), key=cmp_to_key(compare_entries))
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader(LOC[2]),extensions=['jinja2_markdown.MarkdownExtension'])
     print("done.")
     print("\tRunning steps...");
     for step in STEPS:

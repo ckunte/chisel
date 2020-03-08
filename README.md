@@ -1,57 +1,93 @@
 # Chisel
 
-Chisel is a simple python static blog generation utility by [David Zhou][dz].
+Chisel is a (lean and simple) static site generator written in [python]. It is a personalised fork of [dz's version] converted to python3 with the following additional features.
 
-## Usage
+## Features
+
+1. Content parsing to generate smart typographic punctuation via [smartypants extension] to [markdown in python]
+1. Static pages (e.g. about page)
+1. RSS feed generator
+1. A shorter (year-based) permalink structure with support for clean URLs
+1. Post descriptions
+1. [Jinja] templates featuring
+	1. Customised homepage
+	1. Custom archive page
+	1. Post navigation
+	1. Post count
+	1. Read time
+	1. [KaTeX] support for rendering math in posts
+	1. Syntax highlighting for code via [highlight.js]
+
+### Regrets
+
+It has:
+
+- No taxonomy support
+- No built-in search
+
+## Installation
 
 ```bash
-$ python3 chisel.py
+git clone --depth=1 https://github.com/ckunte/chisel.git
+python3 -m pip install -r chisel/requirements.txt
 ```
 
-## Sample entry
+And to upgrade requirements, run:
 
-`sample.markdown`:
-
-```markdown
-Title
-3/2/2009
-
-This is now the body of the post.  By default, the body is evaluated and parsed with markdown.
-
-Another line.
+```bash
+python3 -m pip install --upgrade -r chisel/requirements.txt
 ```
 
-Entry format is described as follows:
+## Site settings
+
+There are two (plain text) files that need user input, viz.,
+
+1. `chisel_conf.py`: Set folder locations, number of posts in RSS feed, and clean URL settings
+2. `templates/site_settings.jinja`: Set site_title, author, author's email, and number of posts to show on the homepage
+
+### Suggested folder structure
+
+- `chisel`: folder containing this repository
+- `posts`: folder containing posts written in markdown
+- `www`: folder containing generated site (upload its contents to a web host)
+
+## How it works
+
+1. Write posts in Markdown, save it as `post-title.md` or `posttitle.md` (or `post_title.md`) in a designated folder, say, `posts`. (See Sample Entry for post format below.)
+2. Run `python3 chisel.py` in a Terminal, and C1 will parse all `.md`, `.markdown` or `.mdown` files in `posts` folder to another designated folder, say `www` in html. -- ready to be uploaded to a web server, typically to either a `www` or a `public_html` folder on a web host.
+3. Sync all files and folders from the local `www` folder to the root folder of a web host (typically to a `www` or a `public_html` folder) to get a website with generated content.
+
+### Typical usage
+
+```bash
+cd ~/Sites/chisel
+python3 chisel.py
+```
+
+### Sample post
+
+Post format is simple, which is as follows:
 
 - Line 1: Enter a title
-- Line 2: Enter date in m/d/Y
-- Line 3: Blank line
-- Line 4: Content in Markdown here onward
+- Line 2: Enter date in Y-m-d HH:MM
+- Line 3: Description line
+- Line 4: Blank line
+- Line 5: Content in Markdown here onward
 
-## Adding Steps
+Contents of a post named `sample.md` are as follows:
 
-Use the `@step` decorator. The main loop passes in the master file list and [jinja2][j2] environment.
+```markdown
+Chateau de Chambord
+2010-05-05 21:50
+One last contribution by the Renaissance master.
 
-## Settings
+The 50km route from Amboise to Chambord is scenic, the air in early April still uncomfortably cold. Visibility is greater from lack of foliage early in Spring. The entrance is grand, the chateau looks iconic from afar.
+```
 
-Change these settings:
-
-- `SOURCE`: Location of source files for entries (must end with a `/`), e.g., `SOURCE = "./blog/"`
-- `DESTINATION`: Location to place generated files (must end with a `/`), e.g., `DESTINATION = "./explort/"`
-- `HOME_SHOW`: Number of entries to show on homepage, e.g., `HOME_SHOW = 15`
-- `TEMPLATE_PATH`: Path to folder where tempaltes live (must end with a `/`), e.g., `TEMPLATE_PATH = "./templates/"`
-- `TEMPLATE_OPTIONS`: Dictionary of options to give jinja2, e.g., `TEMPLATE_OPTIONS = {}`
-- `TEMPLATES`: Dictionary of templates (required keys: 'home', 'detail', 'archive'), e.g.,
-    ```python
-    TEMPLATES = {
-        'home': "home.html",
-        'detail': "detail.html",
-        'archive': "archive.html",
-    }
-    ```
-- `TIME_FORMAT`: Format of human readable time stamp. Default: `"%B %d, %Y - %I:%M %p"`
-- `ENTRY_TIME_FORMAT`: Format of date declaration in second line of posts. Default: `"%m/%d/%Y"`
-- `FORMAT`: Callable that takes in text and returns formatted text. Default: `FORMAT = lambda text: markdown.markdown(text, extensions=['markdown.extensions.footnotes'])` 
-
-[dz]: https://github.com/dz/chisel
-[j2]: https://jinja.palletsprojects.com/en/
+[dz's version]: https://github.com/dz/chisel
+[python]: http://www.python.org/
+[Jinja]: https://jinja.palletsprojects.com/
+[KaTeX]: https://katex.org/
+[markdown in python]: https://python-markdown.github.io/
+[smartypants extension]: https://python-markdown.github.io/extensions/smarty/
+[highlight.js]: https://highlightjs.org
