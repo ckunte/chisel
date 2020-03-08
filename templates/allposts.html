@@ -1,0 +1,26 @@
+<article>
+{% from 'site_settings.jinja2' import latest -%}	
+{#<time>Notes since 2006</time>
+<h1><a href="/archive">Archive</a></h1>
+#}{% markdown %}
+## Archive
+
+The list below is offset by the latest on [homepage](/).
+
+{% endmarkdown %}
+  <dl class="two">
+  {%- for entry in entries %}
+  {%- if loop.index > latest %} {# to print only the last five entries #}
+    <dt><small>{{ loop.length - loop.index0 }}</small>&nbsp;<a id="{{ loop.length - loop.index0 }}" href="/{{ entry.url }}">{{ entry.title | e }}</a><small> &sdot; {{ entry.content | wordcount // 300 + 1 }} min{# &sdot; {{ entry.pretty_date }}#}</small></dt>
+    <dd>{{ entry.desc | e }}</dd>
+  {%- endif %}
+  {%- endfor %}
+  </dl>
+</article>
+<article>
+{% markdown %}
+
+__Trivia.__ Before 2001, I was never one to write my thoughts down. But the idea of publishing on the web gave wings to my inert narcissistic tendencies. Soon I mopped-up everything there was to learn about the mechanics of publishing. In ten subsequent years, I produced an unremarkable collection of bad writing, a great majority of which were short, observational bursts, none of enduring value. They have not made it to this archive. May be in the next ten, who knows I might realise the same about those that _are_ published here.
+
+{% endmarkdown %}
+</article>

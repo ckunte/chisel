@@ -1,0 +1,23 @@
+{% from 'site_settings.jinja2' import site_title, site_author, site_url -%}
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "{{ site_title }}",
+  "description": "A personal weblog by {{ site_author }}",
+  "home_page_url": "{{ site_url }}",
+  "feed_url": "{{ site_url }}/feed.json",
+  "author": {
+    "name": "{{ site_author }}",
+    "url": "{{ site_url }}"
+  },
+  "items": [
+  {%- for entry in entries %}
+    {
+      "title": {{ entry.title | tojson }},
+      "date_published": "{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00Z",
+      "url": "{{ site_url}}/{{ entry.url }}",
+      "id": "{{ site_url}}/{{ entry.url }}",
+      "content_text": {{ entry.desc | tojson }}
+    }{%if not loop.last %},{%endif%}
+  {%- endfor %}    
+  ]
+}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{%- block title %}: About{%- endblock %}
+{%- block canonicalurl -%}about{%- endblock %}
+
+{% block header %}
+{% include 'header.html' %}
+{%- endblock %}
+
+{%- block post -%}
+<article>
+<time>About this site, etc.</time>
+<h1><a href="/about">About</a></h1>
+
+{% markdown %}
+I am an offshore structures engineer, and this little website is my sandbox. Here I love to code, experiment, write. Currently, I live in Perth.
+
+__ckunte.net__ exists mainly to be a pointer to an __MX__ record. I put the idling __A__ record to use, mostly as an afterthought, which turned-on the lights here. Built with [Chisel][c1], this site respects web standards, produces valid [HTML][v1], [CSS][v2], [RSS][v3] markups, and is phone-friendly. Handy keyboard shortcuts are available as below. On MacOS: <kbd>Ctrl</kbd> + <kbd>Opt</kbd> + <kbd><i>Key</i></kbd>. On Linux and Windows: <kbd>Alt</kbd> + <kbd><i>Key</i></kbd>:
+
+| Key          | Link        | Works on       |
+| ------------ | ----------- | -------------- |
+| <kbd>/</kbd> | Home        | All pages      |
+| <kbd>a</kbd> | About       | All pages      |
+| <kbd>r</kbd> | Archive     | Homepage       |
+| <kbd>1</kbd> | Latest note | Homepage       |
+| <kbd>j</kbd> | Prev        | All note pages |
+| <kbd>k</kbd> | Next        | All note pages |
+
+## Credits
+
+I am grateful to {#Anja Meiners for [ABeeZee]; #}Armin Ronacher for [Jinja2]; David Zhou for [Chisel]; Guido van Rossum for [python]; Ivan Sagalaev and team for [hl.js]; Jon Skinner + crew for [Sublime Text] and [Sublime Merge]; Linus Torvalds and Junio Hamano for [git]; [GitHub] for hosting; Emily Eisenberg and Sophie Alpert for [KaTeX]; Yuri Takhteyev and Waylan Limberg for [markdown in python].
+
+<a id="t"></a>
+## Disclaimer, Terms of use
+    
+I do not speak for my employer. Be warned that anything presented herein on this site is without warranty, and whose quality or correctness are not to be assumed. If you use any of this in any way, then you do so at your own risk.
+
+Feedback at <log+2020@ckunte.net> is welcome.[^1]
+
+[^1]: I&rsquo;m not on social media; any match there must be a namesake.
+
+[Sublime Text]: https://www.sublimetext.com/ "Sublime Text - A sophisticated text editor for code, markup and prose"
+[Sublime Merge]: https://www.sublimemerge.com/ "Sublime Merge - Git Client, done Sublime"
+[ABeeZee]: https://fonts.google.com/specimen/ABeeZee
+[c1]: https://github.com/ckunte/chisel
+[Jinja2]: http://jinja.pocoo.org
+[GitHub]: https://github.com/
+[python]: http://www.python.org/
+[hl.js]: https://highlightjs.org/
+[KaTeX]: https://katex.org/
+[git]: http://git-scm.com/
+[markdown in python]: https://pypi.python.org/pypi/Markdown
+[v1]: https://validator.w3.org/nu/?doc=http%3A%2F%2Fckunte.net%2F
+[v2]: http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Fckunte.net%2Fcss%2Fvanilla.css&profile=css3&usermedium=all&warning=1&vextwarning=&lang=en
+[v3]: https://validator.w3.org/feed/check.cgi?url=http%3A//ckunte.net/rss.xml
+[Chisel]: https://github.com/dz/chisel
+{% endmarkdown %}
+</article>
+{%- endblock %}
+
+{% block footer %}
+<footer>
+  <span><a href="/">Home</a></span>
+  <span>&nbsp;</span>
+</footer>
+{%- endblock %}

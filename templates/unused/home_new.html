@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block hlhead %}{#
+<script defer src="/css/hl.js" onload="hljs.initHighlightingOnLoad();"></script>#}
+{% include 'math.html' %}
+{%- endblock %}
+
+{% block header %}
+  {% include 'header.html' %}
+{%- endblock %}
+
+{%- block post %}
+  {% include 'author.html' %}
+  {% include 'papers.html' %}
+{#
+  {% include 'latest.html' %}
+  {% include 'notes.html' %}
+#}
+  {% include 'notes_orig.html' %}
+  {% include 'code.html' %}
+  {% include 'book.html' %}
+{%- endblock %}
+
+{% block footer %}
+  {% include 'footer.html' %}
+{%- endblock %}
