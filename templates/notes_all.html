@@ -1,0 +1,16 @@
+{# List all posts in archive #}
+<article>
+  {% from 'site_settings.jinja2' import site_title -%}
+  <h2 class="head">
+    <span>Notes</span>
+    <span><a title="Subscribe to {{ site_title }}" href="/feed.json">FEED</a></span>
+  </h2>
+
+  <dl class="two">
+  {%- for entry in entries %}
+    <dt><small>{{ loop.length - loop.index0 }}</small>&nbsp;<a accesskey="{{ loop.index }}" id="{{ loop.length - loop.index0 }}" href="/{{ entry.url }}">{{ entry.title | e }}</a><small> &sdot; {{ entry.content | wordcount // 300 + 1 }} min</small></dt>
+    <dd>{{ entry.desc | e }}</dd>
+  {%- endfor %}
+  </dl>
+
+</article>

@@ -78,16 +78,13 @@ def write_feed(url, data):
     file.close()
 
 @step
-def jsonfeed(f, e):
+def feeds(f, e):
     write_feed('feed.json', e.get_template('feed.json').render(entries=f[:RSS_SHOW]))
-
-@step
-def atomfeed(f, e):
     write_feed('rss.xml', e.get_template('atom.xml').render(entries=f[:RSS_SHOW]))
 
 # @step
-# def rssfeed(f, e):
-#     write_feed('rss.xml', e.get_template('feed.xml').render(entries=f[:RSS_SHOW]))
+# def atomfeed(f, e):
+#     write_feed('rss.xml', e.get_template('atom.xml').render(entries=f[:RSS_SHOW]))
 
 @step
 def homepage(f, e):
@@ -98,13 +95,13 @@ def posts(f, e):
     for file in f:
         write_file(file['url'], e.get_template('detail.html').render(entry=file, entries=f))
 
-@step
-def archive(f, e):
-    write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
+# @step
+# def archive(f, e):
+#     write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
 
-@step
-def aboutpage(f, e):
-    write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
+# @step
+# def aboutpage(f, e):
+#     write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
 
 def main():
     print("Chiseling...");
