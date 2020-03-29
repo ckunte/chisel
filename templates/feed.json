@@ -12,11 +12,11 @@
   "items": [
   {%- for entry in entries %}
     {
-      "title": {{ entry.title | tojson }},
-      "date_published": "{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00Z",
+      "title": {{ entry.title|e|tojson }},
+      "date_published": "{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00",
       "url": "{{ site_url}}/{{ entry.url }}",
       "id": "{{ site_url}}/{{ entry.url }}",
-      "content_text": {{ entry.desc | tojson }}
+      "content_html": {{ entry.content|e|tojson }}
     }{%if not loop.last %},{%endif%}
   {%- endfor %}    
   ]

@@ -7,7 +7,7 @@
   <link rel="self" type="application/atom+xml" href="{{ site_url }}/rss.xml"/>
   {%- for entry in entries -%}
   {%- if loop.index < last + 1 %}
-  <updated>{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00Z</updated>
+  <updated>{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00</updated>
   {%- endif -%}
   {%- endfor %}
   <link href="{{ site_url }}/"/>
@@ -20,8 +20,8 @@
     <title>{{ entry.title | e }}</title>
     <link href="{{ site_url }}/{{ entry.url }}"/>
     <id>{{ site_url }}/{{ entry.url }}</id>
-    <updated>{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00Z</updated>
-    <summary>{{ entry.desc | e }}</summary>
+    <updated>{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00</updated>
+    <summary>{{ entry.content | e }}</summary>
   </entry>
   {%- endfor %}
 
