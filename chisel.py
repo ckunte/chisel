@@ -78,9 +78,9 @@ def write_feed(url, data):
     file.close()
 
 @step
-def feeds(f, e):
-    write_feed('feed.json', e.get_template('feed.json').render(entries=f[:RSS_SHOW]))
+def feed(f, e):
     write_feed('rss.xml', e.get_template('atom.xml').render(entries=f[:RSS_SHOW]))
+    # write_feed('feed.json', e.get_template('feed.json').render(entries=f[:RSS_SHOW]))
 
 # @step
 # def atomfeed(f, e):
