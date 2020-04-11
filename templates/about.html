@@ -21,7 +21,6 @@ __ckunte.net__ exists mainly to be a pointer to an __MX__ record. I put the idli
 | <kbd>/</kbd> | Home        | All pages      |
 | <kbd>a</kbd> | About       | All pages      |
 | <kbd>1</kbd> | Latest note | Homepage       |
-| <kbd>l</kbd> | Log         | Homepage       |
 | <kbd>r</kbd> | Archive     | Homepage       |
 | <kbd>j</kbd> | Prev        | All note pages |
 | <kbd>k</kbd> | Next        | All note pages |
@@ -30,15 +29,27 @@ __ckunte.net__ exists mainly to be a pointer to an __MX__ record. I put the idli
 
 I am grateful to{# Anja Meiners for [ABeeZee];#} Armin Ronacher for [Jinja2]; David Zhou for [Chisel]; Guido van Rossum for [python]; Ivan Sagalaev and team for [hl.js]; Jon Skinner + crew for [Sublime Text] and [Sublime Merge]; Linus Torvalds and Junio Hamano for [git]; [GitHub] for hosting; Emily Eisenberg and Sophie Alpert for [KaTeX]; Yuri Takhteyev and Waylan Limberg for [markdown in python].
 
+## Privacy
+
+I do not track visitors, and I never have. There are no forms seeking visitor inputs, and there are no advertisements, no cookies, and no trackers served from this website. This is a deliberate effort as the site author to not seek this private data from site visitors.
+
+The story, however, does not end here. It would be prudent to assume GitHub, jsDelivr, and Netlify, who provide infrastructural service in hosting this site (as repository, CDN service for KaTeX, and web service), may be recording visits to this site on their servers. I have no access, no visibility, and no inclination to find out what data is being recorded from such visits. 
+
+__Take charge.__ To avoid revealing inadvertently about your computer, your habits, browser plug-ins/extensions (e.g. ad-blocker, password manager, etc.) or even about yourself via your browser, I strongly recommend using privacy protecting browsers (e.g., Safari and Brave).[^1]
+
+I also strongly recommend using network-wide blockers (e.g., [pi-hole][ph]) to block ads and trackers in your household and workplaces. These help in stopping the unwanted and the underbelly of the internet &mdash; bent on recording personal and private information unsolicited &mdash; from loading up on your computers and devices. Aside from using numerous community block-lists, I also maintain a [regex block list for pi-hole][bl] that enables wide blocking. Consider building one for your needs based on what tools like pi-hole pick-up. On the go, redirect internet traffic via a network-wide blocker enabled LAN by using a VPN service like [Tailscale][ts]. Let&rsquo;s make unsolicited visitor data recording a futile effort for all parties.
+
 <a id="t"></a>
 ## Disclaimer, Terms of use
     
 I do not speak for my employer. Be warned that anything presented herein on this site is without warranty, and whose quality or correctness are not to be assumed. If you use any of this in any way, then you do so at your own risk.
 
-Feedback at <log+2020@ckunte.net> is welcome.[^1]
+Feedback at <log+2020@ckunte.net> is welcome.[^2]
 
-[^1]: I&rsquo;m not on social media; any match there must be a namesake.
+[^1]: [Safari says][sf] it has features such as intelligent tracking prevention, finger printing defense, sand-boxing (built-in protection for websites), and protection from harmful sites, etc.
+[^2]: I&rsquo;m not on social media; any match there must be a namesake.
 
+[sf]: https://www.apple.com/safari/ "Safari - Apple"
 [Sublime Text]: https://www.sublimetext.com/ "Sublime Text - A sophisticated text editor for code, markup and prose"
 [Sublime Merge]: https://www.sublimemerge.com/ "Sublime Merge - Git Client, done Sublime"
 [ABeeZee]: https://fonts.google.com/specimen/ABeeZee
@@ -54,6 +65,9 @@ Feedback at <log+2020@ckunte.net> is welcome.[^1]
 [v2]: http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Fckunte.net%2Fcss%2Fvanilla.css&profile=css3&usermedium=all&warning=1&vextwarning=&lang=en
 [v3]: https://validator.w3.org/feed/check.cgi?url=http%3A//ckunte.net/rss.xml
 [Chisel]: https://github.com/dz/chisel
+[ph]: https://pi-hole.net/ "Pi-hole: A black hole for Internet advertisements – A black hole for Internet advertisements"
+[bl]: https://gist.github.com/ckunte/b280cd38d071e5b8e56a1e5651e107db "Blocklist, which lives in /etc/pihole/regex.list - GitHub"
+[ts]: https://tailscale.com
 {% endmarkdown %}
 </article>
 {%- endblock %}
