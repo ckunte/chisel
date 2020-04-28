@@ -1,0 +1,11 @@
+{% from 'site_settings.jinja2' import latest -%}
+{%- for entry in entries %}
+{%- if loop.index < latest + 1 %} {# to print only the latest five entries #}
+<article>
+  <h1>{{ entry.title | e }}</h1>
+  <time datetime="{{ entry.year }}-{{ entry.month }}-{{ entry.day }} {{ entry.hour }}:{{ entry.minute }}">{{ entry.pretty_date }}</time>{#
+  <p style="color:#888"><i>{{ entry.desc | e }}</i></p>#}
+  {{ entry.content }}
+</article>
+{%- endif %}
+{%- endfor %}

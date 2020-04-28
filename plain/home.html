@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block hlhead %}
+<script defer src="/css/hl.js" onload="hljs.initHighlightingOnLoad();"></script>
+{% include 'math.html' %}
+{%- endblock %}
+
+{% block header %}
+  {% include 'header.html' %}
+{%- endblock %}
+
+{%- block post %}
+  {% include 'latest.html' %}
+{#
+  <p><i>ckunte.net collects notes from Chetan Kunte.</i></p>
+  {% include 'papers.html' %}
+  {% include 'notes_latest.html' %}
+  {% include 'code.html' %}
+  {% include 'book.html' %}   // a work in progress
+  {% include 'notice.html' %}
+  {% include 'author.html' %}
+#}
+{%- endblock %}
+
+{% block footer %}
+  {% include 'footer.html' %}
+{%- endblock %}
