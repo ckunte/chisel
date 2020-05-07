@@ -1,13 +1,13 @@
 {% from 'site_settings.jinja2' import site_title, site_author, site_url -%}
 {
-  "version": "https://jsonfeed.org/version/1",
-  "title": "{{ site_title }}",
-  "description": "A personal weblog by {{ site_author }}",
-  "home_page_url": "{{ site_url }}",
-  "feed_url": "{{ site_url }}/feed.json",
-  "author": {
-    "name": "{{ site_author }}",
-    "url": "{{ site_url }}"
+  "version" : "https://jsonfeed.org/version/1",
+  "title" : "{{ site_title }}/",
+  "description" : "A personal weblog by {{ site_author }}",
+  "home_page_url" : "{{ site_url }}",
+  "feed_url" : "{{ site_url }}/feed.json",
+  "author" : {
+    "name" : "{{ site_author }}",
+    "url" : "{{ site_url }}/"
   },
   "items": [
   {%- for entry in entries %}
@@ -15,8 +15,11 @@
       "title": {{ entry.title|e|tojson }},
       "date_published": "{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00",
       "url": "{{ site_url}}/{{ entry.url }}",
-      "id": "{{ site_url}}/{{ entry.url }}",
-      "content_html": {{ entry.content|e|tojson }}
+      "author" : {
+        "name" : "{{ site_author }}"
+      },
+      "id" : "{{ site_url}}/{{ entry.url }}",
+      "content_html" : {{ entry.content|e|tojson }}
     }{%if not loop.last %},{%endif%}
   {%- endfor %}    
   ]
