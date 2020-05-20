@@ -25,7 +25,7 @@
       <name>{{ site_author }}</name>
       <uri>{{ site_url }}/</uri>
     </author>
-    <summary>{{ entry.desc }}</summary>
+    <summary>{{ entry.desc }}</summary>{#
     <content type="html" xml:base="{{ site_url }}/" xml:lang="en">
       {{ entry.content | e }}
 
@@ -34,7 +34,7 @@
         &lt;i&gt;Terms of use: &lt;a href="{{ site_url }}/about"&gt;ckunte.net/about&lt;/a&gt;&lt;/i&gt;
       &lt;/p&gt;      
 
-    </content>
+    </content>#}
   </entry>
   {%- endfor %}
 

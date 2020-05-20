@@ -71,15 +71,15 @@ def write_file(url, data):
     file.write(data)
     file.close()
 
-#def write_feed(url, data):
-#    path = LOC[1] + url
-#    file = open(path, "w")
-#    file.write(data)
-#    file.close()
-#
-#@step
-#def feed(f, e):
-#    write_feed('rss.xml', e.get_template('atom.xml').render(entries=f[:RSS_SHOW]))
+def write_feed(url, data):
+    path = LOC[1] + url
+    file = open(path, "w")
+    file.write(data)
+    file.close()
+
+@step
+def feed(f, e):
+    write_feed('rss.xml', e.get_template('atom.xml').render(entries=f[:RSS_SHOW]))
 
 @step
 def homepage(f, e):
@@ -94,9 +94,9 @@ def posts(f, e):
 def archive(f, e):
     write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
 
-#@step
-#def aboutpage(f, e):
-#    write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
+@step
+def aboutpage(f, e):
+    write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
 
 def main():
     print("Chiseling...");
