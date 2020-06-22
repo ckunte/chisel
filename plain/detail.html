@@ -2,8 +2,8 @@
 {%- block title -%}: {{entry.title}} {%- endblock %}
 {%- block canonicalurl -%}{{entry.url}}{%- endblock %}
 {% block hlhead %}
-  <script defer src="/css/hl.js" onload="hljs.initHighlightingOnLoad();"></script>
-{% include 'math.html' %}
+  <script defer src="/css/hl.js" onload="hljs.initHighlightingOnLoad();"></script>{#
+{% include 'math.html' %}#}
 {%- endblock %}
 
 {% block header %}
