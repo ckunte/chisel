@@ -1,7 +1,7 @@
 # Chisel configuration
 POSTS = "Sites/notes/"            # location of posts (in markdown) folder 
 WWW = "Sites/ck.lo/"              # local www folder (upload contents to a web host)
-TMPL = "Sites/chisel/plain/"  	  # jinja templates folder
+TMPL = "Sites/chisel/plain/" 	  # jinja templates folder
 # Number of posts to show in RSS feed
 RSS_SHOW = 3
 # For URLs without ending in .html
