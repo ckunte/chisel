@@ -5,7 +5,7 @@ Chetan is an offshore structures engineer, and this little website is his sandbo
 
 {% endmarkdown %}
 
-  <h3>Notes</h3>
+  <h2>Notes</h2>
   <dl class="two">
   {%- for entry in entries %}
     <dt><small>{{ loop.length - loop.index0 }}</small>&nbsp;<a id="{{ loop.length - loop.index0 }}" href="/{{ entry.url }}">{{ entry.title | e }}</a><small> &sdot; {{ entry.content | wordcount // 300 + 1 }} min{# &sdot; {{ entry.pretty_date }}#}</small></dt>
