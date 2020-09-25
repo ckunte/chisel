@@ -1,0 +1,41 @@
+{% from 'site_settings.jinja2' import site_title, site_author, site_url, last -%}
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>{{ site_title }}</title>
+  <subtitle>A personal weblog by {{ site_author }}.</subtitle>
+  <link rel="self" href="{{ site_url }}/rss.xml" />
+  <link href="{{ site_url }}/" />
+  <id>{{ site_url }}/rss.xml</id>
+  {%- for entry in entries -%}
+  {%- if loop.index < last + 1 %}
+  <updated>{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00</updated>
+  {%- endif -%}
+  {%- endfor %}
+  
+  {% for entry in entries %}
+  <entry>
+    <title>{{ entry.title | e }}</title>
+    <link href="{{ site_url }}/{{ entry.url }}" />
+    <link rel="alternate" type="text/html" href="{{ site_url }}/{{ entry.url }}.html" />
+    <id>{{ site_url }}/{{ entry.url }}</id>
+    <updated>{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00</updated>
+    <author>
+      <name>{{ site_author }}</name>
+      <uri>{{ site_url }}/</uri>
+    </author>
+    <summary>{{ entry.desc }}</summary>{#
+    <content type="html" xml:base="{{ site_url }}/" xml:lang="en">
+      {{ entry.content | e }}
+
+      &lt;hr&gt;
+      &lt;p&gt;
+        &lt;i&gt;Terms of use: &lt;a href="{{ site_url }}/about"&gt;ckunte.net/about&lt;/a&gt;&lt;/i&gt;
+      &lt;/p&gt;      
+
+    </content>#}
+  </entry>
+  {%- endfor %}
+
+</feed>
