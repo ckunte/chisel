@@ -9,7 +9,7 @@ EXT = ["", ".html"]  # [URLEXT, PATHEXT]
 ## For URLs ending in .html
 #EXT = [".html", ""]  # [URLEXT, PATHEXT]
 TFMT = [                        # Various date and time formats
-    "%B %Y",                    # Date as shown on html pages
+    "%B %-d, %Y",               # Date as shown on html pages
     "%a, %d %b %Y %H:%M:%S %z", # Date and time for RSS feed
     "%Y-%m-%d %H:%M"            # Time format to use in markdown posts
     ]
