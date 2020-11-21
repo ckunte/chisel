@@ -15,8 +15,7 @@ LOC = [
 ]
 
 FORMAT = lambda text: markdown.markdown(text,\
-    extensions=['smarty','tables','footnotes'])
-    #extensions=['smarty','tables','fenced_code','footnotes'])
+    extensions=['smarty','tables','fenced_code','footnotes'])
 
 STEPS = []
 
