@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {%- block title -%}: Archive{%- endblock %}
 {%- block canonicalurl -%}archive{%- endblock %}
+{% from 'site_settings.jinja2' import latest -%}
 {%- block hlhead -%}{%- endblock %}
 
 {% block header %}
@@ -8,7 +9,16 @@
 {%- endblock %}
 
 {%- block post %}
-{% include 'allposts.html' %}
+<article>
+{#<h1>Archive</h1>#}
+<p>
+	This <a accesskey="r" href="/archive">archive</a> is offset by the latest on <a href="/">homepage</a>.
+</p>
+
+{% include 'notes_archive.html' %} {# Includes notes offset from the latest on homepage #}
+{#{% include 'notes_all.html' %}#} {# Includes all notes #}
+
+</article>
 {%- endblock %}
 
 {% block footer %}

@@ -1,7 +1,7 @@
 <article>
   {% from 'site_settings.jinja2' import last -%}
   {%- for entry in entries %}
-    {%- if loop.index < last + 1 %} {# to print only the last five entries #}
+    {%- if loop.index < last + 1 %} {# to print only the last number of entries #}
     <time datetime="{{ entry.year }}-{{ entry.month }}-{{ entry.day }} {{ entry.hour }}:{{ entry.minute }}">{{ entry.pretty_date }}</time>
     <h1><a accesskey="{{ loop.index }}" id="{{ loop.length - loop.index0 }}" href="/{{ entry.url }}">{{ entry.title | e }}</a></h1>
     <p style="text-align:center;color:#888"><i>{{ entry.desc | e }}</i></p>

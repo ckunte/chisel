@@ -1,0 +1,8 @@
+<dl class="two">
+{%- for entry in entries %}
+  {%- if loop.index > latest %} {# print only the latest entries #}
+  <dt><small>{{ loop.length - loop.index0 }}</small>&nbsp;<a{% if loop.index0 == latest %} accesskey="1"{% endif %}{% if loop.length - loop.index0 == 1 %} accesskey="0"{% endif %} id="{{ loop.length - loop.index0 }}" href="/{{ entry.url }}">{{ entry.title | e }}</a><small> &sdot; {{ entry.content | wordcount // 300 + 1 }} min</small></dt>
+  <dd>{{ entry.desc | e }}</dd>
+  {%- endif %}
+{%- endfor %}
+</dl>

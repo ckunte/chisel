@@ -1,16 +1,21 @@
 {% extends "base.html" %}
 {% block hlhead %}
-{#<script defer src="/css/hl.js" onload="hljs.initHighlightingOnLoad();"></script>
-{% include 'hl.html' %}
-{% include 'math.html' %}
-#}{%- endblock %}
+{%- endblock %}
 
 {% block header %}
 {% include 'header.html' %}
 {%- endblock %}
 
 {%- block post %}
-{% include 'allposts.html' %}
+<article>
+<p>
+	Chetan is an offshore structures engineer, and this little website is his sandbox. Here he loves to code, experiment, and write. <a href="/about">&rarr;</a>
+</p>
+
+{#{% include 'notes_latest.html' %}#} {# Includes only the latest on homepage #}
+{% include 'notes_all.html' %} {# Includes all notes on homepage #}
+
+</article>
 {%- endblock %}
 
 {% block footer %}
