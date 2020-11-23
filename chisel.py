@@ -90,13 +90,13 @@ def posts(f, e):
     for file in f:
         write_file(file['url'], e.get_template('detail.html').render(entry=file, entries=f))
 
-#@step
-#def archive(f, e):
-#    write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
-#
-#@step
-#def aboutpage(f, e):
-#    write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
+@step
+def archive(f, e):
+    write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
+
+@step
+def aboutpage(f, e):
+    write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
 
 def main():
     print("Chiseling...");
