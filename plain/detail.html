@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {%- block title -%}: {{entry.title}} {%- endblock %}
+{%- block description -%}{{entry.desc | e}}{%- endblock %}
 {%- block canonicalurl -%}{{entry.url}}{%- endblock %}
 {% block hlhead %}
 {% include 'hl.html' %}
