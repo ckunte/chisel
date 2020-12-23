@@ -1,6 +1,8 @@
 # Chisel
 
-Chisel is a (lean and simple) static site generator written in [python]. It is a personalised fork of [dz's version] converted to python3 with the following additional features.
+Chisel is a (lean and simple) static site generator written in [python]. It is a personalised fork of [dz's version] converted to python3 with the following additional features. Here is a screenshot of the author's custom themed website.
+
+![Chisel generated custom themed website.](./screenshot.png)
 
 ## Features
 
