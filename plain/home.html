@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{%- block description -%}{{ site_author }} is an offshore structures engineer. This little website is his sandbox.{%- endblock %}
+{% from 'site_settings.jinja2' import bio -%}
+{%- block description -%}{{ site_author }} is {{ bio }}{%- endblock %}
 {% block hlhead %}
 {%- endblock %}
 
@@ -10,7 +11,7 @@
 {%- block post %}
 <article>
 <p>
-	{{ site_author }} is an offshore structures engineer, and this little website is his sandbox. Here he loves to code, experiment, and write. <a href="/about">&rarr;</a>
+	Chetan is {{ bio }} <a href="/about">&rarr;</a>
 </p>
 
 {% include 'notes_latest.html' %} {# Includes only the latest on homepage #}

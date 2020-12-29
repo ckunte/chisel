@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from 'site_settings.jinja2' import bio -%}
 {%- block title %}: About{%- endblock %}
 {%- block description -%}About this site, etc.{%- endblock %}
 {%- block canonicalurl -%}about{%- endblock %}
@@ -13,7 +14,7 @@
 <time>About this site, etc.</time>
 
 {% markdown %}
-{{ site_author }} is an offshore structures engineer, and this little website is his sandbox. Here he loves to code, experiment, and write.[^1]
+{{ site_author }} is {{ bio }}[^1]
 
 This domain exists mainly to be a pointer to an MX record. The author put the idling A record to use, mostly as an afterthought, which turned-on the lights here. Built with [Chisel][c1], this site respects web standards, produces valid [HTML][v1], [CSS][v2], [RSS][v3] markups, and is phone-friendly. Handy keyboard shortcuts are available as below. On MacOS: <kbd>Ctrl</kbd> + <kbd>Opt</kbd> + <kbd><i>Key</i></kbd>. On Linux and Windows: <kbd>Alt</kbd> + <kbd><i>Key</i></kbd>:
 
@@ -27,7 +28,7 @@ This domain exists mainly to be a pointer to an MX record. The author put the id
 | <kbd>j</kbd> | Prev        | All note pages    |
 | <kbd>k</kbd> | Next        | - do -            |
 
-_Code._ To ensure it works as intended, all code published on this site is pre-tested without exceptions. Some of the older code snippets may contain [legacy python code][p2]. These should still work with last of python version 2.
+_Code._ To ensure it works as intended, all code published on this site is pre-tested without exceptions. Some of the older code snippets may contain [legacy python code][p2]. These should still work with last of python version 2. (Most personal projects are in [repositories][gh] and in [gists][gs].)
 
 _Credits._ To Armin Ronacher for [Jinja]; David Zhou for [Chisel]; Guido van Rossum for [python]; Ivan Sagalaev and team for [hl.js]; Jon Skinner + crew for [Sublime Text] and [Sublime Merge]; Linus Torvalds and Junio Hamano for [git]; [GitHub] for hosting; Emily Eisenberg and Sophie Alpert for [KaTeX]; Yuri Takhteyev and Waylan Limberg for [markdown in python].
 
@@ -46,6 +47,8 @@ Feedback at <log+2021@ckunte.net> is welcome.
 [c1]: https://github.com/ckunte/chisel/tree/ck
 [Jinja]: http://jinja.pocoo.org
 [GitHub]: https://github.com/
+[gh]: https://github.com/ckunte
+[gs]: https://gist.github.com/ckunte
 [python]: http://www.python.org/
 [hl.js]: https://highlightjs.org/
 [KaTeX]: https://katex.org/
