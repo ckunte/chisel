@@ -1,1 +1,5 @@
-templates/* linguist-vendored
+.gitattributes  export-ignore
+.gitignore      export-ignore
+*.png           export-ignore
+export          export-ignore
+__pycache__     export-ignore
