@@ -11,12 +11,8 @@
 {%- block post %}
 <article>
 <h1>{{site_author }}</h1>
-<time>{{ bio | title }}</time>
-{#
-<p>
-	Hello. I am an offshore structures engineer, and producer of this little website. I currently live and work in Perth, Australia. <a href="/about">&rarr;</a>
-</p>
-#}
+<p class="desc">{{ bio | title }}</p>
+
 {% include 'notes_latest.html' %} {# Includes only the latest on homepage #}
 {#{% include 'notes_all.html' %}#} {# Includes all notes on homepage #}
 
