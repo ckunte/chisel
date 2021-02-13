@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% from 'site_settings.jinja2' import bio -%}
-{%- block description -%}I am {{ site_author }}. {{ bio }}{%- endblock %}
+{%- block description -%}{{ site_author }} - {{ bio | title }}{%- endblock %}
 {% block hlhead %}
 {%- endblock %}
 
@@ -10,11 +10,13 @@
 
 {%- block post %}
 <article>
+<h1>{{site_author }}</h1>
+<time>{{ bio | title }}</time>
+{#
 <p>
-	Hello. I am {{site_author }}. I am an offshore structures engineer, and producer of this little website. I currently live and work in Perth, Australia. <a href="/about">&rarr;</a>{#
-	Chetan is {{ bio }} <a href="/about">&rarr;</a>#}
+	Hello. I am an offshore structures engineer, and producer of this little website. I currently live and work in Perth, Australia. <a href="/about">&rarr;</a>
 </p>
-
+#}
 {% include 'notes_latest.html' %} {# Includes only the latest on homepage #}
 {#{% include 'notes_all.html' %}#} {# Includes all notes on homepage #}
 
