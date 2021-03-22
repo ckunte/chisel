@@ -2,7 +2,6 @@
 {% from 'site_settings.jinja2' import bio -%}
 {%- block description -%}{{ site_author }} - {{ bio | title }}{%- endblock %}
 {% block hlhead %}
-  <link rel="alternate" type="application/feed+json" title="{{ site_title }}" href="/feed.json" />
   <link rel="alternate" type="application/rss+xml" title="{{ site_title }}" href="/rss.xml" />
 {%- endblock %}
 
@@ -19,9 +18,7 @@
 	Hello. I am an offshore structures engineer, and producer of this little website. I currently live and work in Perth, Australia. <a href="/about">&rarr;</a>
 </p>
 #}
-{% include 'notes_latest.html' %} {# Includes only the latest on homepage #}
-{#{% include 'notes_all.html' %}#} {# Includes all notes on homepage #}
-
+{%- include 'notes_latest.html' -%} {# Includes only the latest on homepage #}
 </article>
 {%- endblock %}
 
