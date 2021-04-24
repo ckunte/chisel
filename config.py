@@ -1,7 +1,7 @@
 # Chisel configuration
 POSTS = "Sites/wkly/"          # location of posts (in markdown) folder 
 WWW = "Sites/home.lo/"         # local www folder (upload contents to a web host)
-TMPL = "Sites/gen/plain/"      # jinja templates folder
+TMPL = "Sites/chisel/plain/"   # jinja templates folder
 
 SHOWPOSTS = [1, 3, 54]
 
