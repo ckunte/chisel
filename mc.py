@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# gen.py -- 2021 C Kunte
+# mc.py -- 2021 C Kunte
 import os, re, time, datetime
 import markdown, jinja2
 from functools import cmp_to_key
