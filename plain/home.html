@@ -15,7 +15,7 @@
       <p><a accesskey="/" href="/"><img alt="ckunte" src="/img/ckunte.png"></a></p>
       {%- for entry in entries %}
       <p datetime="{{ entry.feed_date }}">
-        <a accesskey="w" href="/w">{{ entry.title }}</a>.
+        <a accesskey="w" title="Note from week {{ entry.week }}, {{ entry.year }}." href="/w">{{ entry.title }}</a>.
       </p>
       {%- endfor %}
     </article>
