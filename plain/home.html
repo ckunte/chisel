@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% from 'site_settings.jinja2' import bio -%}
+{%- block description -%}{{ site_author }} - {{ bio | title }}{%- endblock %}
+{% block hlhead %}
+  <link rel="alternate" type="application/rss+xml" title="{{ site_title }}" href="/rss.xml" />
+{%- endblock %}
+
+{% block header %}
+{% include 'header.html' %}
+{%- endblock %}
+
+{%- block post %}
+<article>
+<h1>{{site_author }}</h1>
+<time datetime="2021-02-14 12:05">{{ bio | title }}</time>
+{#
+<p>
+	Hello. I am an offshore structures engineer, and producer of this little website. I currently live and work in Perth, Australia. <a href="/about">&rarr;</a>
+</p>
+#}
+{%- include 'notes_latest.html' -%} {# Includes only the latest on homepage #}
+</article>
+{%- endblock %}
+
+{% block footer %}
+{% include 'footer.html' %}
+{%- endblock %}

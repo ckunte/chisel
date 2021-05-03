@@ -1,1 +1,4 @@
 templates/* linguist-vendored
+.gitattributes  export-ignore
+.gitignore      export-ignore
+*.png           export-ignore
