@@ -2,7 +2,7 @@
 {% from 'site_settings.jinja2' import bio -%}
 {%- block description -%}{{ site_author }} - {{ bio | title }}{%- endblock %}
 {% block hlhead %}
-  <link rel="alternate" type="application/rss+xml" title="{{ site_title }}" href="/rss.xml" />
+  <link rel="alternate" type="application/atom+xml" title="{{ site_title }}" href="/rss.xml" />
 {%- endblock %}
 
 {% block header %}
