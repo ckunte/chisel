@@ -3,7 +3,8 @@
 {%- block description -%}{{entry.desc | e}}{%- endblock %}
 {%- block canonicalurl -%}{{entry.url}}{%- endblock %}
 {% block hlhead %}
-{% include 'hl.html' %}
+  <script src="/css/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 {% include 'math.html' %}
 {%- endblock %}
 
