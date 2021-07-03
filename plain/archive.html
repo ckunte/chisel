@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{%- block title -%}: Archive{%- endblock %}
-{%- block description -%}{{ adesc }}{%- endblock %}
-{%- block canonicalurl -%}archive{%- endblock %}
-{% from 'site_settings.jinja2' import latest, adesc -%}
+{%- block title -%}: Notes{%- endblock %}
+{% from 'site_settings.jinja2' import latest, adisc -%}
+{%- block description -%}{{ adisc }}{%- endblock %}
+{%- block canonicalurl -%}notes{%- endblock %}
 {%- block hlhead -%}{%- endblock %}
 
 {% block header %}
@@ -12,7 +12,7 @@
 {%- block post %}
 <article>
 <h1>Notes</h1>
-<time datetime="2021-03-22 08:23">Since 2006</time>
+<time datetime="2021-03-22 08:23">{{ adisc }}</time>
 {%- include 'notes_archive.html' %} {# Includes notes offset from the latest on homepage #}
 </article>
 {%- endblock %}
