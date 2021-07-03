@@ -91,8 +91,8 @@ def posts(f, e):
         write_file(file['url'], e.get_template('detail.html').render(entry=file, entries=f))
 
 @step
-def archive(f, e):
-    write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
+def notes(f, e):
+    write_file('notes%s' %EXT[0], e.get_template('archive.html').render(entries=f))
 
 @step
 def aboutpage(f, e):
