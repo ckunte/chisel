@@ -13,14 +13,6 @@
 <article>
 <h1>{{ site_author }}</h1>
 <time datetime="2021-02-14 12:05">{{ bio | title }}</time>
-
-{% include 'bio.html' %}
-
-{#
-<p>
-	Hello. I am an offshore structures engineer, and producer of this little website. I currently live and work in Perth, Australia. <a href="/about">&rarr;</a>
-</p>
-#}
 {%- include 'notes_latest.html' -%} {# Includes only the latest on homepage #}
 </article>
 {%- endblock %}
