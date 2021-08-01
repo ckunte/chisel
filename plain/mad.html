@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% from 'site_settings.jinja2' import bio -%}
+{%- block title %}: Making a difference{%- endblock %}
+{%- block description -%}Sponsoring causes.{%- endblock %}
+{%- block canonicalurl -%}about{%- endblock %}
+{% block hlhead %}
+  <script src="/css/dldiv.js"></script>
+{%- endblock %}
+
+{% block header %}
+{% include 'header.html' %}
+{%- endblock %}
+
+{%- block post -%}
+<article>
+<h1>Making a difference</h1>
+<time datetime="2021-08-01 13:02">Sponsoring causes</time>
+
+{% markdown %}
+
+Within our means, my family and I routinely heed calls to sponsor and lend support to causes concerning humanitarian, educational, medical, disaster relief, and open-source initiatives. We hope this list motivates you to do the same or better.
+
+## 2021
+
+[Cancer Council NWS](https://www.cancercouncil.com.au)
+: Sponsoring Cancer research via Rock the Chop &mdash; Gabby &amp; Julia.
+
+[Homebrew]
+: Sponsoring the missing package manager for MacOS (or Linux).
+
+[Khan Academy]
+: Sponsoring to support the unprecedented demand during COVID-19.
+
+[Krzysztof Kowalczyk](https://github.com/kjk)
+: Sponsoring the work on the amazing open source SumatraPDF reader.
+
+[NeoVim](https://neovim.io)
+: Sponsoring the production of the awesome open source text editor.
+
+[Pi-hole]
+: Sponsoring the production of pi-hole that helps protect privacy on-line.
+
+[TUG]
+: Sponsoring the maintenance and production of MacTeX.
+
+## 2020
+
+[Amit Varma](https://seenunseen.in)
+: Sponsoring the production of the Seen and the Unseen podcast.
+
+[Australian Red Cross](https://www.redcross.org.au)
+: Towards the 2019-20 Australian bush fires relief fund.
+
+[Homebrew]
+: Sponsoring the missing package manager for MacOS (or Linux).
+
+[Khan Academy]
+: Sponsoring to support the unprecedented demand during COVID-19.
+
+[Pi-hole]
+: Sponsoring the production of pi-hole that helps protect privacy on-line.
+
+[TUG]
+: Sponsoring the maintenance and production of MacTeX.
+
+## 2019
+
+[Movember Foundation](https://au.movember.com)
+: Sponsoring to support men's mental health in Australia.
+
+## 2017
+
+[SOS Children's Villages India]
+: Sponsoring care and education of a rural child.
+
+## 2016
+
+[Narayana Hrudayalaya](https://www.narayanahealth.org)
+: Sponsoring free medical treatment of the under-privileged.
+
+## 2015
+
+[SOS Children's Villages India]
+: Sponsoring care and education of a rural child.
+
+## 2013
+
+[David Zhou](https://github.com/dz)
+: Sponsoring Chisel, his creation for static site generation.
+
+[GPG Tools](https://gpgtools.org/)
+: Sponsoring to protect privacy with strong easy-to-use encryption tools.
+
+[MathJax](https://www.mathjax.org)
+: Sponsoring to have beautiful and accessible math in all browsers.
+
+## 2010
+
+[CRY]
+: Sponsoring education of a rural girl child in India.
+
+## 2009
+
+[Donncha O Caoimh](https://profiles.wordpress.org/donncha/)
+: Sponsoring his amazing WP Super Cache plug-in for WordPress.
+
+## 2008
+
+[Cyberduck](https://cyberduck.io)
+: Sponsoring the production of SFTP freeware.
+
+Education for Change
+: Sponsoring a unique girl-school in India.
+
+[Pardada Pardadi Educational Society](https://pardadapardadi.org)
+: Sponsoring menstrual health initiatives of under-privileged children.
+
+[Ubuntu](https://ubuntu.com/)
+: Sponsoring the free and open source operating system.
+
+[GNOME Foundation](https://foundation.gnome.org)
+: Sponsoring to improve open source computing efforts.
+
+## 2007
+
+[CRY]
+: Sponsoring education of an Indian girl child.
+
+## 2006
+
+[CRY]
+: Sponsoring care and education of an orphaned girl child.
+
+## 2005
+
+[American Red Cross](https://www.redcross.org)
+: Towards the 2005 Kashmir earthquake relief fund.
+
+[International Red Cross](https://www.icrc.org/en)
+: Towards the 2004 Southeast Asian tsunami relief fund.
+
+[WordPress](https://wordpress.org)
+: Sponsoring the maintenance of the open source publishing system.
+
+## 2004
+
+[CRY]
+: Sponsoring education of a rural girl child in India.
+
+## 2002
+
+[CRY]
+: Sponsoring education of a rural girl child in India.
+
+[Homebrew]: https://brew.sh
+[TUG]: https://tug.org
+[CRY]: https://cry.org/
+[Khan Academy]: https://www.khanacademy.org
+[SOS Children's Villages India]: http://www.soschildrensvillages.in
+[Pi-hole]: https://pi-hole.net
+
+{% endmarkdown %}
+</article>
+{%- endblock %}
+
+{% block footer %}
+{% include 'footer_archive.html' %}
+{%- endblock %}

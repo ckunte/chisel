@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 # Chisel by D Zhou, github.com/dz
 # Fork + mod by C Kunte, github.com/ckunte
-
 import sys, re, time, os
 import jinja2, markdown
 from functools import cmp_to_key
 from config import *
+
 
 LOC = [
     os.environ["HOME"] + "/" + POSTS, 
@@ -14,10 +14,13 @@ LOC = [
     os.environ["HOME"] + "/" + TMPL
 ]
 
+
 FORMAT = lambda text: markdown.markdown(text,\
     extensions=['smarty','tables','fenced_code','footnotes'])
 
+
 STEPS = []
+
 
 def step(func):
     def wrapper(*args, **kwargs):
@@ -26,6 +29,7 @@ def step(func):
         print("done.")
     STEPS.append(wrapper)
     return wrapper
+
 
 def get_tree(source):
     files = []
@@ -56,11 +60,13 @@ def get_tree(source):
             f.close()
     return files
 
+
 def compare_entries(x, y):
     result = (y['epoch'] > x['epoch']) - (y['epoch'] < x['epoch'])
     if result == 0:
         return (y['filename'] > x['filename']) - (y['filename'] < x['filename'])
     return result
+
 
 def write_file(url, data):
     path = LOC[1] + url + EXT[1]
@@ -71,32 +77,43 @@ def write_file(url, data):
     file.write(data)
     file.close()
 
+
 def write_feed(url, data):
     path = LOC[1] + url
     file = open(path, "w")
     file.write(data)
     file.close()
 
+
 @step
 def feed(f, e):
     write_feed('rss.xml', e.get_template('atom.xml').render(entries=f[:RSS_SHOW]))
 
+
 @step
 def homepage(f, e):
     write_file('index%s' %EXT[0], e.get_template('home.html').render(entries=f))
+
 
 @step
 def posts(f, e):
     for file in f:
         write_file(file['url'], e.get_template('detail.html').render(entry=file, entries=f))
 
+
 @step
 def archive(f, e):
     write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
 
+
+@step
+def sponsoring(f, e):
+    write_file('mad%s' %EXT[0], e.get_template('mad.html').render(entry=f))
+
 @step
 def aboutpage(f, e):
     write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
+
 
 def main():
     print("Chiseling...");
