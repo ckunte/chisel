@@ -1,12 +1,13 @@
+{% from 'site_settings.jinja2' import site_title, site_url -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>ckunte.net{% block title %}{% endblock %}</title>
+  <title>{{ site_title }}{% block title %}{% endblock %}</title>
   <meta name="viewport" content="width=device-width">
   <link type="text/css" rel="stylesheet" href="/css/w.css" />
   <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png" />
-  <link rel="alternate" type="application/atom+xml" title="ckunte.net" href="/rss.xml" />
+  <link rel="alternate" type="application/atom+xml" title="{{ site_title }}" href="/rss.xml" />
 </head>
 <body>
   <main>

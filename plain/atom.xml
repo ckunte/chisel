@@ -23,7 +23,7 @@
     </author>
     <content type="html" xml:base="{{ site_url }}" xml:lang="en">
 {%- filter indent(width=4) %}
-{{ entry.content | e }}{#{{ "<hr><small><i>This is an rss-only gig.</i></small>" | e }}#}
+{{ entry.content | e }}
 {%- endfilter %}
     </content>
   </entry>

@@ -1,8 +1,9 @@
+{% from 'site_settings.jinja2' import site_title, site_url -%}
 {% extends "base.html" %}
-{% block title %}: weeknotes{% endblock %}
+{% block title %}{% endblock %}
 {%- block post %}
   <header>
-    <a accesskey="/" href="/"><img class="logo" alt="ckunte.net" src="/img/apple-touch-icon.png"></a>
+    <a accesskey="/" href="/"><img class="logo" alt="{{ site_title }}" src="/img/apple-touch-icon.png"></a>
   </header>
 {%- for entry in entries %}
   <article id="{{ entry.epoch | int }}">
