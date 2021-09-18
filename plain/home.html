@@ -14,6 +14,7 @@
 <article>
 <h1>{{ site_author }}</h1>
 <time datetime="2021-02-14 12:05">{{ bio | title }}</time>
+{%- include 'proj.html' -%} {# projects on homepage #}
 {%- include 'notes_latest.html' -%} {# Includes only the latest on homepage #}
 </article>
 {%- endblock %}
