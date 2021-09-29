@@ -96,23 +96,24 @@ def homepage(f, e):
 
 
 @step
-def posts(f, e):
+def notes(f, e):
     for file in f:
         write_file(file['url'], e.get_template('detail.html').render(entry=file, entries=f))
 
 
 @step
-def archive(f, e):
-    write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
+def notes_list(f, e):
+    write_file('notes%s' %EXT[0], e.get_template('archive.html').render(entries=f))
 
 
-@step
-def sponsoring(f, e):
-    write_file('mad%s' %EXT[0], e.get_template('mad.html').render(entry=f))
-
-@step
-def aboutpage(f, e):
-    write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
+# @step
+# def sponsoring(f, e):
+#     write_file('mad%s' %EXT[0], e.get_template('mad.html').render(entry=f))
+# 
+# 
+# @step
+# def aboutpage(f, e):
+#     write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
 
 
 def main():
