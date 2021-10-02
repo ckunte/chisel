@@ -1,4 +1,5 @@
+{% from 'site_settings.jinja2' import archive_name -%}
 <footer>
-  <span><a accesskey="j" title="All notes" href="/notes">&larr; Notes</a></span>
+  <span><a accesskey="j" href="/{{ archive_name }}">&larr; {{ archive_name | title }}</a></span>
   <span>&copy; C Kunte</span>
 </footer>

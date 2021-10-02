@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Chisel by D Zhou, github.com/dz
-# Fork + mod by C Kunte, github.com/ckunte
+# Chisel by D Zhou (github.com/dz); Fork + mod by C Kunte (github.com/ckunte)
 import sys, re, time, os
 import jinja2, markdown
 from functools import cmp_to_key
@@ -103,7 +102,7 @@ def notes(f, e):
 
 @step
 def notes_list(f, e):
-    write_file('notes%s' %EXT[0], e.get_template('archive.html').render(entries=f))
+    write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
 
 
 # @step
