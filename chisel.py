@@ -8,14 +8,15 @@ from config import *
 
 
 LOC = [
-    os.environ["HOME"] + "/" + POSTS, 
+    os.environ["HOME"] + "/" + POSTS,
     os.environ["HOME"] + "/" + WWW,
-    os.environ["HOME"] + "/" + TMPL
+    os.environ["HOME"] + "/" + TMPL,
 ]
 
 
-FORMAT = lambda text: markdown.markdown(text,\
-    extensions=['smarty','tables','fenced_code','footnotes'])
+FORMAT = lambda text: markdown.markdown(
+    text, extensions=["smarty", "tables", "fenced_code", "footnotes"]
+)
 
 
 STEPS = []
@@ -23,9 +24,10 @@ STEPS = []
 
 def step(func):
     def wrapper(*args, **kwargs):
-        print("\t\tGenerating %s..." %func.__name__, end="");
+        print("\t\tGenerating %s..." % func.__name__, end="")
         func(*args, **kwargs)
         print("done.")
+
     STEPS.append(wrapper)
     return wrapper
 
@@ -34,36 +36,41 @@ def get_tree(source):
     files = []
     for root, ds, fs in os.walk(source):
         for name in fs:
-            if name[0] == ".": continue
-            if not re.match(r'^.+\.(md|mdown)$', name): continue
+            if name[0] == ".":
+                continue
+            if not re.match(r"^.+\.(md|mdown)$", name):
+                continue
             path = os.path.join(root, name)
             f = open(path, "r")
-            title = f.readline().strip('\n\t')
+            title = f.readline().strip("\n\t")
             date = time.strptime(f.readline().strip(), TFMT[2])
             year, month, day, hour, minute = date[:5]
-            files.append({
-                'title': title,
-                'epoch': time.mktime(date),
-                'desc': f.readline().strip('\n\t'),
-                'content': FORMAT(''.join(f.readlines()[1:])),
-                'url': '/'.join([str(year), os.path.splitext(name)[0]]),
-                'pretty_date': time.strftime(TFMT[0], date),
-                #'rssdate': time.strftime(TFMT[1], date),
-                'date': date, 
-                'year': year, 
-                'month': '{:02d}'.format(month), 
-                'day': '{:02d}'.format(day), 
-                'hour': '{:02d}'.format(hour), 
-                'minute': '{:02d}'.format(minute),
-                'filename': name})
+            files.append(
+                {
+                    "title": title,
+                    "epoch": time.mktime(date),
+                    "desc": f.readline().strip("\n\t"),
+                    "content": FORMAT("".join(f.readlines()[1:])),
+                    "url": "/".join([str(year), os.path.splitext(name)[0]]),
+                    "pretty_date": time.strftime(TFMT[0], date),
+                    #'rssdate': time.strftime(TFMT[1], date),
+                    "date": date,
+                    "year": year,
+                    "month": "{:02d}".format(month),
+                    "day": "{:02d}".format(day),
+                    "hour": "{:02d}".format(hour),
+                    "minute": "{:02d}".format(minute),
+                    "filename": name,
+                }
+            )
             f.close()
     return files
 
 
 def compare_entries(x, y):
-    result = (y['epoch'] > x['epoch']) - (y['epoch'] < x['epoch'])
+    result = (y["epoch"] > x["epoch"]) - (y["epoch"] < x["epoch"])
     if result == 0:
-        return (y['filename'] > x['filename']) - (y['filename'] < x['filename'])
+        return (y["filename"] > x["filename"]) - (y["filename"] < x["filename"])
     return result
 
 
@@ -86,46 +93,52 @@ def write_feed(url, data):
 
 @step
 def feed(f, e):
-    write_feed('rss.xml', e.get_template('atom.xml').render(entries=f[:RSS_SHOW]))
+    write_feed("rss.xml", e.get_template("atom.xml").render(entries=f[:RSS_SHOW]))
 
 
 @step
 def homepage(f, e):
-    write_file('index%s' %EXT[0], e.get_template('home.html').render(entries=f))
+    write_file("index%s" % EXT[0], e.get_template("home.html").render(entries=f))
 
 
 @step
 def notes(f, e):
     for file in f:
-        write_file(file['url'], e.get_template('detail.html').render(entry=file, entries=f))
+        write_file(
+            file["url"], e.get_template("detail.html").render(entry=file, entries=f)
+        )
 
 
 @step
 def notes_list(f, e):
-    write_file('archive%s' %EXT[0], e.get_template('archive.html').render(entries=f))
+    write_file("archive%s" % EXT[0], e.get_template("archive.html").render(entries=f))
 
 
 # @step
 # def sponsoring(f, e):
 #     write_file('mad%s' %EXT[0], e.get_template('mad.html').render(entry=f))
-# 
-# 
+#
+#
 # @step
 # def aboutpage(f, e):
 #     write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
 
 
 def main():
-    print("Chiseling...");
-    print("\tReading files...", end="");
+    print("Chiseling...")
+    print("\tReading files...", end="")
     files = sorted(get_tree(LOC[0]), key=cmp_to_key(compare_entries))
-    env = jinja2.Environment(loader=jinja2.FileSystemLoader(LOC[2]),extensions=['jinja2_markdown.MarkdownExtension'])
+    env = jinja2.Environment(
+        loader=jinja2.FileSystemLoader(LOC[2]),
+        extensions=["jinja2_markdown.MarkdownExtension"],
+    )
     print("done.")
-    print("\tRunning steps...");
+    print("\tRunning steps...")
     for step in STEPS:
         step(files, env)
     print("\tdone.")
     print("done.")
+
 
 if __name__ == "__main__":
     sys.exit(main())
