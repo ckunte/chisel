@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from 'site_settings.jinja2' import bio -%}
+{%- block title -%}{{ site_author }} - {{ bio | title }}{%- endblock %}
 {%- block description -%}{{ site_author }} - {{ bio | title }}{%- endblock %}
 {% block hlhead %}
   <link rel="alternate" type="application/atom+xml" title="{{ site_title }}" href="/rss.xml" />

@@ -111,7 +111,7 @@ def notes(f, e):
 
 @step
 def notes_list(f, e):
-    write_file("archive%s" % EXT[0], e.get_template("archive.html").render(entries=f))
+    write_file("notes%s" % EXT[0], e.get_template("archive.html").render(entries=f))
 
 
 # @step
