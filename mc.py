@@ -78,9 +78,9 @@ def write_feed(url, data):
     file.close()
 
 
-#@step
-#def home(f, e):
-#    write_file('index%s' %EXT[0], e.get_template('home.html').render(entries=f[:SHOWPOSTS[0]]))
+@step
+def home(f, e):
+    write_file('index%s' %EXT[0], e.get_template('home.html').render(entries=f[:SHOWPOSTS[0]]))
 
 
 @step
@@ -90,7 +90,7 @@ def feed(f, e):
 
 @step
 def weeknotes(f, e):
-    write_file('index%s' %EXT[0], e.get_template('weeknotes.html').render(entries=f[:SHOWPOSTS[2]]))
+    write_file('w%s' %EXT[0], e.get_template('weeknotes.html').render(entries=f[:SHOWPOSTS[2]]))
 
 
 def main():
