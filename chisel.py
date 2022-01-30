@@ -119,9 +119,9 @@ def notes_list(f, e):
 #     write_file('mad%s' %EXT[0], e.get_template('mad.html').render(entry=f))
 #
 #
-# @step
-# def aboutpage(f, e):
-#     write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
+@step
+def aboutpage(f, e):
+     write_file('about%s' %EXT[0], e.get_template('about.html').render(entry=f))
 
 
 def main():
