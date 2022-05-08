@@ -1,0 +1,25 @@
+<article>
+{% from 'site_settings.jinja2' import latest -%}	
+{#<time>Notes since 2006</time>
+<h1><a href="/archive">Archive</a></h1>
+#}{% markdown %}
+## Archive
+
+The list below is offset by the latest on [homepage](/).
+
+{% endmarkdown %}
+
+  <dl class=two>
+{%- for entry in entries %}
+  {%- if loop.index > latest %} {# to print only the last five entries #}
+    <dt><small>{{ loop.length - loop.index0 }}</small>&nbsp;<a{% if loop.index0 == latest %} accesskey="1"{% endif %}{% if loop.length - loop.index0 == 1 %} accesskey="0"{% endif %} id="{{ loop.length - loop.index0 }}" href="/{{ entry.url }}">{{ entry.title | e }}</a><small> &sdot; {{ entry.content | wordcount // 300 + 1 }} min</small></dt>
+    <dd>{{ entry.desc | e }}</dd>
+  {%- endif %}
+{%- endfor %}
+  </dl>
+</article>
+<article>
+<aside style="margin-top:2ch">
+	<b>Trivia.</b> In 2001, I became interested in switching from a static homepage to writing, which became easier with the availability of interesting and low-cost tools. In ten subsequent years, I produced an unremarkable collection of bad writing, a great majority of which were short, observational bursts, but none of enduring value. They have not made it to this archive. May be in the next ten, who knows I might realise the same about those that <i>are</i> published here.
+</aside>
+</article>
