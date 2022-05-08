@@ -1,8 +1,1 @@
-<p>Welcome to this personal little <a href="/about">site</a> &mdash; my sandbox for code + prose. I am interested in structural mechanics, hydrodynamics, fatigue, and offshore geotechnics. I am not on social media; any match there must be a namesake. Below are my notes and side-projects.</p>
-
-{%- from 'site_settings.jinja2' import latest -%}
-{%- for entry in entries %}
-  {%- if loop.index < latest + 1 %} {# print only the latest entries #}
-  <p class="new"><a href="/{{ entry.url }}">{{ entry.title | e }}</a> &mdash; {{ entry.desc | e }} <small>{{ entry.content | wordcount // 300 + 1 }} min</small></p>
-  {%- endif -%}
-{%- endfor %}
+<p>Welcome to this personal little <a href="/about">site</a> &mdash; my sandbox for code + prose. I am interested in structural mechanics, hydrodynamics, fatigue, and offshore geotechnics. I am not on social media; any match there must be a namesake. Below are my side-projects and notes.</p>
