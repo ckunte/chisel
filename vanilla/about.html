@@ -12,53 +12,34 @@
 <time>About this site, etc.</time>
 
 {% markdown %}
+
 Hello. I am {{ site_author }}, an {{ bio }}, and producer of this little website &mdash; my sandbox for code and prose. I am interested in structural mechanics, hydrodynamics, fatigue, and offshore geotechnics. I am not on social media; any match there must be a namesake.
 
-{#<figure>
-  <img alt="Author at Hangover Bay, Cervantes." src="/img/author1.jpg">
-  <figcaption>At Hangover Bay, Cervantes.</figcaption>
-</figure>
-
-#}This domain exists mainly to be a pointer to MX records. I put the idling A record to use, mostly as an afterthought, which turned-on the lights here. Built with [Chisel][c1], this site respects [web standards][ws], produces valid [HTML][v1], [CSS][v2], and [RSS][v3] mark-ups, and is [friendly] to phones and small screens. For accessibility, handy keyboard shortcuts are available. On MacOS, hold-down <kbd>Ctrl</kbd> <kbd>Opt</kbd> and press <kbd><i>Key</i></kbd>. On Linux and Windows, hold-down <kbd>Alt</kbd> and press <kbd><i>Key</i></kbd>:
+This domain exists mainly to be a pointer to MX records. I put the idling A record to use, mostly as an afterthought, which turned-on the lights here. Built with [Chisel][c1], this site respects [web standards][ws], produces valid [HTML][v1], [CSS][v2], and [RSS][v3] mark-ups, and is [friendly] to phones and small screens. {#For accessibility, handy keyboard shortcuts are available. On MacOS, hold-down <kbd>Ctrl</kbd> <kbd>Opt</kbd> and press <kbd><i>Key</i></kbd>. On Linux and Windows, hold-down <kbd>Alt</kbd> and press <kbd><i>Key</i></kbd>:
 
 | Key          | Link        | Works on          |
 | ------------ | ----------- | ----------------- |
 | <kbd>/</kbd> | Home        | All pages         |
-| <kbd>a</kbd> | About       | Homepage, Archive |
-| <kbd>r</kbd> | Archive     | - do -            |
 | <kbd>1</kbd> | Latest note | - do -            |
 | <kbd>0</kbd> | First note  | - do -            |
-| <kbd>j</kbd> | Prev        | All note pages    |
+| <kbd>j</kbd> | Prev        | Homepage, Notes   |
 | <kbd>k</kbd> | Next        | - do -            |
+#}
 
-## Syndication
+_Syndication._ [RSS][f1] feed channel is available to keep up with the latest published on this site.
 
-[RSS][f1] feed channel is available to keep up to speed with the latest published on this site.
+_Code._ To ensure it works as intended, all code published on this site is pre-tested without exceptions. Some of the older code snippets may contain [legacy python code][p2]. These should still work with last of python version 2. (Most personal projects are in [repositories][gh] and in [gists][gs].)
 
-## Code
+_Credits._ To Armin Ronacher and team for [Jinja]; David Zhou for [Chisel]; Guido van Rossum + community of volunteers for [python]; Ivan Sagalaev and team for [hl.js]; Linus Torvalds, Junio Hamano + community of volunteers for [git]; [GitHub] for hosting; Emily Eisenberg and Sophie Alpert for [KaTeX]; Manfred Stienstra, Yuri Takhteyev, and Waylan Limberg for [markdown in python].
 
-To ensure it works as intended, all code published on this site is pre-tested without exceptions. Some of the older code snippets may contain [legacy python code][p2]. These should still work with last of python version 2. (Most personal projects are in [repositories][gh] and in [gists][gs].)
+_Privacy._ This site does not track visitors. There are no forms seeking visitor inputs, and there are no advertisements, no cookies, and no trackers served from this website.
 
-## Credits
-
-To Armin Ronacher and team for [Jinja]; David Zhou for [Chisel]; Guido van Rossum + community of volunteers for [python]; Ivan Sagalaev and team for [hl.js]; Linus Torvalds, Junio Hamano + community of volunteers for [git]; [GitHub] for hosting; Emily Eisenberg and Sophie Alpert for [KaTeX]; Manfred Stienstra, Yuri Takhteyev, and Waylan Limberg for [markdown in python].
-
-## Privacy
-
-This site does not track visitors. There are no forms seeking visitor inputs, and there are no advertisements, no cookies, and no trackers served from this website.
-
-## TLS
-
-Transport layer security on this site is available as an option, i.e., the site is accessible via both https as well as http protocols, and it is not redirected from http to https. This is by intent &mdash; to enable low bandwidth users to make best use of cache and help with speed-loading. To understand why, see the [remark by Roy Fielding][rf].
+_TLS._ Transport layer security on this site is available as an option, i.e., the site is accessible via both https as well as http protocols, and it is not redirected from http to https. This is by intent &mdash; to enable low bandwidth users to make best use of cache and help with speed-loading. To understand why, see [Roy Fielding's remark][rf].
 
 <a id="t"></a>
-## Disclaimer, Terms of use
+_Disclaimer, Terms of use._ I do not speak for my employer. Be warned that anything presented herein on this site is without warranty, and whose quality or correctness are not to be assumed. If you use any of this in any way, then you do so at your own risk.
 
-I do not speak for my employer. Be warned that anything presented herein on this site is without warranty, and whose quality or correctness are not to be assumed. If you use any of this in any way, then you do so at your own risk.
-
-## Feedback
-
-This website is a body of preoccupation (mostly weekends and holidays) outside of a full-time job. Therefore, expect errors, omissions, and/or bugs. Feedback regarding errors, omissions, bugs are welcome at <log+2021@ckunte.net>.
+_Feedback._ This website is a body of preoccupation (mostly weekends and holidays) outside of a full-time job. Therefore, expect errors, omissions, and/or bugs. Feedback regarding errors, omissions, bugs are welcome at <log+2022@ckunte.net>.
 
 [c1]: https://github.com/ckunte/chisel/tree/ck
 [Jinja]: https://palletsprojects.com/p/jinja/
@@ -79,7 +60,9 @@ This website is a body of preoccupation (mostly weekends and holidays) outside o
 [ws]: https://www.w3.org/standards/ "Standards - W3C"
 [friendly]: https://alistapart.com/article/responsive-web-design/ "Responsive Web Design – A List Apart"
 [f1]: https://ckunte.net/rss.xml
+
 {% endmarkdown %}
+
 </article>
 {%- endblock %}
 
