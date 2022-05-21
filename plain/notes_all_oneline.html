@@ -1,5 +1,5 @@
 <p>
 {%- for entry in entries %}
-  <small>{{ loop.length - loop.index0 }}</small>&nbsp;<a{% if loop.index0 == 0 %} accesskey="1"{% endif %}{% if loop.length - loop.index0 == 1 %} accesskey="0"{% endif %} id="{{ loop.length - loop.index0 }}" title="{{ entry.title | e }} {{ entry.content | wordcount // 300 + 1 }} min." href="/{{ entry.url }}">{{ entry.title | e }}</a>
+  <small>{{ loop.length - loop.index0 }}</small>&nbsp;<a{% if loop.index0 == 0 %} accesskey="1"{% endif %}{% if loop.length - loop.index0 == 1 %} accesskey="0"{% endif %} id="{{ loop.length - loop.index0 }}" title="{{ entry.desc | e }} {{ entry.content | wordcount // 300 + 1 }} min." href="/{{ entry.url }}">{{ entry.title | e }}</a>
 {%- endfor %}
 </p>
