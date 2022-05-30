@@ -17,14 +17,14 @@
       {%- endif %}
       <footer>
         {%- if prev and next %}
-        <span><a accesskey="j" title="{{prevtitle}}" href="/{{ prev }}">&larr; Prev</a></span>
-        <span><a accesskey="k" title="{{nexttitle}}" href="/{{ next }}">Next &rarr;</a></span>
+        <span>&larr; <a accesskey="j" title="{{prevtitle}}" href="/{{ prev }}">Prev</a></span>
+        <span><a accesskey="k" title="{{nexttitle}}" href="/{{ next }}">Next</a> &rarr;</span>
         {%- elif not next %}
-        <span><a accesskey="j" title="{{prevtitle}}" href="/{{ prev }}">&larr; Prev</a></span>
-        <span><a accesskey="k" href="/">Home &rarr;</a></span>
+        <span>&larr; <a accesskey="j" title="{{prevtitle}}" href="/{{ prev }}">Prev</a></span>
+        <span><a accesskey="k" href="/">Home</a> &rarr;</span>
         {%- elif not prev %}
-        <span><a accesskey="j" href="/">&larr; Home</a></span>
-        <span><a accesskey="k" title="{{nexttitle}}" href="/{{ next }}">Next &rarr;</a></span>
+        <span>&larr; <a accesskey="j" href="/">Home</a></span>
+        <span><a accesskey="k" title="{{nexttitle}}" href="/{{ next }}">Next</a> &rarr;</span>
         {%- endif %}
       </footer>        
     {%- endif %}
