@@ -3,7 +3,7 @@ POSTS = "Sites/wkly/"          # location of posts (in markdown) folder
 WWW = "Sites/home.lo/"         # local www folder (upload contents to a web host)
 TMPL = "Sites/chisel/plain/"   # jinja templates folder
 
-SHOWPOSTS = [1, 3, 18]
+SHOWPOSTS = [1, 12, 54]
 
 TFMT = [
   "%Y-%m-%d %H:%M",

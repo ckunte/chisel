@@ -1,4 +1,4 @@
-{% from 'site_settings.jinja2' import site_title, site_url -%}
+{% from 'site_settings.jinja2' import site_title, site_url, site_author -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width">
   <link type="text/css" rel="stylesheet" href="/css/h.css" />
   <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png" />
-  <link type="application/atom+xml" rel="alternate" title="ckunte.net" href="/rss.xml" />
+  <link type="application/atom+xml" rel="alternate" title="{{ site_title }}:weeknotes" href="/rss.xml" />
 </head>
 <body>
   <main>
@@ -15,12 +15,13 @@
       <p><a accesskey="/" href="/"><img alt="" src="/img/ckunte.png"></a></p>
       {%- for entry in entries %}
       <p datetime="{{ entry.feed_date }}">
-        <a accesskey="w" title="Note from week {{ entry.week }}, {{ entry.year }}." href="/w">{{ entry.title }}</a>.
+        Hello.{#
+          <a accesskey="w" title="Note from week {{ entry.week }}, {{ entry.year }}." href="/w">{{ entry.title }}</a>.#}
       </p>
       {%- endfor %}
     </article>
     <footer class="post">
-      <span>&nbsp;</span><span>{{ site_title }}</span>
+      <span>&nbsp;</span>
     </footer>
   </main>
 </body>
