@@ -1,4 +1,4 @@
-{% from 'site_settings.jinja2' import site_title, site_url, site_author -%}
+{% from 'site_settings.jinja2' import site_title -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,12 +13,9 @@
   <main>
     <article>
       <p><a accesskey="/" href="/"><img alt="" src="/img/ckunte.png"></a></p>
-      {%- for entry in entries %}
-      <p datetime="{{ entry.feed_date }}">
-        Hello.{#
-          <a accesskey="w" title="Note from week {{ entry.week }}, {{ entry.year }}." href="/w">{{ entry.title }}</a>.#}
+      <p>
+        Hello.
       </p>
-      {%- endfor %}
     </article>
     <footer class="post">
       <span>&nbsp;</span>
