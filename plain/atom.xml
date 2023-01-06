@@ -21,7 +21,7 @@
       <name>{{ site_author }}</name>
       <uri>{{ site_url }}/</uri>
     </author>
-    <content type="html" xml:base="{{ site_url }}" xml:lang="en">
+    <content type="html" xml:base="{{ site_url }}/w" xml:lang="en">
 {%- filter indent(width=4) %}
 {{ entry.content | e }}
 {%- endfilter %}
