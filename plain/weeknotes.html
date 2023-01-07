@@ -7,8 +7,8 @@
   </header>
 {%- for entry in entries %}
   <article id="{{ entry.epoch | int }}">
-    <time datetime="{{ entry.feed_date }}">{{ (entry.year|string)[-2:] }}W{{ entry.week }}</time>
     <h1>{{ entry.title }}</h1>    
+    <time datetime="{{ entry.feed_date }}">{{ (entry.year|string)[-2:] }}W{{ entry.week }}</time>
 {%- filter indent(width=4) %}
 {{ entry.content }}
 {%- endfilter %}
@@ -17,7 +17,7 @@
 {%- filter indent(width=2) %}
 <footer>
   <span>&larr; <a accesskey="j" title="Home" href="/">Home</a></span>
-  <span class="colophon">Weeknotes</span>
+  <span>Weeknotes</span>
 </footer>
 {%- endfilter %}
 {%- endblock %}
