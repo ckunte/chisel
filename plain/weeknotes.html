@@ -1,4 +1,4 @@
-{% from 'site_settings.jinja2' import site_title, site_url, site_author -%}
+{% from 'site_settings.jinja2' import site_title -%}
 {% extends "base.html" %}
 {% block title %}:weeknotes{% endblock %}
 {%- block post %}
@@ -16,8 +16,7 @@
 {%- endfor %}
 {%- filter indent(width=2) %}
 <footer>
-  <span>&larr; <a accesskey="j" title="Home" href="/">Home</a></span>
-  <span>Weeknotes</span>
+  <span><a accesskey="j" title="Home" href="/">&larr;</a></span>
 </footer>
 {%- endfilter %}
 {%- endblock %}
