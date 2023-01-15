@@ -22,9 +22,7 @@
       <uri>{{ site_url }}/</uri>
     </author>
     <content type="html" xml:base="{{ site_url }}/w" xml:lang="en">
-{%- filter indent(width=4) %}
-{{ entry.content | e }}
-{%- endfilter %}
+{%- filter indent(width=4) -%}{{ entry.content | e }}{%- endfilter -%}
     </content>
   </entry>
 {% endfor %}
