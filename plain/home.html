@@ -6,8 +6,8 @@
   <title>{{ site_title }}</title>
   <meta name="viewport" content="width=device-width">
   <link type="text/css" rel="stylesheet" href="/css/h.css" />
-  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png" />
-  <link type="application/atom+xml" rel="alternate" title="{{ site_title }}:weeknotes" href="/rss.xml" />
+  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png" />{#
+  <link type="application/atom+xml" rel="alternate" title="{{ site_title }}:weeknotes" href="/rss.xml" />#}
 </head>
 <body>
   <main>
@@ -19,7 +19,10 @@
     </article>
     <footer class="post">
       <span>&nbsp;</span>
-      <span><a title="Projects" href="https://github.com/ckunte">Projects</a></span>
+      <span>
+        <a accesskey="n" title="Notes" href="/n">Notes</a> &bull;
+        <a title="Projects" href="https://github.com/ckunte">Projects</a>
+      </span>
     </footer>
   </main>
 </body>
