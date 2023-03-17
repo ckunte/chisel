@@ -95,7 +95,7 @@ def write_feed(url, data):
 def write_sitemap(url, data):
     path = LOC[1] + url
     with gzip.open(path, "wb") as file:
-        file.write(data.encode())
+        file.write(data.encode("UTF-8"))
 
 
 @step
