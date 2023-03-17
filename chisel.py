@@ -4,6 +4,7 @@
 import sys, re, time, os
 import jinja2, markdown
 from functools import cmp_to_key
+import gzip
 from config import *
 
 
@@ -89,6 +90,17 @@ def write_feed(url, data):
     file = open(path, "w")
     file.write(data)
     file.close()
+
+
+def write_sitemap(url, data):
+    path = LOC[1] + url
+    with gzip.open(path, "wb") as file:
+        file.write(data.encode())
+
+
+@step
+def gen_sitemap(f, e):
+    write_sitemap("sitemap.xml.gz", e.get_template("sitemap.html").render(entries=f))
 
 
 @step
