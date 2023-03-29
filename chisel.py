@@ -1,17 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Chisel by D Zhou (github.com/dz); Fork + mod by C Kunte (github.com/ckunte)
-import sys, re, time, os
-import jinja2, markdown
+import sys
+import re
+import time
+import os
+import pathlib
+import jinja2
+import markdown
 from functools import cmp_to_key
 import gzip
 from config import *
 
 
 LOC = [
-    os.environ["HOME"] + "/" + POSTS,
-    os.environ["HOME"] + "/" + WWW,
-    os.environ["HOME"] + "/" + TMPL,
+    os.path.join(os.environ["HOME"], POSTS),
+    os.path.join(os.environ["HOME"], WWW),
+    os.path.join(os.environ["HOME"], TMPL),
 ]
 
 
@@ -25,7 +30,7 @@ STEPS = []
 
 def step(func):
     def wrapper(*args, **kwargs):
-        print("\t\tGenerating %s..." % func.__name__, end="")
+        print(f"\t\tGenerating {func.__name__}...", end="")
         func(*args, **kwargs)
         print("done.")
 
@@ -57,10 +62,10 @@ def get_tree(source):
                     #'rssdate': time.strftime(TFMT[1], date),
                     "date": date,
                     "year": year,
-                    "month": "{:02d}".format(month),
-                    "day": "{:02d}".format(day),
-                    "hour": "{:02d}".format(hour),
-                    "minute": "{:02d}".format(minute),
+                    "month": f"{month:02d}",
+                    "day": f"{day:02d}",
+                    "hour": f"{hour:02d}",
+                    "minute": f"{minute:02d}",
                     "filename": name,
                 }
             )
@@ -76,26 +81,22 @@ def compare_entries(x, y):
 
 
 def write_file(url, data):
-    path = LOC[1] + url + EXT[1]
-    dirs = os.path.dirname(path)
-    if not os.path.isdir(dirs):
-        os.makedirs(dirs)
-    file = open(path, "w")
-    file.write(data)
-    file.close()
+    path = pathlib.Path(LOC[1]) / f"{url}{EXT[1]}"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w") as f:
+        f.write(data)
 
 
 def write_feed(url, data):
-    path = LOC[1] + url
-    file = open(path, "w")
-    file.write(data)
-    file.close()
+    path = pathlib.Path(LOC[1]) / url
+    with open(path, "w") as f:
+        f.write(data)
 
 
 def write_sitemap(url, data):
-    path = LOC[1] + url
-    with gzip.open(path, "wb") as file:
-        file.write(data.encode("UTF-8"))
+    path = pathlib.Path(LOC[1]) / url
+    with gzip.open(path, "wb") as f:
+        f.write(data.encode("UTF-8"))
 
 
 @step
@@ -110,12 +111,12 @@ def feed(f, e):
 
 @step
 def homepage(f, e):
-    write_file("index%s" % EXT[0], e.get_template("home.html").render(entries=f))
+    write_file(f"index{EXT[0]}", e.get_template("home.html").render(entries=f))
 
 
 @step
 def notes(f, e):
-    for file in f:
+    for i, file in enumerate(f):
         write_file(
             file["url"], e.get_template("detail.html").render(entry=file, entries=f)
         )
@@ -123,17 +124,17 @@ def notes(f, e):
 
 # @step
 # def notes_list(f, e):
-#    write_file("archive%s" % EXT[0], e.get_template("archive.html").render(entries=f))
+#    write_file(f"archive{EXT[0]}", e.get_template("archive.html").render(entries=f))
 
 
 # @step
 # def sponsoring(f, e):
-#     write_file('mad%s' %EXT[0], e.get_template('mad.html').render(entry=f))
+#    write_file(f"mad{EXT[0]}", e.get_template("mad.html").render(entries=f))
 
 
-# @step
-# def aboutpage(f, e):
-#    write_file("about%s" % EXT[0], e.get_template("about.html").render(entry=f))
+@step
+def aboutpage(f, e):
+    write_file(f"about{EXT[0]}", e.get_template("about.html").render(entries=f))
 
 
 def main():
