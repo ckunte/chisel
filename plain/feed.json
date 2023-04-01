@@ -1,15 +1,15 @@
 {% from 'site_settings.jinja2' import site_title, site_author, site_url, bio -%}
 {
   "version" : "https://jsonfeed.org/version/1.1",
-  "user_comment" : "This feed lets you know whenever a new note is published on this site. Copy the following URL -- {{ site_url }}/feed.json -- and it to your feed reader.",
+  "user_comment" : "This feed lets you know whenever a new note is published on this site. Copy the following URL -- {{ site_url }}/feed.json -- and add it to your feed reader.",
   "title" : "{{ site_title }}",
   "home_page_url" : "{{ site_url }}",
   "feed_url" : "{{ site_url }}/feed.json",
-  "description" : "{{ site_author }} - {{ bio | title }}",
+  "description" : "{{ site_author }} - {{ bio|title }}",
   "authors" : [
     {
       "name" : "{{ site_author }}",
-      "url" : "{{ site_url }}/"
+      "url" : "{{ site_url }}"
     }
   ],
   "icon" : "{{ site_url }}/img/apple-touch-icon.png",
@@ -17,17 +17,17 @@
   "items": [
   {%- for entry in entries %}
     {
-      "id" : "{{ entry.epoch | int }}",
-      "url": "{{ site_url}}/{{ entry.url }}",
-      "title": "{{ entry.title }}",
+      "id" : "{{ entry.epoch|int }}",
+      "url" : "{{ site_url}}/{{ entry.url }}",
+      "title" : "{{ entry.title }}",{#
       "authors" : [
         {
           "name" : "{{ site_author }}"
         }
-      ],
-      "date_published": "{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00",
+      ],#}
+      "date_published" : "{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00",
       "content_text" : "{{ entry.desc }}"{#,
-      "content_html" : {{ entry.content | tojson }}#}
+      "content_html" : {{ entry.content|tojson }}#}
     }{%if not loop.last %},{%endif%}
   {%- endfor %}    
   ]
