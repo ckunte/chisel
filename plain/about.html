@@ -17,7 +17,7 @@
 
 Hello. I am {{ site_author }}, an {{ bio }}. I am not on social media,[^1] any match there must be a namesake.
 
-{#This domain exists mainly to be a pointer to MX records. I put the idling A record to use, mostly as an afterthought,[^1] which turned-on the lights here.#}Built with [Chisel][c1], this site respects [web standards][ws], produces valid [HTML][v1], [CSS][v2], and [RSS][v3] mark-ups, and is [friendly] to phones and small screens. For accessibility, handy keyboard shortcuts are available. On MacOS, hold-down <kbd>Ctrl</kbd> <kbd>Opt</kbd> and press a _key_ from the list below. Similarly, on Linux and Windows, hold-down <kbd>Alt</kbd> and press a _key_:
+{#This domain exists mainly to be a pointer to MX records. I put the idling A record to use, mostly as an afterthought,[^1] which turned-on the lights here.#}Built with [Chisel][c1], this site respects [web standards][ws], produces valid [HTML][v1], [CSS][v2], and [JSON][v3] feed mark-ups, and is [friendly] to phones and small screens. For accessibility, handy keyboard shortcuts are available. On MacOS, hold-down <kbd>Ctrl</kbd> <kbd>Opt</kbd> and press a _key_ from the list below. Similarly, on Linux and Windows, hold-down <kbd>Alt</kbd> and press a _key_:
 
 | Key          | Link         | Works on        |
 | ------------ | ------------ | --------------- |
@@ -26,7 +26,7 @@ Hello. I am {{ site_author }}, an {{ bio }}. I am not on social media,[^1] any m
 | <kbd>j</kbd> | Latest, Prev | Homepage, Notes |
 | <kbd>k</kbd> | First, Next  | - do -          |
 
-_Syndication._ [RSS][f1] feed channel is available to keep up with the latest published.
+_Syndication._ [JSON][f1] feed channel is available to keep up with the latest published.
 
 _Code._ To ensure it works as intended, all published code is pre-tested without exceptions. Older code snippets may contain [legacy python code][p2]. These should still work with last of python v2. Most personal projects are in [repositories][gh] and in [gists][gs].
 
@@ -55,13 +55,13 @@ _Feedback._ This is a body of preoccupation outside of a full-time job. Expect b
 [markdown in python]: https://pypi.python.org/pypi/Markdown
 [v1]: https://validator.w3.org/nu/?doc={{ site_url }}
 [v2]: http://jigsaw.w3.org/css-validator/validator?uri={{ site_url }}
-[v3]: https://validator.w3.org/feed/check.cgi?url={{ site_url }}/rss.xml
+[v3]: https://validator.jsonfeed.org/?url={{ site_url }}/feed.json {#https://validator.w3.org/feed/check.cgi?url={{ site_url }}/rss.xml #}
 [Chisel]: https://github.com/dz/chisel
 [p2]: https://www.python.org/doc/sunset-python-2/
 [rf]: https://www.ietf.org/mail-archive/web/ietf/current/msg93416.html "Re: Proposed Statement on HTTPS everywhere for the IETF"
 [ws]: https://www.w3.org/standards/ "Standards - W3C"
 [friendly]: https://alistapart.com/article/responsive-web-design/ "Responsive Web Design – A List Apart"
-[f1]: {{ site_url }}/rss.xml
+[f1]: {{ site_url }}/feed.json
 [Feedback]: {{ projects }}/ckunte.github.io/issues
 [ln]: https://www.linkedin.com/in/ckunte/
 {% endmarkdown %}
