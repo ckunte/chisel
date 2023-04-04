@@ -106,7 +106,8 @@ def gen_sitemap(f, e):
 
 @step
 def feed(f, e):
-    write_feed("rss.xml", e.get_template("atom.xml").render(entries=f[:RSS_SHOW]))
+    write_feed("feed.json", e.get_template("feed.json").render(entries=f[:RSS_SHOW]))
+    # write_feed("rss.xml", e.get_template("atom.xml").render(entries=f[:RSS_SHOW]))
 
 
 @step
@@ -123,6 +124,11 @@ def notes(f, e):
 
 
 # @step
+# def aboutpage(f, e):
+#    write_file(f"about{EXT[0]}", e.get_template("about.html").render(entries=f))
+
+
+# @step
 # def notes_list(f, e):
 #    write_file(f"archive{EXT[0]}", e.get_template("archive.html").render(entries=f))
 
@@ -130,11 +136,6 @@ def notes(f, e):
 # @step
 # def sponsoring(f, e):
 #    write_file(f"mad{EXT[0]}", e.get_template("mad.html").render(entries=f))
-
-
-@step
-def aboutpage(f, e):
-    write_file(f"about{EXT[0]}", e.get_template("about.html").render(entries=f))
 
 
 def main():
