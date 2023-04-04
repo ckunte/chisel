@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   {% from 'site_settings.jinja2' import site_title, site_author, site_url, bio -%}
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ site_title }}{% block title %}{% endblock %}</title>
-  <meta name="description" content="{%block description %}{% endblock %}" />
-  <meta name="author" content="{{ site_author }}" />
-  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png" />
+  <meta name="description" content="{%block description %}{% endblock %}">
+  <meta name="author" content="{{ site_author }}">
+  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
   <link rel="icon" href="data:,"><!-- stop favicon.ico requests -->
-  <link rel="canonical" href="{{ site_url }}/{%block canonicalurl %}{% endblock %}" />
-  <link rel="stylesheet" href="/css/plain.css" type="text/css" />
+  <link rel="canonical" href="{{ site_url }}/{%block canonicalurl %}{% endblock %}">
+  <link rel="stylesheet" href="/css/plain.css" type="text/css">
   {%- block hlhead -%}{%- endblock %}
 </head>
 <body>
