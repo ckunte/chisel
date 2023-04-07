@@ -42,34 +42,27 @@ def get_tree(source):
     files = []
     for root, ds, fs in os.walk(source):
         for name in fs:
-            if name[0] == ".":
-                continue
-            if not re.match(r"^.+\.(md|mdown)$", name):
+            if name.startswith(".") or not name.endswith((".md", ".mdown")):
                 continue
             path = os.path.join(root, name)
-            f = open(path, "r")
-            title = f.readline().strip("\n\t")
-            date = time.strptime(f.readline().strip(), TFMT[2])
-            year, month, day, hour, minute = date[:5]
-            files.append(
-                {
-                    "title": title,
-                    "epoch": time.mktime(date),
-                    "desc": f.readline().strip("\n\t"),
-                    "content": FORMAT("".join(f.readlines()[1:])),
-                    "url": "/".join([str(year), os.path.splitext(name)[0]]),
-                    "pretty_date": time.strftime(TFMT[0], date),
-                    #'rssdate': time.strftime(TFMT[1], date),
-                    "date": date,
-                    "year": year,
-                    "month": f"{month:02d}",
-                    "day": f"{day:02d}",
-                    "hour": f"{hour:02d}",
-                    "minute": f"{minute:02d}",
-                    "filename": name,
-                }
-            )
-            f.close()
+            with open(path, "r") as f:
+                title = f.readline().strip("\n\t")
+                date_str = f.readline().strip()
+                date = time.strptime(date_str, TFMT[2])
+                year, month, day, hour, minute = date[:5]
+                files.append(
+                    {
+                        "title": title,
+                        "epoch": time.mktime(date),
+                        "desc": f.readline().strip("\n\t"),
+                        "content": FORMAT("".join(f.readlines()[1:])),
+                        "url": f"{year}/{os.path.splitext(name)[0]}",
+                        "pretty_date": time.strftime(TFMT[0], date),
+                        "feed_date": time.strftime(TFMT[3], date),
+                        "year": year,
+                        "filename": name,
+                    }
+                )
     return files
 
 
