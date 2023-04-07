@@ -25,7 +25,7 @@
           "name" : "{{ site_author }}"
         }
       ],#}
-      "date_published" : "{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00",
+      "date_published" : "{{ entry.feed_date }}",
       "content_text" : "{{ entry.desc }}"{#,
       "content_html" : {{ entry.content|tojson }}#}
     }{%if not loop.last %},{%endif%}
