@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # Chisel by D Zhou (github.com/dz); Fork + mod by C Kunte (github.com/ckunte)
 import sys
-import re
 import time
 import os
 import pathlib
