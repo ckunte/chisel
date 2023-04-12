@@ -9,7 +9,7 @@
   <id>{{ site_url }}/rss.xml</id>
   {%- for entry in entries -%}
   {%- if loop.index < last + 1 %}
-  <updated>{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00</updated>
+  <updated>{{ entry.feed_date }}</updated>
   {%- endif -%}
   {%- endfor %}
   {% for entry in entries %}
@@ -18,7 +18,7 @@
     <link href="{{ site_url }}/{{ entry.url }}" />
     <link rel="alternate" type="text/html" href="{{ site_url }}/{{ entry.url }}" />
     <id>{{ site_url }}/{{ entry.url }}</id>
-    <updated>{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00</updated>
+    <updated>{{ entry.feed_date }}</updated>
     <author>
       <name>{{ site_author }}</name>
       <uri>{{ site_url }}/</uri>

@@ -9,7 +9,7 @@
   <meta name="author" content="{{ site_author }}">
   <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png">
   <link rel="icon" href="data:,"><!-- stop favicon.ico requests -->
-  <link rel="canonical" href="/{%block canonicalurl %}{% endblock %}">
+  <link rel="canonical" href="{{ site_url }}/{%block canonicalurl %}{% endblock %}">
   <link rel="stylesheet" href="/css/plain.css" type="text/css">
   {%- block hlhead -%}{%- endblock %}
 </head>
