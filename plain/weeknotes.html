@@ -1,12 +1,15 @@
-{% from 'site_settings.jinja2' import site_title -%}
 {% extends "base.html" %}
 {% block title %}:weeknotes{% endblock %}
+{% block head %}
+  <link type="text/css" rel="stylesheet" href="/incl/w.css">
+  <link rel="alternate" type="application/json" title="{{ site_title }}:weeknotes" href="/feed.json">
+{% endblock -%}
 {%- block post %}
-  <header>
-    <a accesskey="/" href="/w"><img class="logo" alt="{{ site_title }}" src="/img/apple-touch-icon.png"></a>
-  </header>
+<header>
+  <a accesskey="/" href="/w"><img class="logo" alt="{{ site_title }}" src="/incl/apple-touch-icon.png"></a>
+</header>
 {%- for entry in entries %}
-  <article id="{{ entry.epoch | int }}">
+  <article id="{{ entry.epoch|int }}">
     <h1>{{ entry.title }}</h1>    
     <time datetime="{{ entry.feed_date }}">{{ (entry.year|string)[-2:] }}W{{ entry.week }}</time>
 {%- filter indent(width=4) %}

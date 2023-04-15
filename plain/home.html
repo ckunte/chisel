@@ -1,29 +1,21 @@
-{% from 'site_settings.jinja2' import site_title -%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>{{ site_title }}</title>
-  <meta name="viewport" content="width=device-width">
-  <link type="text/css" rel="stylesheet" href="/css/h.css" />
-  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png" />{#
-  <link type="application/atom+xml" rel="alternate" title="{{ site_title }}:weeknotes" href="/rss.xml" />#}
-</head>
-<body>
-  <main>
-    <article>
-      <p><a accesskey="/" href="/"><img alt="" src="/img/ckunte.png"></a></p>
-      <p>
-        Hello.
-      </p>
-    </article>
-    <footer class="post">
-      <span>&nbsp;</span>
-      <span>
-        <a accesskey="n" title="Notes" href="/n">Notes</a> &bull;
-        <a title="Projects" href="https://github.com/ckunte">Projects</a>
-      </span>
-    </footer>
-  </main>
-</body>
-</html>
+{% extends "base.html" %}
+{%- block title %}{%- endblock %}
+{% block head %}
+  <link type="text/css" rel="stylesheet" href="/incl/h.css">
+  <link rel="alternate" type="application/json" title="{{ site_title }}" href="/feed.json">
+{% endblock -%}
+
+{%- block post -%}
+<article>
+  <p><a accesskey="/" href="/"><img class="logotype" alt="" src="/incl/ckunte.png"></a></p>
+  {%- for entry in entries %}
+  <p>
+    <a accesskey="j" title="Note for week {{ entry.week}}, {{ entry.year }}." href="/w">{{ entry.title }}</a>.
+  </p>
+  {%- endfor %}
+</article>
+<footer class="post">
+  <span>&nbsp;</span>
+  <span>{{ site_title }}</span>
+</footer>
+{%- endblock %}

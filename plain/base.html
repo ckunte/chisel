@@ -4,11 +4,11 @@
 <head>
   <meta charset="utf-8">
   <title>{{ site_title }}{% block title %}{% endblock %}</title>
-  <meta name="author" content="{{ site_author }}" />
   <meta name="viewport" content="width=device-width">
-  <link type="text/css" rel="stylesheet" href="/css/w.css" />
-  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png" />
-  <link rel="alternate" type="application/atom+xml" title="{{ site_title }}:weeknotes" href="/rss.xml" />
+  <meta name="author" content="{{ site_author }}">
+  <link rel="icon" href="data:,">
+  <link rel="apple-touch-icon-precomposed" href="/incl/apple-touch-icon.png">
+  {% block head %}{% endblock %}
 </head>
 <body>
   <main>
