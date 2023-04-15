@@ -1,21 +1,19 @@
 {% extends "base.html" %}
 {%- block title %}{%- endblock %}
-{% block head %}
+{%- block head -%}
   <link type="text/css" rel="stylesheet" href="/incl/h.css">
   <link rel="alternate" type="application/json" title="{{ site_title }}" href="/feed.json">
-{% endblock -%}
+{%- endblock %}
 
-{%- block post -%}
-<article>
-  <p><a accesskey="/" href="/"><img class="logotype" alt="" src="/incl/ckunte.png"></a></p>
-  {%- for entry in entries %}
-  <p>
-    <a accesskey="j" title="Note for week {{ entry.week}}, {{ entry.year }}." href="/w">{{ entry.title }}</a>.
-  </p>
-  {%- endfor %}
-</article>
-<footer class="post">
-  <span>&nbsp;</span>
-  <span>{{ site_title }}</span>
-</footer>
+{%- block post %}
+    <article>
+      <p><a accesskey="/" href="/"><img class="logotype" alt="" src="/incl/ckunte.png"></a></p>
+      {%- for entry in entries %}
+      <p><a accesskey="j" title="Note for week {{ entry.week}}, {{ entry.year }}." href="/w">{{ entry.title }}</a>.</p>
+      {%- endfor %}
+    </article>
+    <footer class="post">
+      <span>&nbsp;</span>
+      <span>{{ site_title }}</span>
+    </footer>
 {%- endblock %}
