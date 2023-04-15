@@ -5,7 +5,7 @@
   "title" : "{{ site_title }}",
   "home_page_url" : "{{ site_url }}",
   "feed_url" : "{{ site_url }}/feed.json",
-  "description" : "{{ site_author }}",
+  "description" : "Weeknotes",
   "authors" : [
     {
       "name" : "{{ site_author }}",

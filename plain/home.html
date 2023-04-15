@@ -9,7 +9,11 @@
     <article>
       <p><a accesskey="/" href="/"><img class="logotype" alt="" src="/incl/ckunte.png"></a></p>
       {%- for entry in entries %}
-      <p><a accesskey="j" title="Note for week {{ entry.week}}, {{ entry.year }}." href="/w">{{ entry.title }}</a>.</p>
+      <p datetime="{{ entry.feed_date }}">
+        <a accesskey="j" href="/w" title="Note from week {{ entry.week}}, {{ entry.year }}.">
+          {{ entry.title }}
+        </a>
+      </p>
       {%- endfor %}
     </article>
     <footer class="post">
