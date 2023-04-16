@@ -12,8 +12,8 @@
       "url" : "{{ site_url }}"
     }
   ],
-  "icon" : "{{ site_url }}/incl/apple-touch-icon.png",
-  "favicon" : "{{ site_url }}/incl/apple-touch-icon.png",
+  "icon" : "{{ site_url }}/incl/apple-touch-icon.webp",
+  "favicon" : "{{ site_url }}/incl/apple-touch-icon.webp",
   "items": [
   {%- for entry in entries %}
     {
