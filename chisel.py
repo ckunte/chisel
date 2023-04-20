@@ -20,9 +20,10 @@ LOC = [
 ]
 
 
-FORMAT = lambda text: markdown.markdown(
-    text, extensions=["smarty", "tables", "fenced_code", "footnotes"]
-)
+def FORMAT(text):
+    return markdown.markdown(
+        text, extensions=["smarty", "tables", "fenced_code", "footnotes"]
+    )
 
 
 STEPS = []
