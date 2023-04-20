@@ -8,7 +8,7 @@ import pathlib
 import jinja2
 import markdown
 from functools import cmp_to_key
-from config import *
+from config import POSTS, WWW, TMPL, RSS_SHOW, EXT, TFMT
 
 # import gzip
 
