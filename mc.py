@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # mc.py -- 2021 C Kunte
-import sys
 import time
 import datetime
 import os
