@@ -8,7 +8,7 @@ import pathlib
 import jinja2
 import markdown
 from functools import cmp_to_key
-from config import *
+from config import EXT, POSTS, SHOWPOSTS, TFMT, TMPL, WWW
 
 
 LOC = [
