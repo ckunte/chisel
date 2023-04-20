@@ -8,8 +8,9 @@ import pathlib
 import jinja2
 import markdown
 from functools import cmp_to_key
-import gzip
 from config import *
+
+# import gzip
 
 
 LOC = [
@@ -90,7 +91,7 @@ def write_feed(url, data):
 #    with gzip.open(path, "wb") as f:
 #        f.write(data.encode("UTF-8"))
 
-
+# -- before enabling sitemap gen., enable import gzip --
 # @step
 # def gen_sitemap(f, e):
 #    write_sitemap("sitemap.xml.gz", e.get_template("sitemap.html").render(entries=f))
