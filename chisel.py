@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Chisel by D Zhou (github.com/dz); Fork + mod by C Kunte (github.com/ckunte)
-import sys
-import time
-import os
-import pathlib
+from config import POSTS, WWW, TMPL, RSS_SHOW, EXT, TFMT
+from functools import cmp_to_key
+import gzip
 import jinja2
 import markdown
-from functools import cmp_to_key
-from config import POSTS, WWW, TMPL, RSS_SHOW, EXT, TFMT
+import os
+import pathlib
+import sys
+import time
 
 # import gzip
 
@@ -87,15 +88,14 @@ def write_feed(url, data):
         f.write(data)
 
 
-# def write_sitemap(url, data):
-#    path = pathlib.Path(LOC[1]) / url
-#    with gzip.open(path, "wb") as f:
-#        f.write(data.encode("UTF-8"))
+def write_sitemap(url, data):
+   path = pathlib.Path(LOC[1]) / url
+   with gzip.open(path, "wb") as f:
+       f.write(data.encode("UTF-8"))
 
-# -- before enabling sitemap gen., enable import gzip --
-# @step
-# def gen_sitemap(f, e):
-#    write_sitemap("sitemap.xml.gz", e.get_template("sitemap.html").render(entries=f))
+@step
+def sitemap(f, e):
+   write_sitemap("sitemap.xml.gz", e.get_template("sitemap.html").render(entries=f))
 
 
 @step
