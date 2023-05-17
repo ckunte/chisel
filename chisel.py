@@ -117,9 +117,9 @@ def notes(f, e):
         )
 
 
-@step
-def aboutpage(f, e):
-    write_file(f"about{EXT[0]}", e.get_template("about.html").render(entries=f))
+# @step
+# def aboutpage(f, e):
+#     write_file(f"about{EXT[0]}", e.get_template("about.html").render(entries=f))
 
 
 # @step
