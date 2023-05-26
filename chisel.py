@@ -101,7 +101,6 @@ def sitemap(f, e):
 @step
 def feed(f, e):
     write_feed("feed.json", e.get_template("feed.json").render(entries=f[:RSS_SHOW]))
-    write_feed("rss.xml", e.get_template("atom.xml").render(entries=f[:RSS_SHOW]))
 
 
 @step
@@ -117,9 +116,9 @@ def notes(f, e):
         )
 
 
-# @step
-# def aboutpage(f, e):
-#     write_file(f"about{EXT[0]}", e.get_template("about.html").render(entries=f))
+@step
+def aboutpage(f, e):
+    write_file(f"about{EXT[0]}", e.get_template("about.html").render(entries=f))
 
 
 # @step
