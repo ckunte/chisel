@@ -3,8 +3,8 @@
 {%- block description -%}{{ bio | title }}{%- endblock %}
 {% block hlhead %}
   <link rel="alternate" type="application/json" title="{{ site_title }}" href="{{ site_url }}/feed.json">{#
-  <link rel="alternate" type="application/atom+xml" title="{{ site_title }}" href="/rss.xml">
-  <script src="/css/dldiv.js"></script>#}
+  <link rel="alternate" type="application/atom+xml" title="{{ site_title }}" href="/rss.xml">#}
+  <script src="/css/dldiv.js"></script>
 {%- endblock %}
 
 {% block header %}
@@ -16,7 +16,7 @@
 <h1>{{ site_author }}</h1>
 <time datetime="2023-05-26 18:36">{{ bio | title }}</time>
 {%- include 'bio.html' %} {# bio on homepage #}
-{% include 'notesall_1line.html' %}
+{% include 'notesall.html' %}
 </article>
 {%- endblock %}
 
