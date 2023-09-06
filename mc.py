@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # mc.py -- 2021 C Kunte
 import time
-import datetime
 import os
 import pathlib
 import jinja2
@@ -19,7 +18,7 @@ LOC = [
 
 
 def FORMAT(text):
-    return markdown.markdown(text, extensions=["smarty", "fenced_code", "footnotes"])
+    return markdown.markdown(text, extensions=["smarty", "footnotes"])
 
 
 STEPS = []
@@ -47,15 +46,16 @@ def get_tree(source):
                 date_str = f.readline().strip()
                 date = time.strptime(date_str, TFMT[0])
                 year, month, day, hour, minute = date[:5]
-                week = datetime.date(year, month, day).isocalendar()[1]
+                # week = datetime.date(year, month, day).isocalendar()[1]
                 files.append(
                     {
                         "title": title,
-                        "epoch": time.mktime(date),
                         "content": FORMAT("".join(f.readlines()[1:])),
                         "feed_date": time.strftime(TFMT[1], date),
-                        "year": year,
-                        "week": week,
+                        "filename": f"{os.path.splitext(name)[0]}",  # exclude file extension
+                        # "epoch": time.mktime(date),
+                        # "year": year,
+                        # "week": week,
                     }
                 )
     return files
