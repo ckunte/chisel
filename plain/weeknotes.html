@@ -2,17 +2,15 @@
 {% block title %}: weeknotes{% endblock %}
 {%- block head -%}
   <link type="text/css" rel="stylesheet" href="/incl/w.css">
-  <link rel="alternate" type="application/json" title="{{ site_title }}" href="/feed.json">{#
-  <script src="/incl/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>#}
+  <link rel="alternate" type="application/json" title="{{ site_title }}" href="/feed.json">
 {%- endblock %}
 {%- block post %}
     <header>
       <a accesskey="/" href="/w"><img class="logo" alt="{{ site_title }}" src="/incl/apple-touch-icon.webp"></a>
     </header>
 {%- for entry in entries %}
-    <article id="{{ entry.epoch|int }}">
-      <time datetime="{{ entry.feed_date }}">{{ (entry.year|string)[-2:] }}W{{ entry.week }}</time>
+    <article id="{{ entry.filename }}">
+      <time datetime="{{ entry.feed_date }}">{{ entry.filename }}</time> {# (entry.year|string)[-2:] }}W{{ entry.week #}
       <h1>{{ entry.title }}</h1>
   {%- filter indent(width=4) %}
   {{ entry.content }}

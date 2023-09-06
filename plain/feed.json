@@ -17,8 +17,8 @@
   "items": [
   {%- for entry in entries %}
     {
-      "id" : "{{ entry.epoch|int }}",
-      "url" : "{{ site_url}}/w#{{ entry.epoch|int }}",
+      "id" : "{{ entry.filename }}",
+      "url" : "{{ site_url}}/w#{{ entry.filename }}",
       "title" : "{{ entry.title }}",
       "date_published" : "{{ entry.feed_date }}",
       "content_html" : {{ entry.content|tojson }}
