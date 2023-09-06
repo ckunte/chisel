@@ -10,7 +10,7 @@
       <p><img class="logotype" alt="" src="/incl/ckunte.webp"></p>
       {%- for entry in entries %}
       <p>
-        <a accesskey="j" href="/w" title="Note from week {{ entry.week}}, {{ entry.year }}.">
+        <a accesskey="j" href="/w" title="Note from week {{ entry.filename }}">
           {{ entry.title }}
         </a>
         <time datetime="{{ entry.feed_date }}">{{ entry.filename }}</time>{# (entry.year|string)[-2:] }}W{{ entry.week #}
