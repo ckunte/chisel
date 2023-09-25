@@ -53,7 +53,7 @@ def get_tree(source):
                         "content": FORMAT("".join(f.readlines()[1:])),
                         "feed_date": time.strftime(TFMT[1], date),
                         "filename": f"{os.path.splitext(name)[0]}",  # exclude file extension
-                        # "epoch": time.mktime(date),
+                        "epoch": time.mktime(date),
                         # "year": year,
                         # "week": week,
                     }
