@@ -1,9 +1,16 @@
 <footer>
-  <span>&nbsp;</span>
-  <span>{#<span class="year"></span> #}C Kunte</span>
+  <span>
+    <a href="/about">About</a>
+    &sdot;
+    <a href="https://github.com/ckunte">Projects</a>
+    &sdot;
+    <a href="/feed.json">Feed</a>
+  </span>
+  <span>{#2006-<span class="year"></span>&nbsp;#}C Kunte</span>
 </footer>{#
 <script>
-  const currentYear = new Date().getFullYear();
+  const currentYear = (new Date().getFullYear().toString().substr(-2));
+  // to revert to 4 digit year, remove ".toString().substr(-2)" from above line
   const yearElements = document.getElementsByClassName("year");
   yearElements[0].textContent = currentYear;
 </script>#}
