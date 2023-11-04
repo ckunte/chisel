@@ -3,14 +3,12 @@
 # Chisel by D Zhou (github.com/dz); Fork + mod by C Kunte (github.com/ckunte)
 from config import POSTS, WWW, TMPL, RSS_SHOW, EXT, TFMT
 from functools import cmp_to_key
-import gzip
 import jinja2
 import markdown
 import os
 import pathlib
 import sys
 import time
-
 # import gzip
 
 
@@ -52,11 +50,14 @@ def get_tree(source):
                 date_str = f.readline().strip()
                 date = time.strptime(date_str, TFMT[2])
                 year, month, day, hour, minute = date[:5]
+                tag = f.readline().strip("\n\t")
+                desc = f.readline().strip("\n\t")
                 files.append(
                     {
                         "title": title,
                         "epoch": time.mktime(date),
-                        "desc": f.readline().strip("\n\t"),
+                        "tag": tag,
+                        "desc": desc,
                         "content": FORMAT("".join(f.readlines()[1:])),
                         "url": f"{year}/{os.path.splitext(name)[0]}",
                         "pretty_date": time.strftime(TFMT[0], date),

@@ -2,9 +2,14 @@
 {%- block title %}{%- endblock %}
 {%- block description -%}{{ bio | title }}{%- endblock %}
 {% block hlhead %}
-  <link rel="alternate" type="application/json" title="{{ site_title }}" href="{{ site_url }}/feed.json">{#
-  <link rel="alternate" type="application/atom+xml" title="{{ site_title }}" href="/rss.xml">#}
-  <script src="/css/dldiv.js"></script>
+  {#<meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline';" />
+  #}<link rel="alternate" type="application/json" title="{{ site_title }}" href="{{ site_url }}/feed.json">
+  <noscript>
+    <style>
+      #myBtnContainer { display: none }
+      .filterDiv {display: block}
+    </style>
+  </noscript>
 {%- endblock %}
 
 {% block header %}

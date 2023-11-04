@@ -1,6 +1,27 @@
-<dl class="two">
+<noscript>
+  <p class="warn">
+    For navigation by tags, please enable javascript support in web browser, and refresh.
+  </p>
+</noscript>
+<!-- Control buttons -->
+<div id="myBtnContainer">
+  <button class="btn active" onclick="filterSelection('eng')">Engineer</button>
+  <button class="btn" onclick="filterSelection('kit')">Tooling</button>
+  <button class="btn" onclick="filterSelection('hst')">History</button>
+  <button class="btn" onclick="filterSelection('tra')">Travel</button>
+  <button class="btn" onclick="filterSelection('all')">Show all</button>
+</div>
+
+<dl class="two container">
 {%- for entry in entries %}
+<div class="filterDiv {{ entry.tag | e }}">
   <dt><small>{{ loop.length - loop.index0 }}</small>&nbsp;<a{% if loop.index0 == 0 %} accesskey="j"{% endif %}{% if loop.length - loop.index0 == 1 %} accesskey="k"{% endif %} id="{{ loop.length - loop.index0 }}" href="/{{ entry.url }}">{{ entry.title | e }}</a><small> &sdot; {{ entry.content | wordcount // 300 + 1 }} min</small></dt>
   <dd>{{ entry.desc | e }}</dd>
+</div>
 {%- endfor %}
 </dl>
+<script src="/css/tags.js" integrity="sha384-o/Dx4L6yd2F2NR2A7cdI1hu3jgI7L4gCTEj4MMJAYT4eKVxrbaFvgZtvRIK9Pb3w"></script>{# 
+Comment: 
+remember to update the above hash with the following bash command: 
+  cat tags.js | openssl dgst -sha384 -binary | openssl base64 -A
+#}
