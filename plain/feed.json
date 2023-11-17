@@ -26,8 +26,8 @@
         }
       ],#}
       "date_published" : "{{ entry.feed_date }}",
-      "content_text" : "{{ entry.desc }}"{#,
-      "content_html" : {{ entry.content|tojson }}#}
+      "content_text" : "{{ entry.desc }}",
+      "content_html" : {{ entry.content|tojson }}
     }{%if not loop.last %},{%endif%}
   {%- endfor %}    
   ]
