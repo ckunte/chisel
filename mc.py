@@ -82,6 +82,14 @@ def write_feed(url, data):
 
 
 @step
+def home(f, e):
+    write_file(
+        f"index{EXT[0]}",
+        e.get_template("home.html").render(entries=f[: SHOWPOSTS[0]]),
+    )
+
+
+@step
 def feed(f, e):
     write_feed(
         "feed.json", e.get_template("feed.json").render(entries=f[: SHOWPOSTS[1]])
@@ -91,8 +99,8 @@ def feed(f, e):
 @step
 def weeknotes(f, e):
     write_file(
-        f"index{EXT[0]}",
-        e.get_template("index.html").render(entries=f[: SHOWPOSTS[2]]),
+        f"w{EXT[0]}",
+        e.get_template("weeknotes.html").render(entries=f[: SHOWPOSTS[2]]),
     )
 
 
