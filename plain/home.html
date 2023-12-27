@@ -7,7 +7,7 @@
 
 {%- block post %}
     <article>
-      <p><img class="logotype" alt="" src="/incl/ckunte.webp"></p>
+      <p><a href="/"><img class="logotype" alt="" src="/incl/ckunte.webp"></a></p>
       {%- for entry in entries %}
       <p>
         <a accesskey="j" href="/w" title="Note from week {{ entry.filename }}">
@@ -18,7 +18,8 @@
       {%- endfor %}
     </article>
     <footer class="post">
-      <span>&nbsp;</span>
+      <span><a href="#bio">Bio</a> &sdot; <a href="#code">Code</a></span>
       <span>{{ site_title }}</span>
     </footer>
+{%- include 'aside.html' %}
 {%- endblock %}
