@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # mc.py -- 2021 C Kunte
-import time
-import os
-import pathlib
+from config import EXT, POSTS, SHOWPOSTS, TFMT, TMPL, WWW
+from functools import cmp_to_key
 import jinja2
 import markdown
-from functools import cmp_to_key
-from config import EXT, POSTS, SHOWPOSTS, TFMT, TMPL, WWW
+import os
+import pathlib
+import time
 
 
 LOC = [
@@ -46,14 +46,16 @@ def get_tree(source):
                 date_str = f.readline().strip()
                 date = time.strptime(date_str, TFMT[0])
                 year, month, day, hour, minute = date[:5]
+                cover = f.readline().strip("\n\t")
                 # week = datetime.date(year, month, day).isocalendar()[1]
                 files.append(
                     {
                         "title": title,
+                        "epoch": time.mktime(date),
+                        "cover": cover,  # cover image if exists in line 3 of the post
                         "content": FORMAT("".join(f.readlines()[1:])),
                         "feed_date": time.strftime(TFMT[1], date),
                         "filename": f"{os.path.splitext(name)[0]}",  # exclude file extension
-                        "epoch": time.mktime(date),
                         # "year": year,
                         # "week": week,
                     }

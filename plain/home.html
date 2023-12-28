@@ -7,8 +7,14 @@
 
 {%- block post %}
     <article>
-      <p><a href="/"><img class="logotype" alt="" src="/incl/ckunte.webp"></a></p>
+      <p><a href="/">
       {%- for entry in entries %}
+        {%- if entry.cover is defined and entry.cover | length %}
+        <img class="logotype" alt="{{ entry.title }}" src="{{ entry.cover }}">
+        {%- else %}
+        <img class="logotype" alt="{{ site_title }}" src="/incl/ckunte.webp">
+        {%- endif %}
+      </a></p>
       <p>
         <a accesskey="j" href="/w" title="Note from week {{ entry.filename }}">
           {{ entry.title }}
