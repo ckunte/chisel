@@ -6,7 +6,7 @@ It is a bare bones fork of [Chisel][c]. It began as a tool to publish week notes
 
 The author's own website is between a week notes weblog and a now page, generated using mini chisel.
 
-[image here]
+![Mini chisel generated custom themed website.](./screenshot.png)
 
 ## Features
 
@@ -21,11 +21,11 @@ The author's own website is between a week notes weblog and a now page, generate
 
 The format for a note in markdown is simple, and is as follows:
 
-Line 1: Title
-Line 2: Date (in the format: Y-m-d HH:MM)
-Line 3: Cover image URL (Blank line, if none)
-Line 4: Blank line
-Line 5: Content in Markdown here onward
+1. Line 1: Title
+1. Line 2: Date (in the format: Y-m-d HH:MM)
+1. Line 3: Cover image URL (Blank line, if none)
+1. Line 4: Blank line
+1. Line 5: Content in Markdown here onward
 
 ```
 Chateau de Chambord
