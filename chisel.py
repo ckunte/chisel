@@ -9,6 +9,7 @@ import os
 import pathlib
 import sys
 import time
+
 # import gzip
 
 
@@ -89,14 +90,14 @@ def write_feed(url, data):
         f.write(data)
 
 
-#def write_sitemap(url, data):
+# def write_sitemap(url, data):
 #   path = pathlib.Path(LOC[1]) / url
 #   with gzip.open(path, "wb") as f:
 #       f.write(data.encode("UTF-8"))
 
 
-#@step
-#def sitemap(f, e):
+# @step
+# def sitemap(f, e):
 #   write_sitemap("sitemap.xml.gz", e.get_template("sitemap.html").render(entries=f))
 
 
@@ -118,8 +119,8 @@ def notes(f, e):
         )
 
 
-#@step
-#def aboutpage(f, e):
+# @step
+# def aboutpage(f, e):
 #    write_file(f"about{EXT[0]}", e.get_template("about.html").render(entries=f))
 
 
