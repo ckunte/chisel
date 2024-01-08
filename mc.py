@@ -53,7 +53,7 @@ def get_tree(source):
                         "title": title,
                         "epoch": time.mktime(date),
                         "cover": cover,  # cover image if exists in line 3 of the post
-                        "content": FORMAT("".join(f.readlines()[1:])),
+                        "content": FORMAT("".join(f.readlines()[0:])),
                         "feed_date": time.strftime(TFMT[1], date),
                         "filename": f"{os.path.splitext(name)[0]}",  # exclude file extension
                         # "year": year,

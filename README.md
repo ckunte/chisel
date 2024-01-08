@@ -24,14 +24,12 @@ The format for a note in markdown is simple, and is as follows:
 1. Line 1: Title
 1. Line 2: Date (in the format: Y-m-d HH:MM)
 1. Line 3: Cover image URL (Blank line, if none)
-1. Line 4: Blank line
-1. Line 5: Content in Markdown here onward
+1. Line 4: Content in Markdown here onward
 
 ```
 Chateau de Chambord
 2010-05-05 21:50
 /img/chambord.jpg
-
 The 50km route from Amboise to Chambord is scenic, the air in early April still uncomfortably cold. The entrance is grand, the chateau looks iconic from afar.
 ```
 
