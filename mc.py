@@ -11,9 +11,9 @@ import time
 
 
 LOC = [
-    os.path.join(os.environ["HOME"], POSTS),
-    os.path.join(os.environ["HOME"], WWW),
-    os.path.join(os.environ["HOME"], TMPL),
+    pathlib.Path.home() / POSTS,
+    pathlib.Path.home() / WWW,
+    pathlib.Path.home() / TMPL,
 ]
 
 
@@ -47,17 +47,18 @@ def get_tree(source):
                 date = time.strptime(date_str, TFMT[0])
                 year, month, day, hour, minute = date[:5]
                 cover = f.readline().strip("\n\t")
-                # week = datetime.date(year, month, day).isocalendar()[1]
+                content = "".join(f.readlines()[0:])
+                formatted_content = FORMAT(content)
+                feed_date = time.strftime(TFMT[1], date)
+                filename = "{}".format(os.path.splitext(name)[0])
                 files.append(
                     {
                         "title": title,
                         "epoch": time.mktime(date),
                         "cover": cover,  # cover image if exists in line 3 of the post
-                        "content": FORMAT("".join(f.readlines()[0:])),
-                        "feed_date": time.strftime(TFMT[1], date),
-                        "filename": f"{os.path.splitext(name)[0]}",  # exclude file extension
-                        # "year": year,
-                        # "week": week,
+                        "content": formatted_content,
+                        "feed_date": feed_date,
+                        "filename": filename,  # exclude file extension
                     }
                 )
     return files
