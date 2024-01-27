@@ -18,7 +18,7 @@ LOC = [
 
 
 def FORMAT(text):
-    return markdown.markdown(text, extensions=["smarty", "footnotes"])
+    return markdown.markdown(text, extensions=["smarty", "fenced_code", "footnotes"])
 
 
 STEPS = []
