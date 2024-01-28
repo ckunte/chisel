@@ -21,7 +21,7 @@
       min-width: 100%;
       max-width: 60ch;
       margin:0;
-      border-radius:2px;
+      border-radius:0.5ch;
     }
     figure img+img, figure video+video, figure img+video, figure video+img {
       margin-top:0;
@@ -36,4 +36,18 @@
     p + p { text-indent: 2ch; margin-top: -1.3ch }
     hr { border: none; text-align: center }
     hr:after { content: "* * *"; position: relative }
+    pre, pre > code { display:block } {# Key to avoiding first line indent #}
+    :not(pre) > code, pre:has(code) { background-color: #f5f5f5 }
+    :not(pre) > code { padding: 0.5ch; border-radius: 0.5ch }
+    pre:has(code) { overflow-x: auto; border-radius: 0.7ch; padding: 2ch }
+    /*!
+      Theme: a11y-light
+      Author: @ericwbailey
+      Maintainer: @ericwbailey
+
+      Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css
+    */
+    .hljs{background:var(--lite-bc);color:#545454}.hljs-comment,.hljs-quote{color:#6495ED;font-style:italic;}.hljs-deletion,.hljs-name,.hljs-regexp,.hljs-selector-class,.hljs-selector-id,.hljs-tag,.hljs-template-variable,.hljs-variable{color:#d91e18}.hljs-attribute,.hljs-built_in,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-type{color:#aa5d00}.hljs-addition,.hljs-bullet,.hljs-string,.hljs-symbol{color:green}.hljs-section,.hljs-title{color:#007faa}.hljs-keyword,.hljs-selector-tag{color:#7928a1}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}@media screen and (-ms-high-contrast:active){.hljs-addition,.hljs-attribute,.hljs-built_in,.hljs-bullet,.hljs-comment,.hljs-link,.hljs-literal,.hljs-meta,.hljs-number,.hljs-params,.hljs-quote,.hljs-string,.hljs-symbol,.hljs-type{color:highlight}.hljs-keyword,.hljs-selector-tag{font-weight:700}}
   </style>
+  <script src="/inc/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>  
