@@ -18,7 +18,7 @@ LOC = [
 
 
 def FORMAT(text):
-    return markdown.markdown(text, extensions=["smarty", "footnotes"])
+    return markdown.markdown(text, extensions=["smarty"])
 
 
 STEPS = []
@@ -99,12 +99,12 @@ def feed(f, e):
     )
 
 
-@step
-def weeknotes(f, e):
-    write_file(
-        f"w{EXT[0]}",
-        e.get_template("weeknotes.html").render(entries=f[: SHOWPOSTS[2]]),
-    )
+# @step
+# def weeknotes(f, e):
+#    write_file(
+#        f"w{EXT[0]}",
+#        e.get_template("weeknotes.html").render(entries=f[: SHOWPOSTS[2]]),
+#    )
 
 
 def main():

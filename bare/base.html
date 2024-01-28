@@ -1,0 +1,14 @@
+{% from 'site_settings.jinja2' import site_title, site_url, site_author -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>{{ site_title }}{% block title %}{% endblock %}</title>
+  {% include 'style.html' %}
+  {% block head %}{% endblock %}
+</head>
+<body>
+{%- block post -%}{%- endblock %}
+</body>
+</html>

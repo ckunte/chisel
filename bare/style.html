@@ -1,0 +1,39 @@
+  <style>
+    html {
+      max-width: 60ch; padding: 3em 1em; margin: auto;
+      font: normal 90%/130% Courier, "Courier New", monospace;
+    }
+    h1,h2 { font-size: 1em; font-weight: normal }
+    h1 { margin: 0 }
+    h2 { margin: 2ch 0 0 }
+    p {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      hyphenate-limit-chars: 6 3 3;
+      hyphenate-limit-lines: 2;
+      hyphenate-limit-last: always;
+      hyphenate-limit-zone: 8%;
+    }
+    figure { min-width: 100%; max-width: 60ch; margin-left:0 }
+     figure > img, p > img {
+      width: 100%;
+      min-width: 100%;
+      max-width: 60ch;
+      margin:0;
+      border-radius:2px;
+    }
+    figure img+img, figure video+video, figure img+video, figure video+img {
+      margin-top:0;
+    }
+    figcaption {
+      color:#666; 
+      font-size: 85%; 
+      font-style: italic;
+      max-width: 100%;
+      margin: 0.5ch 1ch; 
+    }
+    p + p { text-indent: 2ch; margin-top: -1.3ch }
+    hr { border: none; text-align: center }
+    hr:after { content: "* * *"; position: relative }
+  </style>
