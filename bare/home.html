@@ -8,7 +8,9 @@
 {%- endblock %}
 
 {%- block post %}
-  <h1>{{ site_author }}'s home page</h1>
+  <h1><a title="About me" href="#me">{{ site_author }}</a>'s home page</h1>
+
+  {% include 'bio.html' %}
 
   {%- for entry in entries %}
 
@@ -16,7 +18,5 @@
   {{ entry.content }}
 
   {%- endfor %}
-
-  {% include 'bio.html' %}
 
 {%- endblock %}
