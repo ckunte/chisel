@@ -71,11 +71,11 @@ def compare_entries(x, y):
     return result
 
 
-def write_file(url, data):
-    path = pathlib.Path(LOC[1]) / f"{url}{EXT[1]}"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w") as f:
-        f.write(data)
+# def write_file(url, data):
+#     path = pathlib.Path(LOC[1]) / f"{url}{EXT[1]}"
+#     path.parent.mkdir(parents=True, exist_ok=True)
+#     with open(path, "w") as f:
+#         f.write(data)
 
 
 def write_feed(url, data):
@@ -84,12 +84,12 @@ def write_feed(url, data):
         f.write(data)
 
 
-@step
-def home(f, e):
-    write_file(
-        f"index{EXT[0]}",
-        e.get_template("home.html").render(entries=f[: SHOWPOSTS[0]]),
-    )
+# @step
+# def home(f, e):
+#     write_file(
+#         f"index{EXT[0]}",
+#         e.get_template("home.html").render(entries=f[: SHOWPOSTS[0]]),
+#     )
 
 
 @step
