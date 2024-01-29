@@ -14,7 +14,7 @@
 
   {%- for entry in entries %}
 
-  <h2 datetime="{{ entry.feed_date }}">{{ entry.filename }}</h2>
+  <h2 id="{{ entry.filename }}" datetime="{{ entry.feed_date }}">{{ entry.filename }}</h2>
   {{ entry.content }}
 
   {%- endfor %}
