@@ -16,7 +16,7 @@
   {%- for entry in entries %}
     {
       "id" : "{{ entry.filename }}",
-      "url" : "{{ site_url}}/#{{ entry.filename }}",
+      "url" : "{{ site_url}}/w#{{ entry.filename }}",
       "title" : "{{ entry.title }}",
       "date_published" : "{{ entry.feed_date }}",
       "content_html" : {{ entry.content|tojson }}
