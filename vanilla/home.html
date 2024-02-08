@@ -1,34 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  {% from 'site_settings.jinja2' import site_title, site_url, site_author, bio, latest -%}
-  <title>{{ site_title }}</title>
-  <meta name="viewport" content="width=device-width">
-  <meta name="author" content="{{ site_author }}" />
-  <meta name="description" content="{{ bio }}" />
-  <link rel="canonical" href="/" />  
-  <link type="text/css" rel="stylesheet" href="/css/h.css" />
-  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png" />
-  <link type="application/atom+xml" rel="alternate" title="{{ site_title }}" href="/rss.xml" />
-</head>
-<body>
-  <main>
-    <header>
-      <span>{{ site_title }} <i>by {{ site_author}}</i></span>
-    </header>
-    <article>
-      <p><a accesskey="/" href="/"><img alt="" src="/img/ckunte.png"></a></p>
-      {%- for entry in entries %}
-        {%- if loop.index < latest + 1 %} {# print only the latest entries #}
-          <p datetime="{{ entry.year }}-{{ entry.month }}-{{ entry.day }} {{ entry.hour }}:{{ entry.minute }}"><a{% if loop.index0 == 0 %} accesskey="1"{% endif %}{% if loop.index == latest %} accesskey="0"{% endif %} id="{{ loop.length - loop.index0 }}" title="{{ entry.desc | e }}" href="/{{ entry.url }}">{{ entry.title | e }}</a><small> &sdot; {{ entry.content | wordcount // 300 + 1 }} min</small></p>
-        {%- endif -%}
-      {%- endfor %}
-    </article>
-    <footer class="post">
-      <span>&nbsp;</span>
-      <span><a accesskey="j" href="/archive">Archive</a></span>
-    </footer>
-  </main>
-</body>
-</html>
+{% extends "base.html" %}
+{%- block description -%}{{ site_author }} - {{ bio | title }}{%- endblock %}
+{% block hlhead %}
+  <link rel="alternate" type="application/json" title="{{ site_title }}" href="{{ site_url }}/notes.json">
+  <noscript>
+    <style>
+      #myBtnContainer { display: none }
+      .filterDiv {display: block}
+    </style>
+  </noscript>{#
+  <script src="/css/dldiv.js"></script>#}
+{%- endblock %}
+
+{% block header %}
+  {% include 'header.html' %}
+{%- endblock %}
+
+{%- block post %}
+  {#{% include 'author.html' %}
+  #}{% include 'notes_all.html' %}
+{%- endblock %}
+
+{% block footer %}
+  {% include 'footer.html' %}
+{%- endblock %}

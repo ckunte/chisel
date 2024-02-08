@@ -103,12 +103,12 @@ def write_feed(url, data):
 
 @step
 def feed(f, e):
-    write_feed("feed.json", e.get_template("feed.json").render(entries=f[:RSS_SHOW]))
+    write_feed("notes.json", e.get_template("feed.json").render(entries=f[:RSS_SHOW]))
 
 
 @step
 def homepage(f, e):
-    write_file(f"index{EXT[0]}", e.get_template("home.html").render(entries=f))
+    write_file(f"notes{EXT[0]}", e.get_template("home.html").render(entries=f))
 
 
 @step
@@ -119,9 +119,9 @@ def notes(f, e):
         )
 
 
-@step
-def aboutpage(f, e):
-    write_file(f"about{EXT[0]}", e.get_template("about.html").render(entries=f))
+# @step
+# def aboutpage(f, e):
+#     write_file(f"about{EXT[0]}", e.get_template("about.html").render(entries=f))
 
 
 # @step
