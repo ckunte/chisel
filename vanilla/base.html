@@ -4,7 +4,7 @@
   {% from 'site_settings.jinja2' import site_title, site_author, bio -%}
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>{{ site_title }}{% block title %}{% endblock %}</title>
+  <title>{{ site_author }}{% block title %}{% endblock %}</title>
   <meta name="description" content="{%block description %}{% endblock %}" />
   <meta name="author" content="{{ site_author }}" />{#
   <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png" />
