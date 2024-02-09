@@ -84,12 +84,12 @@ def write_feed(url, data):
         f.write(data)
 
 
-@step
-def home(f, e):
-    write_file(
-        f"index{EXT[0]}",
-        e.get_template("home.html").render(entries=f[: SHOWPOSTS[0]]),
-    )
+# @step
+# def home(f, e):
+#    write_file(
+#        f"index{EXT[0]}",
+#        e.get_template("home.html").render(entries=f[: SHOWPOSTS[0]]),
+#    )
 
 
 @step
