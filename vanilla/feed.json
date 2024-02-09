@@ -1,26 +1,33 @@
-{% from 'site_settings.jinja2' import site_title, site_author, site_url -%}
+{% from 'site_settings.jinja2' import site_title, site_author, site_url, bio -%}
 {
   "version" : "https://jsonfeed.org/version/1.1",
   "user_comment" : "This feed lets you know whenever a new note is published on this site. Copy the following URL -- {{ site_url }}/notes.json -- and add it to your feed reader.",
-  "title" : "{{ site_author }}",
-  "description" : "A personal weblog by {{ site_author }}",
-  "home_page_url" : "{{ site_url }}/notes",
+  "title" : "{{ site_title }}",
+  "home_page_url" : "{{ site_url }}",
   "feed_url" : "{{ site_url }}/notes.json",
-  "author" : {
-    "name" : "{{ site_author }}",
-    "url" : "{{ site_url }}"
-  },
+  "description" : "{{ site_author }} - {{ bio|title }}",
+  "authors" : [
+    {
+      "name" : "{{ site_author }}",
+      "url" : "{{ site_url }}"
+    }
+  ],
+  "icon" : "{{ site_url }}/img/apple-touch-icon.png",
+  "favicon" : "{{ site_url }}/img/apple-touch-icon.png",
   "items": [
   {%- for entry in entries %}
     {
-      "title": {{ entry.title|e|tojson }},
-      "date_published": "{{ entry.year }}-{{ entry.month }}-{{ entry.day }}T{{ entry.hour }}:{{ entry.minute }}:00+08:00",
-      "url": "{{ site_url}}/{{ entry.url }}",
-      "author" : {
-        "name" : "{{ site_author }}"
-      },
-      "id" : "{{ site_url}}/{{ entry.url }}",
-      "content_html" : {{ entry.content|e|tojson }}
+      "id" : "{{ entry.epoch|int }}",
+      "url" : "{{ site_url}}/{{ entry.url }}",
+      "title" : "{{ entry.title }}",{#
+      "authors" : [
+        {
+          "name" : "{{ site_author }}"
+        }
+      ],#}
+      "date_published" : "{{ entry.feed_date }}",
+      "content_text" : "{{ entry.desc }}"{#,
+      "content_html" : {{ entry.content|tojson }}#}
     }{%if not loop.last %},{%endif%}
   {%- endfor %}    
   ]
