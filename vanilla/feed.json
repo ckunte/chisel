@@ -2,7 +2,7 @@
 {
   "version" : "https://jsonfeed.org/version/1.1",
   "user_comment" : "This feed lets you know whenever a new note is published on this site. Copy the following URL -- {{ site_url }}/notes.json -- and add it to your feed reader.",
-  "title" : "{{ site_title }}",
+  "title" : "{{ site_author }}",
   "home_page_url" : "{{ site_url }}",
   "feed_url" : "{{ site_url }}/notes.json",
   "description" : "{{ site_author }} - {{ bio|title }}",
