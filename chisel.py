@@ -108,7 +108,7 @@ def feed(f, e):
 
 @step
 def homepage(f, e):
-    write_file(f"notes{EXT[0]}", e.get_template("home.html").render(entries=f))
+    write_file(f"index{EXT[0]}", e.get_template("home.html").render(entries=f))
 
 
 @step

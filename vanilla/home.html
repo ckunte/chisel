@@ -2,6 +2,7 @@
 {%- block description -%}{{ site_author }} - {{ bio | title }}{%- endblock %}
 {% block hlhead %}
   <link rel="alternate" type="application/json" title="{{ site_author }}: Notes" href="{{ site_url }}/notes.json">
+  <link rel="alternate" type="application/json" title="{{ site_author }}: Weeknotes" href="{{ site_url }}/feed.json">
   <noscript>
     <style>
       #myBtnContainer { display: none }
@@ -16,8 +17,8 @@
 {%- endblock %}
 
 {%- block post %}
-  {#{% include 'author.html' %}
-  #}{% include 'notes_all.html' %}
+  {% include 'author.html' %}
+  {% include 'notes_all.html' %}
 {%- endblock %}
 
 {% block footer %}
