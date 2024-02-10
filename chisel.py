@@ -103,7 +103,7 @@ def write_feed(url, data):
 
 @step
 def feed(f, e):
-    write_feed("notes.json", e.get_template("feed.json").render(entries=f[:RSS_SHOW]))
+    write_feed("notes.json", e.get_template("notes.json").render(entries=f[:RSS_SHOW]))
 
 
 @step
