@@ -1,16 +1,15 @@
+<aside id="t">
+  <p>
+    I do not speak for my employer. Be warned that the published material on this site has no warranty whatsoever. Please do not assume either its quality or correctness. If you use any of this in any way, then you do so at your own risk.
+  </p>
+</aside>
 <footer>
-  <span>
-    <a href="/about">About</a>{#
-    &sdot;
-    <a href="/feed.json">Feed</a>#}
-    &sdot;
-    <a href="https://github.com/ckunte">Projects</a>
-  </span>
-  <span>{#2006-<span class="year"></span>&nbsp;#}C Kunte</span>
-</footer>{#
+  <span><a href="#t">Terms</a></span>
+  <span>&copy;&nbsp;2006&ndash;<span class="year"></span>&nbsp;C Kunte</span>
+</footer>
 <script>
   const currentYear = (new Date().getFullYear().toString().substr(-2));
   // to revert to 4 digit year, remove ".toString().substr(-2)" from above line
   const yearElements = document.getElementsByClassName("year");
   yearElements[0].textContent = currentYear;
-</script>#}
+</script>
