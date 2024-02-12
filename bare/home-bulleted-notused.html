@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{%- block title %}{%- endblock %}
+{%- block head -%}
+  <link type="text/css" rel="stylesheet" href="/inc/bare.css">{#
+  <script src="/inc/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>#}
+  <link rel="alternate" type="application/json" title="{{ site_title }}" href="/feed.json">
+{%- endblock %}
+
+{%- block post %}
+  <h1>{#<a title="About me" href="#me">#}{{ site_author }}{#</a>#}'s home page</h1>
+  {% include 'bio.html' %}{#
+
+  <main id="n">
+  {%- for entry in entries %}
+
+  <h2 id="{{ entry.filename }}" datetime="{{ entry.feed_date }}">{{ entry.filename }}</h2>
+
+  {{ entry.content }}
+
+  {%- endfor %}
+  </main>#}
+
+{%- endblock %}
