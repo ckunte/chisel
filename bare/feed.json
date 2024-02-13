@@ -1,11 +1,11 @@
-{% from 'site_settings.jinja2' import site_title, site_author, site_url -%}
+{% from 'site_settings.jinja2' import site_title, site_author, site_url, site_desc -%}
 {
   "version" : "https://jsonfeed.org/version/1.1",
   "user_comment" : "This feed lets you know whenever a new note is published on this site. Copy the following URL -- {{ site_url }}/feed.json -- and add it to your feed reader.",
-  "title" : "{{ site_title }}: Weeknotes",
+  "title" : "{{ site_title }}: {{ site_desc }}",
   "home_page_url" : "{{ site_url }}",
   "feed_url" : "{{ site_url }}/feed.json",
-  "description" : "Weeknotes",
+  "description" : "{{ site_desc }}",
   "authors" : [
     {
       "name" : "{{ site_author }}",

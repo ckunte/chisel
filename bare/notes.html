@@ -4,7 +4,7 @@
   <link type="text/css" rel="stylesheet" href="/inc/bare.css">
   <script src="/inc/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
-  <link rel="alternate" type="application/json" title="{{ site_title }}: Weeknotes" href="/feed.json">
+  <link rel="alternate" type="application/json" title="{{ site_title }}: {{ site_desc }}" href="/feed.json">
 {%- endblock %}
 
 {%- block post %}
@@ -21,7 +21,7 @@
 {%- endfor %}
 <footer>
   <span>&larr; <a href="https://github.com/ckunte">About</a></span>
-  <span>Weeknotes</span>
+  <span>{{ site_desc }}</span>
 </footer>
 </main>
 {%- endblock %}
