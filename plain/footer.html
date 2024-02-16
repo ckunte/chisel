@@ -1,11 +1,11 @@
 {# Terms are in home.html template #}
 <footer>
-  <span>&nbsp;</span>
-  <span>&copy;&nbsp;2006&ndash;<span class="year"></span>&nbsp;C Kunte</span>
-</footer>
+  <span>{#&larr; <a accesskey="w" href="/w">Weeknotes</a>#}</span>
+  <span>&copy;{#&nbsp;2006&ndash;<span class="year"></span>#}&nbsp;C Kunte</span>
+</footer>{#
 <script>
   const currentYear = (new Date().getFullYear().toString().substr(-2));
   // to revert to 4 digit year, remove ".toString().substr(-2)" from above line
   const yearElements = document.getElementsByClassName("year");
   yearElements[0].textContent = currentYear;
-</script>
+</script>#}
