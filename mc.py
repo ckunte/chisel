@@ -92,19 +92,11 @@ def write_feed(url, data):
 #    )
 
 
-# @step
-# def weeknotes(f, e):
-#    write_file(
-#        f"w{EXT[0]}",
-#        e.get_template("weeknotes.html").render(entries=f[: SHOWPOSTS[2]]),
-#    )
-
-
 @step
-def notes(f, e):
+def weeknotes(f, e):
     write_file(
-        f"index{EXT[0]}",
-        e.get_template("notes.html").render(entries=f[: SHOWPOSTS[2]]),
+        f"w{EXT[0]}",
+        e.get_template("weeknotes.html").render(entries=f[: SHOWPOSTS[2]]),
     )
 
 
