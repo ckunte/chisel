@@ -12,11 +12,13 @@
       "url" : "{{ site_url }}"
     }
   ],
+  "icon" : "{{ site_url }}/inc/apple-touch-icon.png",
+  "favicon" : "{{ site_url }}/inc/apple-touch-icon.png",
   "items": [
   {%- for entry in entries %}
     {
       "id" : "{{ entry.filename }}",
-      "url" : "{{ site_url}}/w#{{ entry.filename }}",
+      "url" : "{{ site_url}}/#{{ entry.filename }}",
       "title" : "{{ entry.title }}",
       "date_published" : "{{ entry.feed_date }}",
       "content_html" : {{ entry.content|tojson }}

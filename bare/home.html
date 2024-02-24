@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 {%- block title %}{%- endblock %}
 {%- block head -%}
-  <link type="text/css" rel="stylesheet" href="/inc/bare.css">{#
+  <style>
+    body {font: normal 90%/130% Courier, "Courier New", monospace;
+      margin: auto;max-width: 33rem;padding: 20px}
+    h1, h2 {font-size: 1em;font-weight: normal}
+    h1 {margin: 0}
+    h2 {margin: 20px 0 0}
+  </style>{#
+  <link type="text/css" rel="stylesheet" href="/inc/bare.css">
   <script src="/inc/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>#}
-  <link rel="alternate" type="application/json" title="{{ site_title }}" href="/feed.json">
+  <link rel="alternate" type="application/json" title="{{ site_title }}: {{ site_desc }}" href="/feed.json">
 {%- endblock %}
 
 {%- block post %}
