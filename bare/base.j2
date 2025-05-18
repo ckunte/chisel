@@ -1,0 +1,29 @@
+{% from 'sitesettings.j2' import site_title, site_url, site_author, site_desc -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ site_title }}{% block title %}{% endblock %}</title>
+{%- block og %}{%- endblock %}
+<link rel="icon" href="data:," />
+<link type="text/css" rel="stylesheet" href="/inc/home.css" />
+<script src="/inc/code-math.js" integrity="sha384-qyDAxAKbKYvnSFnpTxOqJxk8Kop9o7dg+NS5tQ7DhpojP5l76DV2P5UkBhUdeiRC"></script>
+{%- block feed %}{%- endblock %}
+</head>
+<body>
+<main>
+<header>
+    <a accesskey="/" title="Home" href="/"><img alt="{{ site_title }}" class="logo" src="/inc/favicon.svg" width="48" height="39.6"></a>
+</header>
+{%- block post -%}{%- endblock -%}
+</main>
+</body>
+</html>{#
+
+To add integrity hash to a file, say, highlight.min.js, 
+
+- in BASH, run: cat highlight.min.js | openssl dgst -sha384 -binary | openssl base64
+- add the hash from above to the script tag within: integrity="sha384-<HASH HERE>"
+
+#}

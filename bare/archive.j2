@@ -1,0 +1,10 @@
+<aside>
+    <p class="archive">&lsaquo; <a href="#prev">Previously</a><span id="prev">,
+{%- for entry in entries %}
+{%- if loop.index > latest %}
+{%- if loop.last %} and {%- endif %}
+<a{% if loop.index0 == latest %} accesskey="j"{% endif %}{% if loop.length - loop.index0 == latest %} accesskey="k"{% endif %} title="{{ entry.nice_date }}. {{ entry.content | wordcount // 250 + 1 }} min" href="/{{ entry.url }}">{{ entry.title | e }}</a>{%- if not loop.last %}, {%- endif %}
+{%- endif %}
+{%- endfor %}</span>. Keyboard navigation: <kbd>Alt</kbd><kbd>&nbsp;J&nbsp;</kbd> (Prev), <kbd>Alt</kbd><kbd>&nbsp;K&nbsp;</kbd> (Next), and <kbd>Alt</kbd><kbd>&nbsp;/&nbsp;</kbd> (Home). (Mac users, replace <kbd>Alt</kbd> with <kbd>&nbsp;^</kbd><kbd>&nbsp;&#8997;</kbd> in the above.)
+</p>
+</aside>

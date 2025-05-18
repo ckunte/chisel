@@ -1,0 +1,26 @@
+{% from 'sitesettings.j2' import site_title, site_author, site_url, site_desc -%}
+{
+  "version" : "https://jsonfeed.org/version/1.1",
+  "user_comment" : "This feed lets you know when a new note is published. Copy the following URL -- {{ site_url }}/feed.json -- and add it to your feed reader.",
+  "title" : "{{ site_author }}",
+  "home_page_url" : "{{ site_url }}",
+  "feed_url" : "{{ site_url }}/feed.json",
+  "description" : "{{ site_desc | title }}",
+  "authors" : [
+    {
+      "name" : "{{ site_author }}",
+      "url" : "{{ site_url }}"
+    }
+  ],
+  "items": [
+  {%- for entry in entries %}
+    {
+      "id" : "{{ site_url }}/{{ entry.url }}",
+      "title" : "{{ entry.title }}",
+      "url" : "{{ site_url }}/{{ entry.url }}",
+      "content_text" : {{ entry.content|truncate|striptags|tojson }},
+      "date_published" : "{{ entry.feed_date }}"
+    }{%- if not loop.last %},{%- endif %}
+  {%- endfor %}    
+  ]
+}
