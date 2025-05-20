@@ -2,13 +2,13 @@
 {
   "version" : "https://jsonfeed.org/version/1.1",
   "user_comment" : "This feed lets you know when a new note is published. Copy the following URL -- {{ site_url }}/feed.json -- and add it to your feed reader.",
-  "title" : "{{ site_author }}",
+  "title" : {{ site_author | tojson }},
   "home_page_url" : "{{ site_url }}",
   "feed_url" : "{{ site_url }}/feed.json",
   "description" : "{{ site_desc | title }}",
   "authors" : [
     {
-      "name" : "{{ site_author }}",
+      "name" : {{ site_author | tojson }},
       "url" : "{{ site_url }}"
     }
   ],
