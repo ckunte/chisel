@@ -8,7 +8,11 @@
   {%- set total = entries | count %}	
 <article>
 <h1>{{ entry.title | e }}</h1>
-<time datetime="{{ entry.feed_date }}">{{ entry.nice_date }}</time>
+<time datetime="{{ entry.feed_date }}">
+{{ entry.nice_date }}, 
+{{ entry.content | wordcount // 250 + 1 }} min read.
+<a title="Permalink to '{{ entry.title | e }}'" href="/{{ entry.url }}">#</a>
+</time>
 {{ entry.content }}
 </article>
 {% include 'nav.j2' %}
