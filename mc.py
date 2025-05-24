@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# mc.py -- 2021 C Kunte
+# mc.py -- 2025 C Kunte
 
 from config import EXT, POSTS, SHOWPOSTS, TFMT, TMPL, WWW
 from functools import cmp_to_key
@@ -12,18 +12,14 @@ import time
 
 
 # Define the locations for posts, www, and templates
-LOC = [
-    pathlib.Path.home() / POSTS,
-    pathlib.Path.home() / WWW,
-    pathlib.Path.home() / TMPL,
-]
+LOC_POSTS = pathlib.Path.home() / POSTS
+LOC_WWW = pathlib.Path.home() / WWW
+LOC_TMPL = pathlib.Path.home() / TMPL
 
 
 def FORMAT(text):
     """Convert markdown text to HTML."""
-    return markdown.markdown(
-        text, extensions=["smarty", "extra"]
-    )
+    return markdown.markdown(text, extensions=["smarty", "extra"])
 
 
 # Store the steps for processing
@@ -50,27 +46,26 @@ def get_tree(source):
     files = []
     for root, _, fs in os.walk(source):
         for name in fs:
-            if name.startswith(".") or not name.endswith(
+            if not name.endswith(
                 (".md", ".mdown")
-            ):
+            ) or name.startswith("."):
                 continue
 
-            path = os.path.join(root, name)
+            path = pathlib.Path(root) / name
             try:
-                with open(path, "r") as f:
-                    title = f.readline().strip("\n\t")
+                with open(path, "r", encoding="utf-8") as f:
+                    title = f.readline().strip()
                     date_str = f.readline().strip()
+                    content = f.read()
+
                     date = time.strptime(date_str, TFMT[0])
-                    year, month, day, hour, minute = date[
-                        :5
-                    ]
-                    # cover = f.readline().strip("\n\t")
-                    content = (
-                        f.read()
-                    )  # Read the rest of the content
+                    year = date.tm_year
+
                     formatted_content = FORMAT(content)
                     feed_date = time.strftime(TFMT[1], date)
                     nice_date = time.strftime(TFMT[2], date)
+                    # wk_date = time.strftime(TFMT[3], date)
+                    filename_without_ext = path.stem
                     # filename = os.path.splitext(name)[0] # exclude file extension
 
                     files.append(
@@ -79,49 +74,42 @@ def get_tree(source):
                             "epoch": time.mktime(date),
                             # "cover": cover,  # cover image if exists in line 3 of the post
                             "content": formatted_content,
-                            "url": f"{year}/{os.path.splitext(name)[0]}",
-                            # "url": f"notes/{os.path.splitext(name)[0]}",
+                            "url": f"{year}/{filename_without_ext}",
                             "feed_date": feed_date,
                             "nice_date": nice_date,
+                            # "wk_date": wk_date,
                             # "filename": filename,
                         }
                     )
             except Exception as e:
-                print(
-                    f"Error processing file '{path}': {e}"
-                )
+                print(f"Error processing file '{path}': {e}")
     return files
 
 
 def compare_entries(x, y):
-    """Compare two entries for sorting."""
-    result = (y["epoch"] > x["epoch"]) - (
-        y["epoch"] < x["epoch"]
-    )
-    return result or (y["filename"] > x["filename"]) - (
+    # Sort by epoch in descending order
+    if y["epoch"] != x["epoch"]:
+        return y["epoch"] - x["epoch"]
+    # If epochs are the same, sort by filename in descending order
+    return (y["filename"] > x["filename"]) - (
         x["filename"] > y["filename"]
     )
 
 
-def write_file(url, data):
-    """Write data to a file."""
-    path = pathlib.Path(LOC[1]) / f"{url}{EXT[1]}"
-    path.parent.mkdir(parents=True, exist_ok=True)
+def write_file(url_path, data, is_feed=False):
+    """Write data to a file, handling directory creation."""
+    full_path = LOC_WWW / url_path
+    if not is_feed:
+        full_path = full_path.with_suffix(
+            EXT[1]
+        )  # Add .html extension for regular pages
+
+    full_path.parent.mkdir(parents=True, exist_ok=True)
     try:
-        with open(path, "w", encoding="utf-8") as f:
+        with open(full_path, "w", encoding="utf-8") as f:
             f.write(data)
     except Exception as e:
-        print(f"Failed to write file '{path}': {e}")
-
-
-def write_feed(url, data):
-    """Write feed data to a JSON file."""
-    path = pathlib.Path(LOC[1]) / url
-    try:
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(data)
-    except Exception as e:
-        print(f"Failed to write feed '{path}': {e}")
+        print(f"Failed to write file '{full_path}': {e}")
 
 
 @step
@@ -129,68 +117,75 @@ def home(files, env):
     """Generate the home page."""
     write_file(
         f"index{EXT[0]}",
-        # env.get_template("home.j2").render(entries=files[: SHOWPOSTS[0]]),
         env.get_template("home.j2").render(entries=files),
     )
 
 
-# @step
-# def notes_index(files, env):
-#    """Generate the home page."""
-#    write_file(
-#        f"notes/index{EXT[0]}",
-#        env.get_template("notes.j2").render(entries=files),
-#    )
-
-
 @step
 def notes(files, env):
-    for i, file in enumerate(files):
+    """Generate individual note pages."""
+    # Pre-load the template once for efficiency
+    detail_template = env.get_template("detail.j2")
+    for file in files:
         write_file(
             file["url"],
-            env.get_template("detail.j2").render(
-                entry=file, entries=files
-            ),
+            detail_template.render(entry=file, entries=files),
         )
 
 
 @step
 def feed(files, env):
     """Generate the feed."""
-    write_feed(
+    write_file(
         "feed.json",
         env.get_template("feed.j2").render(
             entries=files[: SHOWPOSTS[0]]
         ),
+        is_feed=True,  # Indicate this is a feed file, so no .html extension is added
     )
 
 
 def main():
     """Main function to orchestrate file processing."""
     print("Chiseling...")
+    start_time = time.perf_counter()
+
     print("\tReading files...", end="")
     try:
         files = sorted(
-            get_tree(LOC[0]),
+            get_tree(LOC_POSTS),
             key=cmp_to_key(compare_entries),
         )
         print("done.")
     except Exception as e:
-        print(f"Error reading files: {e}")
+        print(f"Error during file reading: {e}")
         return
 
     print("\tSetting up Jinja2 environment...", end="")
-    env = jinja2.Environment(
-        loader=jinja2.FileSystemLoader(LOC[2]),
-        extensions=["j2m.MarkdownExtension"],
-    )
-    print("done.")
+    try:
+        env = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(LOC_TMPL),
+            extensions=["j2m.MarkdownExtension"],
+            autoescape=jinja2.select_autoescape(
+                ["html", "xml", "json"]
+            ),
+        )
+        print("done.")
+    except Exception as e:
+        print(f"Error setting up Jinja2: {e}")
+        return
 
     print("\tRunning steps...")
-    for step in STEPS:
-        step(files, env)
+    for step_func in STEPS:
+        try:
+            step_func(files, env)
+        except Exception as e:
+            print(f"A step failed but the process will continue: {e}")
     print("\tdone.")
-    print("Process completed.")
+    end_time = time.perf_counter()
+    print(
+        f"Process completed in {end_time - start_time:.2f} seconds."
+    )
 
 
 if __name__ == "__main__":
