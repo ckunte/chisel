@@ -2,6 +2,7 @@
 {%- block title %}: {{ entry.title }}{%- endblock %}
 {%- block og %}{# Open Graph #}
 <meta name="description" content="{{ entry.content|truncate(100)|striptags }}" />
+<script src="/inc/code-math.js" integrity="sha384-xT8wN8NCeuamUQtBjQWvwc7dCGAT89VKkZR5MVAcr18p99euBN7VZVb0NH07+lYA"></script>
 {%- endblock %}
 {%- block post %}
   {%- set curr = entry.url %}
@@ -10,9 +11,9 @@
 <h1>{{ entry.title | e }}</h1>
 <time datetime="{{ entry.feed_date }}">
 {{ entry.nice_date }}, 
-{{ entry.content | wordcount // 250 + 1 }} min read
+{{ entry.content | wordcount // 250 + 1 }} min{#
 <a title="Permalink to '{{ entry.title | e }}'" href="/{{ entry.url }}">#</a>
-</time>
+#}</time>
 {{ entry.content }}
 </article>
 {% include 'nav.j2' %}

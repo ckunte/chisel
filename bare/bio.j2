@@ -1,5 +1,9 @@
-{% markdown %}
-I'm {{ site_author }}, an {{ site_desc }}, and this is my website. [Bug reports, and comments][f] are welcome.
+<h1>{{ site_author }}</h1>
+<time>{{ site_desc|title }}</time>
 
-[f]: https://github.com/ckunte/ckunte.github.io/issues
+{% markdown %}
+I am a 53-year old [engineer][l] based in Perth, Australia. Interested in mechanics, hydrodynamics, fatigue, geotechnics, and [OSS][u]. This site is a repository for my <a title="Personal side projects" href="/2024/proj">projects</a>, and <a title="Personal notes" href="#notes">notes</a>. Not on social media; I write here for myself. I am reachable at <ckunte@gmail.com>.
+
+[l]: https://www.linkedin.com/in/ckunte "My professional profile"
+[u]: /2024/uses "My personalised open source software setup"
 {% endmarkdown %}

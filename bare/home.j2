@@ -8,10 +8,12 @@
 <meta name="description" content="{{ site_author }}'s homepage" />
 {%- endblock %}
 {%- block post %}
-{% include 'latest.j2' %}
+{#{% include 'latest.j2' %}#}
+{% include 'bio.j2' %}
 {% include 'archive.j2' %}
 <footer>
-{% include 'bio.j2' %}
+  <span>&nbsp;</span>
+  <span>&copy; C Kunt&eacute;</span>
 </footer>
 {% endblock %}
 {%- block rent %}

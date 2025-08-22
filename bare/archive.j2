@@ -1,9 +1,5 @@
-<aside>
-&lsaquo; <a accesskey="p" href="#prev">Previously</a><span id="prev">, 
+<p id="notes">
 {%- for entry in entries %}
-{%- if loop.index > latest %}
 {%- if loop.last %} and {%- endif %}
-<a{% if loop.index0 == latest %} accesskey="j"{% endif %}{% if loop.length - loop.index0 == latest %} accesskey="k"{% endif %} title="{{ entry.nice_date }}. {{ entry.content | wordcount // 250 + 1 }} min" href="/{{ entry.url }}">{{ entry.title | e }}</a>{%- if not loop.last %}, {%- endif %}
-{%- endif %}
-{%- endfor %}</span>. Get <a href="/feed.json">JSON feed</a> for the latest. Navigate using <kbd>Alt</kbd><kbd>&nbsp;J</kbd>, <kbd>Alt</kbd><kbd>&nbsp;K</kbd>, <kbd>Alt</kbd><kbd>&nbsp;/</kbd>. (Mac users, replace <kbd>Alt</kbd> with <kbd>&nbsp;^</kbd><kbd>&nbsp;&#8997;</kbd>.)
-</aside>
+<small>{{ loop.length - loop.index0 }}</small>&nbsp;<a{% if loop.index0 == 0 %} accesskey="j"{% endif %}{% if loop.length - loop.index0 == latest %} accesskey="k"{% endif %} title="{{ entry.nice_date }}. {{ entry.content | wordcount // 250 + 1 }} min" href="/{{ entry.url }}">{{ entry.title | e }}</a>{%- if not loop.last %}, {%- endif %}{%- endfor %}.{#<i>Navigate with <kbd>Alt</kbd><kbd>&nbsp;J</kbd>, <kbd>Alt</kbd><kbd>&nbsp;K</kbd>, <kbd>Alt</kbd><kbd>&nbsp;/</kbd>. (Mac users, replace <kbd>Alt</kbd> with <kbd>&nbsp;^</kbd><kbd>&nbsp;&#8997;</kbd>.)</i>#}
+</p>
