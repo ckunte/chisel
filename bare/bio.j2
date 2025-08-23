@@ -1,9 +1,13 @@
+{%- set dob_month = 3 -%}
+{%- set dob_year = 1972 -%}
+
 <h1>{{ site_author }}</h1>
 <time>{{ site_desc|title }}</time>
 
 {% markdown %}
-I am a 53-year old [engineer][l] based in Perth, Australia. Interested in mechanics, hydrodynamics, fatigue, geotechnics, and [OSS][u]. This site is a repository for my <a title="Personal side projects" href="/2024/proj">projects</a>, and <a title="Personal notes" href="#notes">notes</a>. Not on social media; I write here for myself. I am reachable at <ckunte@gmail.com>.
+I am a {{ dob_month|age(dob_year) }}-year old [engineer][l] based in Perth, Australia. Interested in mechanics, hydrodynamics, {#fatigue, geotechnics, #}and open source [software][u]. This website is a repository for my [projects] and {#{{ entries|length }} #}<a title="Personal notes" accesskey="p" href="#notes">notes</a>. Not on social media, I write here for myself. I am reachable at ckunte at gmail.com.
 
-[l]: https://www.linkedin.com/in/ckunte "My professional profile"
+[l]: https://www.linkedin.com/in/ckunte "My professional profile on LinkedIn"
 [u]: /2024/uses "My personalised open source software setup"
+[projects]: /2024/proj "Personal side projects"
 {% endmarkdown %}

@@ -8,9 +8,11 @@
 <meta name="description" content="{{ site_author }}'s homepage" />
 {%- endblock %}
 {%- block post %}
+<article class="frontpage">
 {#{% include 'latest.j2' %}#}
 {% include 'bio.j2' %}
 {% include 'archive.j2' %}
+</article>
 <footer>
   <span>&nbsp;</span>
   <span>&copy; C Kunt&eacute;</span>

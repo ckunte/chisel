@@ -9,6 +9,7 @@ import markdown
 import os
 import pathlib
 import time
+from datetime import datetime
 
 
 # Define the locations for posts, www, and templates
@@ -112,6 +113,17 @@ def write_file(url_path, data, is_feed=False):
         print(f"Failed to write file '{full_path}': {e}")
 
 
+# Custom filter to calculate age from (month, year)
+def age_filter(dob_month, dob_year, current_date=None):
+    if current_date is None:
+        current_date = datetime.now()
+
+    age = current_date.year - dob_year
+    if current_date.month < dob_month:
+        age -= 1
+    return age
+
+
 @step
 def home(files, env):
     """Generate the home page."""
@@ -170,6 +182,8 @@ def main():
                 ["html", "xml", "json"]
             ),
         )
+        # Register the filter
+        env.filters["age"] = age_filter
         print("done.")
     except Exception as e:
         print(f"Error setting up Jinja2: {e}")
