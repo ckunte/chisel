@@ -21,7 +21,9 @@ LOC_TMPL = pathlib.Path.home() / TMPL
 
 def FORMAT(text):
     """Convert markdown text to HTML."""
-    return markdown.markdown(text, extensions=["smarty", "extra"])
+    return markdown.markdown(
+        text, extensions=["smarty", "extra", "toc"]
+    )
 
 
 # Store the steps for processing
