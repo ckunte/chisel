@@ -16,9 +16,9 @@
   "items" : [
   {%- for entry in entries %}
     {
-      "id" : "{{ site_url }}/{{ entry.url }}",
+      "id" : "{{ (site_url + '/' + entry.url) | sha1 }}",
       "title" : "{{ entry.title }}",
-      "url" : "{{ site_url }}/{{ entry.url }}",
+      "url" : "{{ site_url + '/' + entry.url }}",
       "content_text" : {{ entry.content|truncate|striptags|tojson }},
       "date_published" : "{{ entry.feed_date }}"
     }{%- if not loop.last %},{%- endif %}

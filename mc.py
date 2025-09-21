@@ -8,6 +8,7 @@ import jinja2
 import markdown
 import os
 import pathlib
+import hashlib
 import time
 from datetime import datetime
 
@@ -124,6 +125,11 @@ def age_filter(dob_month, dob_year, current_date=None):
     return age
 
 
+# Create the SHA-1 hash function
+def sha1_filter(url):
+    return hashlib.sha1(url.encode("utf-8")).hexdigest()
+
+
 @step
 def home(files, env):
     """Generate the home page."""
@@ -184,6 +190,7 @@ def main():
         )
         # Register the filter
         env.filters["age"] = age_filter
+        env.filters["sha1"] = sha1_filter
         print("done.")
     except Exception as e:
         print(f"Error setting up Jinja2: {e}")
