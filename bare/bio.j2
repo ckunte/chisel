@@ -5,10 +5,9 @@
 <time>{{ site_desc|title }}</time>
 
 {% markdown %}
-I am a {{ dob_month|age(dob_year) }}-year old [engineer][l] based in Perth. Interested in mechanics, hydrodynamics, {#fatigue, geotechnics, #}and open source software. This website is a repository for my [projects] and <a title="Personal notes" accesskey="p" href="#notes">notes</a> ({{ entries|length }}, [feed]). Not on social media, I write here for myself. I am reachable at ckunte at gmail.com.
+I am a {{ dob_month|age(dob_year) }}-year old [engineer][l] based in Perth. Interested in mechanics, hydrodynamics, and open source software. This website is a host for my [projects] and <a title="Personal notes" accesskey="p" href="#notes">notes</a>. Not on social media; I am reachable at <ckunte@gmail.com>.
 
 [l]: https://www.linkedin.com/in/ckunte "My professional profile on LinkedIn"
 [u]: https://github.com/ckunte/ckunte/blob/master/uses.md "My personalised open source software setup"
 [projects]: https://github.com/ckunte/ckunte/blob/master/proj.md "Personal side projects"
-[feed]: {{ site_url }}/feed.json
 {% endmarkdown %}

@@ -1,5 +1,4 @@
 <p id="notes">
 {%- for entry in entries %}
 {%- if loop.last %} and {%- endif %}
-{#<small>{{ loop.length - loop.index0 }}</small>&nbsp;#}<a{% if loop.index0 == 0 %} accesskey="j"{% endif %}{% if loop.length - loop.index0 == latest %} accesskey="k"{% endif %} title="{{ entry.nice_date }}. {{ entry.content | wordcount // 250 + 1 }} min" href="/{{ entry.url }}">{{ entry.title | e }}</a>{%- if not loop.last %}, {%- endif %}{%- endfor %}.
-</p>
+{#<small>{{ loop.length - loop.index0 }}</small>&nbsp;#}<a{% if loop.index0 == 0 %} accesskey="j"{% endif %}{% if loop.length - loop.index0 == latest %} accesskey="k"{% endif %} title="{{ loop.length - loop.index0 }}. {{ entry.nice_date }}. {{ entry.content | wordcount // 250 + 1 }} min. (No. {{ loop.length - loop.index0 }})" href="/{{ entry.url }}">{{ entry.title | e }}</a>{%- if not loop.last %}, {%- endif %}{%- endfor %}.</p>
