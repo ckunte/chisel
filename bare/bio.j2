@@ -5,7 +5,7 @@
 <time>{{ site_desc|title }}</time>
 
 {% markdown %}
-I am a {{ dob_month|age(dob_year) }}-year old [engineer][l] interested in mechanics, hydrodynamics, and open source software. This website is a host for my [projects] and <a title="Personal notes" accesskey="p" href="#notes">notes</a>.
+I am a {{ dob_month|age(dob_year) }}-year old [engineer][l] interested in mechanics, hydrodynamics, and open source software. This website is a host for my side <a title="Personal side projects" accesskey="o" href="#proj">projects</a> and <a title="Personal notes" accesskey="p" href="#notes">notes</a>{#({{entries | length}})#}.
 
 [l]: https://www.linkedin.com/in/ckunte "My professional profile on LinkedIn"
 [u]: https://github.com/ckunte/ckunte/blob/master/uses.md "My personalised open source software setup"

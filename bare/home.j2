@@ -11,12 +11,12 @@
 <article class="frontpage">
 {#{% include 'latest.j2' %}#}
 {% include 'bio.j2' %}
+{% include 'proj.md' %}
 {% include 'archive.j2' %}
-</article>
+</article>{# 
 <footer>
   <span>&nbsp;</span>
-</footer>
-{% endblock %}
-{# 
+</footer>#}
+{% endblock %}{# 
   cat home.css | openssl dgst -sha384 -binary | openssl base64 -A
 #}
