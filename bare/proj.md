@@ -45,9 +45,11 @@ _Snippets for Vim (and NeoVim)_
 
 - [latex-snippets-vim][lsv]: LaTeX snippets
 - [typst-snippets-vim][tsv]: Typst snippets
+- [vqm][]: Vim quick manual
 
 [lsv]: https://github.com/ckunte/latex-snippets-vim "LaTeX UltiSnips snippets for Vim and Neovim."
 [tsv]: https://github.com/ckunte/typst-snippets-vim "Typst snippets for Vim and Neovim"
+[vqm]: https://gist.github.com/ckunte/82849b80c5cccadda508a28c2d7c35b9
 
 _Terminal utilities_
 
