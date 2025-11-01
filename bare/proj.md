@@ -53,11 +53,13 @@ _Snippets for Vim (and NeoVim)_
 
 _Terminal utilities_
 
+- [fish functions][ff]: Handy functions to do every day tasks
 - [hkp][hkp]: Scripts to manage files, folders, etc.
 - [mkvim][mkv]: Compiling [Vim] from source with python3 enabled
 - [rebase functions][rf]: write once, run often (for fish and bash shells)
 - [w2p][w2p]: Batch convert Word files into pdf files
 
+[ff]: /2025/fish-func " fish functions for every day use"
 [rf]: /2025/rebase-func "fish and bash shell functions for rebase"
 [Vim]: https://www.vim.org
 [abs]: https://gist.github.com/ckunte/4700941 "Autopair underscores and backticks in Sublime Text"
