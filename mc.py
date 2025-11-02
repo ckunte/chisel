@@ -11,6 +11,7 @@ import pathlib
 import hashlib
 import time
 from datetime import datetime
+import j2m
 
 
 # Define the locations for posts, www, and templates
@@ -21,9 +22,7 @@ LOC_TMPL = pathlib.Path.home() / TMPL
 
 def FORMAT(text):
     """Convert markdown text to HTML."""
-    return markdown.markdown(
-        text, extensions=["smarty", "extra", "toc"]
-    )
+    return markdown.markdown(text, extensions=["smarty", "extra"])
 
 
 # Store the steps for processing

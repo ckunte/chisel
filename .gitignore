@@ -3,3 +3,9 @@ export
 blog
 __pycache__
 templates/latest.html
+uv.lock
+.python-version
+pyproject.toml
+build
+dist
+mc.spec

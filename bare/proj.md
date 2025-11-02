@@ -1,12 +1,13 @@
 <section id="proj">
-{%- markdown %}
+{% markdown %}
+## projects
 _Model conversion and syntax_
 
-- [csv2sacs][]: Convert Metocean data into sea-state files
-- [fltr][]: Convert member-end releases from [STAAD] to [USFOS]
-- [gendata][]: Generate formatted model data from CSV file
-- [sacs_st][]: [SACS] syntax for [Sublime Text] editor
-- [usfos_st][]: [USFOS] syntax for Sublime Text editor 
+- [csv2sacs][]: Convert Metocean data into sea-state files ([notes](/2022/csv2sacs))
+- [fltr][]: Convert member-end releases from [STAAD] to [USFOS] ([notes](/2016/relconv))
+- [gendata][]: Generate formatted model data from CSV file ([notes](/2020/model))
+- [sacs_st][]: [SACS] syntax for [Sublime Text] editor ([notes](/2020/sacs_st)) 
+- [usfos_st][]: [USFOS] syntax for Sublime Text editor ([notes](/2020/ust)) 
 
 [STAAD]: https://www.bentley.com/software/staad/
 [Sublime Text]: https://www.sublimetext.com
@@ -18,19 +19,24 @@ _Model conversion and syntax_
 
 _Publishing_
 
-- [chisel][ch]: A static site generator in [python]
+- [chisel][ch]: A static site generator in python ([notes](/2021/rel))
 - [m-one][m1]: Turning my collection of notes into a monograph
 - [tce][tce]: Sneha's thesis on tourism into a mini-book project
 
 [git]: https://git-scm.com
-[python]: https://www.python.org
 [ch]: https://github.com/ckunte/chisel/tree/ck "A simple python static blog generation utility"
 [tce]: https://github.com/ckunte/tce "Sneha's thesis into a mini-book project"
 [m1]: https://github.com/ckunte/m-one "A collection of my notes turned into a monograph"
 
-_Snippets for Sublime Text_
+_Setup_
 
-- [autopair-underscores-backticks][abs]
+- [Set python up the easy way in Windows 11][pw]
+
+[pw]: /2025/python-on-windows
+
+_Sublime Text plug-ins_
+
+- [autopair-underscores-backticks][abs]: Key bindings in pairs
 - [datestamp][sds] with a shortcut (<kbd>ctrl</kbd><kbd>shift</kbd><kbd>d</kbd>)
 - [latex-snippets-st][lst]: [LaTeX] snippets
 - [typst-snippets-st][tst]: [Typst] snippets
@@ -41,9 +47,9 @@ _Snippets for Sublime Text_
 [lst]: https://github.com/ckunte/latex-snippets-st "LaTeX UltiSnips snippets for Sublime Text."
 [tst]: https://github.com/ckunte/typst-snippets-st "Typst snippets for Sublime Text."
 
-_Snippets for Vim (and NeoVim)_
+_Vim plug-ins, and info._
 
-- [latex-snippets-vim][lsv]: LaTeX snippets
+- [latex-snippets-vim][lsv]: LaTeX snippets ([notes](/2021/tep))
 - [typst-snippets-vim][tsv]: Typst snippets
 - [vqm][]: Vim quick manual
 
@@ -53,14 +59,12 @@ _Snippets for Vim (and NeoVim)_
 
 _Terminal utilities_
 
-- [fish functions][ff]: Handy functions to do every day tasks
+- [shell functions][sf]: Handy functions for everyday tasks
 - [hkp][hkp]: Scripts to manage files, folders, etc.
 - [mkvim][mkv]: Compiling [Vim] from source with python3 enabled
-- [rebase functions][rf]: write once, run often (for fish and bash shells)
 - [w2p][w2p]: Batch convert Word files into pdf files
 
-[ff]: /2025/fish-func " fish functions for every day use"
-[rf]: /2025/rebase-func "fish and bash shell functions for rebase"
+[sf]: /2025/shell-func " shell functions for every day use"
 [Vim]: https://www.vim.org
 [abs]: https://gist.github.com/ckunte/4700941 "Autopair underscores and backticks in Sublime Text"
 [mkv]: https://gist.github.com/ckunte/80a9ba208b58a5b1aa8f122d602a55f4 "Compiling Vim from source with python3 interpreter enabled"
@@ -70,8 +74,9 @@ _Terminal utilities_
 
 _Typesetting_
 
-- [Build from LaTeX][blx]: Ways to compile
-- [Build from Typst][btt]: Ways to compile
+- [Anatomy of a Typst template](/2025/template)
+- [Build from LaTeX][blx]: Ways to compile ([notes](/2024/build))
+- [Build from Typst][btt]: Ways to compile ([notes](/2024/build))
 - [Sublime Text + Typst][stt]: Setup for Windows
 - [templates][tmpl]: For notes, letters, etc. (see also [wiki][w])
 
@@ -83,15 +88,15 @@ _Typesetting_
 
 _Useful utilities OS specific_
 
-- [Airprint][br]: Setup Brother HL-L2321D for AirPrinting
-- [Enclose text][et]: Enclose text in parentheses (or other delimiters)
-- [mackeyboard][mk]: Mac keyboard to Windows key mappings
-- [pi_sysinfo.sh][si]: Raspberry Pi system info function {#
-- [raspberrypi-yubikey][ry]: Setting R.Pi for U2F with yubikey #}
-- [scripting replies][or] in Outlook with AutoHotkey v2
-- [wsl-howto][wsl]: Access linux environment from within Windows
+- [Airprint][br]: Setup Brother HL-L2321D for AirPrinting (Mac, linux, Windows)
+- [mackeyboard][mk]: Mac keyboard to Windows key mappings (Windows)
+- [pi_sysinfo.sh][si]: Raspberry Pi system info function (linux)
+- [scripting replies][or] in Outlook with AutoHotkey v2 (Windows)
+- [Essentials] -- software used everyday 
+- [wsl-howto][wsl]: Access linux environment from within Windows (linux)
 
-[et]: /2025/encl "Enclose text within delimiters"
+[Essentials]: /2024/essentials
+[kr]: /2025/keyboard "Keyboard remapping for navigation keys"
 [si]: https://gist.github.com/ckunte/e0cb5d49a4baf9f9a9fef67052bf112d "Pi SysInfo function"
 [or]: https://gist.github.com/ckunte/5709bb372a371b5f48a5068bbe051bbd "Scripting replies in Outlook with AutoHotkey v2"
 [mk]: https://github.com/ckunte/mackeyboard "Mac Keyboard to Windows Key Mappings"
@@ -144,7 +149,8 @@ _Work related_
 
 _RSS feeds_
 
-- [gists][]: [feed][gfeed] 
+- [gists][]: [feed][gfeed]
+- <a title="Personal notes ({{entries | length}} to-date)" accesskey="n" href="#notes">notes</a>: [feed](/feed.json)
 - [projects][]: [feed][pfeed]
 
 [gists]: https://gist.github.com/ckunte

@@ -2,21 +2,24 @@
 {% from 'sitesettings.j2' import latest -%}
 {%- block title %}{%- endblock %}
 {%- block feed %}
-<link rel="alternate" type="application/feed+json" title="JSON feed" href="{{ site_url }}/feed.json" />
+<link rel="alternate" type="application/feed+json" title="JSON feed" href="{{ site_url }}/feed.json">
 {%- endblock %}
 {%- block og %} {# Open Graph #}
-<meta name="description" content="{{ site_author }}'s homepage" />
+<meta name="description" content="{{ site_author }} - {{ site_desc|title }}">
 {%- endblock %}
-{%- block post %}
+{% block post %}
 <article class="frontpage">
-{#{% include 'latest.j2' %}#}
+
 {% include 'bio.j2' %}
+
 {% include 'proj.md' %}
+
 {% include 'archive.j2' %}
+
 </article>{# 
 <footer>
   <span>&nbsp;</span>
 </footer>#}
-{% endblock %}{# 
+{%- endblock %}{# 
   cat home.css | openssl dgst -sha384 -binary | openssl base64 -A
 #}

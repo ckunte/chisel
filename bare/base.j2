@@ -2,19 +2,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ site_title }}{% block title %}{% endblock %}</title>
-{%- block og %}{%- endblock %}
-<link rel="icon" href="data:," />
-<link type="text/css" rel="stylesheet" href="/inc/home.css" />{#
+{%- block og %}{%- endblock %}{#
+<link rel="icon" href="data:,">#}
+<link rel="icon" href="/inc/favicon.svg" type="image/svg+xml">
+<link type="text/css" rel="stylesheet" href="/inc/home.css">{#
 <script src="/inc/code-math.js" integrity="sha384-xT8wN8NCeuamUQtBjQWvwc7dCGAT89VKkZR5MVAcr18p99euBN7VZVb0NH07+lYA"></script>#}
 {%- block feed %}{%- endblock %}
 </head>
 <body>
 <main>
 <header>
-    <a accesskey="/" title="Home" href="/"><img alt="{{ site_title }}" class="logo" src="/inc/favicon.svg" width="26" height="21.37"></a>
+  <a accesskey="/" title="Home" href="/"><img alt="{{ site_title }}" class="logo" src="/inc/favicon.svg" width="26" height="26"></a>
 </header>
 {%- block post -%}{%- endblock -%}
 </main>

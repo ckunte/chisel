@@ -2,12 +2,10 @@
 {%- set dob_year = 1972 -%}
 
 <h1>{{ site_author }}</h1>
-<time>{{ site_desc|title }}</time>
+<span class="desc">{{ site_desc|title }}</span>
 
 {% markdown %}
-I am a {{ dob_month|age(dob_year) }}-year old [engineer][l] interested in mechanics, hydrodynamics, and open source software. This website is a host for my side <a title="Personal side projects" accesskey="o" href="#proj">projects</a> and <a title="Personal notes ({{entries | length}} to-date)" accesskey="p" href="#notes">notes</a>.
+I am a {{ dob_month|age(dob_year) }}-year old [engineer] interested in mechanics, hydrodynamics, and open-source software. This site hosts my side <a title="Personal side projects" accesskey="p" href="#proj">projects</a>{# and <a title="Personal notes ({{entries | length}} to-date)" accesskey="n" href="#notes">notes</a>#}.
 
-[l]: https://www.linkedin.com/in/ckunte "My professional profile on LinkedIn"
-[u]: https://github.com/ckunte/ckunte/blob/master/uses.md "My personalised open source software setup"
-[projects]: https://github.com/ckunte/ckunte/blob/master/proj.md "Personal side projects"
+[engineer]: https://www.linkedin.com/in/ckunte "My professional profile on LinkedIn"
 {% endmarkdown %}
