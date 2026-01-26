@@ -52,14 +52,14 @@ def git_modified_date(path):
     """
     try:
         out = subprocess.check_output(
-            ["git", "log", "-1", "--format=%cI", "--", str(path)],
+            ["git", "log", "-1", "--format=%ct", "--", str(path)],
             stderr=subprocess.DEVNULL,
             text=True,
         ).strip()
 
         if out:
-            dt = datetime.fromisoformat(out)
-            return dt.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+            dt = datetime.fromtimestamp(int(out), tz=timezone.utc)
+            return dt.isoformat().replace("+00:00", "Z")
 
     except Exception:
         pass
