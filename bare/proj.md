@@ -88,11 +88,11 @@ _Typesetting_
 
 _Useful utilities OS specific_
 
-- [Airprint][br]: Setup Brother HL-L2321D for AirPrinting (Mac, linux, Windows)
+- [Airprint][br]: Setup Brother HL-L2321D for AirPrinting (Mac, Linux, Windows)
+- [Essentials] -- everyday software 
 - [mackeyboard][mk]: Mac keyboard to Windows key mappings (Windows)
 - [pi_sysinfo.sh][si]: Raspberry Pi system info function (linux)
 - [scripting replies][or] in Outlook with AutoHotkey v2 (Windows)
-- [Essentials] -- software used everyday 
 - [wsl-howto][wsl]: Access linux environment from within Windows (linux)
 
 [Essentials]: /2024/essentials
