@@ -5,7 +5,7 @@ TMPL = "Sites/chisel/bare/"  # jinja templates folder
 SHOWPOSTS = [3]  # posts on feed
 TFMT = [
     "%Y-%m-%d %H:%M",
-    "%Y-%m-%dT%H:%M:00+08:00",
+    "%Y-%m-%dT%H:%M:00Z",
     "%-d %b %Y",
     # "%yW%W",
 ]

@@ -10,8 +10,9 @@ import os
 import pathlib
 import hashlib
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 import j2m
+import subprocess
 
 
 # Define the locations for posts, www, and templates
@@ -44,6 +45,30 @@ def step(func):
     return wrapper
 
 
+def git_modified_date(path):
+    """
+    Return last Git commit date as strict RFC3339 (UTC, Z).
+    Falls back to filesystem mtime.
+    """
+    try:
+        out = subprocess.check_output(
+            ["git", "log", "-1", "--format=%cI", "--", str(path)],
+            stderr=subprocess.DEVNULL,
+            text=True,
+        ).strip()
+
+        if out:
+            dt = datetime.fromisoformat(out)
+            return dt.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+
+    except Exception:
+        pass
+
+    # Fallback: filesystem mtime → RFC3339 UTC
+    dt = datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc)
+    return dt.isoformat().replace("+00:00", "Z")
+
+
 def get_tree(source):
     """Walk through the source directory and gather post data."""
     files = []
@@ -55,6 +80,8 @@ def get_tree(source):
                 continue
 
             path = pathlib.Path(root) / name
+            date_modified = git_modified_date(path)
+
             try:
                 with open(path, "r", encoding="utf-8") as f:
                     title = f.readline().strip()
@@ -75,11 +102,12 @@ def get_tree(source):
                         {
                             "title": title,
                             "epoch": time.mktime(date),
-                            # "cover": cover,  # cover image if exists in line 3 of the post
+                            # "cover": cover, # cover img if exists in note line 3
                             "content": formatted_content,
                             "url": f"{year}/{filename_without_ext}",
                             "feed_date": feed_date,
                             "nice_date": nice_date,
+                            "date_modified": date_modified,
                             # "wk_date": wk_date,
                             # "filename": filename,
                         }

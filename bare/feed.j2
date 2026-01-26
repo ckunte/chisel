@@ -20,7 +20,8 @@
       "title" : "{{ entry.title }}",
       "url" : "{{ site_url + '/' + entry.url }}",
       "content_text" : {{ entry.content|truncate|striptags|tojson }},
-      "date_published" : "{{ entry.feed_date }}"
+      "date_published" : "{{ entry.feed_date }}",
+      "date_modified" : "{{ entry.date_modified }}"
     }{%- if not loop.last %},{%- endif %}
   {%- endfor %}    
   ]
