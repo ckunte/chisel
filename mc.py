@@ -4,15 +4,13 @@
 
 from config import EXT, POSTS, SHOWPOSTS, TFMT, TMPL, WWW
 from functools import cmp_to_key
+import hashlib
+import j2m
 import jinja2
 import markdown
 import os
 import pathlib
-import hashlib
 import time
-from datetime import datetime, timezone
-import j2m
-import subprocess
 
 
 # Define the locations for posts, www, and templates
@@ -45,30 +43,6 @@ def step(func):
     return wrapper
 
 
-def git_modified_date(path):
-    """
-    Return last Git commit date as strict RFC3339 (UTC, Z).
-    Falls back to filesystem mtime.
-    """
-    try:
-        out = subprocess.check_output(
-            ["git", "log", "-1", "--format=%ct", "--", str(path)],
-            stderr=subprocess.DEVNULL,
-            text=True,
-        ).strip()
-
-        if out:
-            dt = datetime.fromtimestamp(int(out), tz=timezone.utc)
-            return dt.isoformat().replace("+00:00", "Z")
-
-    except Exception:
-        pass
-
-    # Fallback: filesystem mtime → RFC3339 UTC
-    dt = datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc)
-    return dt.isoformat().replace("+00:00", "Z")
-
-
 def get_tree(source):
     """Walk through the source directory and gather post data."""
     files = []
@@ -80,7 +54,6 @@ def get_tree(source):
                 continue
 
             path = pathlib.Path(root) / name
-            date_modified = git_modified_date(path)
 
             try:
                 with open(path, "r", encoding="utf-8") as f:
@@ -94,22 +67,16 @@ def get_tree(source):
                     formatted_content = FORMAT(content)
                     feed_date = time.strftime(TFMT[1], date)
                     nice_date = time.strftime(TFMT[2], date)
-                    # wk_date = time.strftime(TFMT[3], date)
                     filename_without_ext = path.stem
-                    # filename = os.path.splitext(name)[0] # exclude file extension
 
                     files.append(
                         {
                             "title": title,
                             "epoch": time.mktime(date),
-                            # "cover": cover, # cover img if exists in note line 3
                             "content": formatted_content,
                             "url": f"{year}/{filename_without_ext}",
                             "feed_date": feed_date,
                             "nice_date": nice_date,
-                            "date_modified": date_modified,
-                            # "wk_date": wk_date,
-                            # "filename": filename,
                         }
                     )
             except Exception as e:
@@ -141,22 +108,6 @@ def write_file(url_path, data, is_feed=False):
             f.write(data)
     except Exception as e:
         print(f"Failed to write file '{full_path}': {e}")
-
-
-# Custom filter to calculate age from (month, year)
-def age_filter(dob_month, dob_year, current_date=None):
-    if current_date is None:
-        current_date = datetime.now()
-
-    age = current_date.year - dob_year
-    if current_date.month < dob_month:
-        age -= 1
-    return age
-
-
-# Create the SHA-1 hash function
-def sha1_filter(url):
-    return hashlib.sha1(url.encode("utf-8")).hexdigest()
 
 
 @step
@@ -195,8 +146,6 @@ def feed(files, env):
 def main():
     """Main function to orchestrate file processing."""
     print("Chiseling...")
-    start_time = time.perf_counter()
-
     print("\tReading files...", end="")
     try:
         files = sorted(
@@ -217,9 +166,6 @@ def main():
                 ["html", "xml", "json"]
             ),
         )
-        # Register the filter
-        env.filters["age"] = age_filter
-        env.filters["sha1"] = sha1_filter
         print("done.")
     except Exception as e:
         print(f"Error setting up Jinja2: {e}")
@@ -232,10 +178,6 @@ def main():
         except Exception as e:
             print(f"A step failed but the process will continue: {e}")
     print("\tdone.")
-    end_time = time.perf_counter()
-    print(
-        f"Process completed in {end_time - start_time:.2f} seconds."
-    )
 
 
 if __name__ == "__main__":
