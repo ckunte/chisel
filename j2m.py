@@ -1,26 +1,16 @@
-# -*- coding: utf-8 -*-
-"""
-    jinja2_markdown
-    ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    A jinja2 extension that adds a `{% markdown %}` tag.
-
-    :copyright: (c) 2014 by Daniel Chatfield
-"""
-
 import markdown
 from jinja2.nodes import CallBlock
 from jinja2.ext import Extension
 
 
 class MarkdownExtension(Extension):
-    tags = set(['markdown'])
+    tags = {'markdown'}
 
     def __init__(self, environment):
-        super(MarkdownExtension, self).__init__(environment)
-        environment.extend(
-            markdowner=markdown.Markdown(extensions=["smarty", "fenced_code"])
-        )
+        super().__init__(environment)
+        md = markdown.Markdown(extensions=("smarty", "fenced_code"))
+        environment.extend(markdowner=md)
+        self._markdowner = md
 
     def parse(self, parser):
         lineno = next(parser.stream).lineno
@@ -37,26 +27,21 @@ class MarkdownExtension(Extension):
 
     def _markdown_support(self, caller):
         block = caller()
-        block = self._strip_whitespace(block)
-        return self._render_markdown(block)
+        if '\n' in block:
+            block = self._strip_whitespace(block)
+        return self._markdowner.convert(block)
 
     def _strip_whitespace(self, block):
-        lines = block.split('\n')
-        whitespace = ''
-        output = ''
+        lines = block.splitlines()
+        if len(lines) <= 1:
+            return block.strip()
 
-        if (len(lines) > 1):
-            for char in lines[1]:
-                if (char == ' ' or char == '\t'):
-                    whitespace += char
-                else:
-                    break
+        ws = lines[1][:len(lines[1]) - len(lines[1].lstrip(' \t'))]
 
-        for line in lines:
-            output += line.replace(whitespace, '', 1) + '\r\n'
+        stripped = [
+            line[len(ws):] if line.startswith(ws) else line
+            for line in lines
+        ]
 
-        return output.strip()
+        return '\n'.join(stripped).strip()
 
-    def _render_markdown(self, block):
-        block = self.environment.markdowner.convert(block)
-        return block
